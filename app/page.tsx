@@ -1,22 +1,23 @@
+import { wineries } from '@/lib/wineries-data';
+
 export default function Home() {
   return (
     <main className="min-h-screen bg-gradient-to-br from-purple-50 to-pink-50 p-8">
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <header className="text-center mb-12">
-          // app/page.tsx
           <h1 className="text-5xl font-bold text-purple-900 mb-4">
-            🍷 Virginia Wine Trail 🎊 Manual Webhook Works!
+            🍷 Virginia Wine Trail
           </h1>
           <p className="text-xl text-purple-700">
-            Discover 273 amazing wineries across Virginia
+            Discover {wineries.length} amazing wineries across Virginia
           </p>
         </header>
 
         {/* Quick Stats */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
           <div className="bg-white rounded-xl p-6 shadow-lg">
-            <div className="text-3xl font-bold text-purple-600 mb-2">273</div>
+            <div className="text-3xl font-bold text-purple-600 mb-2">{wineries.length}</div>
             <div className="text-gray-600">Wineries</div>
           </div>
           <div className="bg-white rounded-xl p-6 shadow-lg">
