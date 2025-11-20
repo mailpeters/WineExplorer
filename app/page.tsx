@@ -38,7 +38,7 @@ export default function Home() {
         <div className="relative max-w-6xl mx-auto px-8 py-20">
           <div className="text-center mb-12">
             <h1 className="text-6xl md:text-7xl font-bold text-white mb-4 drop-shadow-lg">
-              🍷 Virginia Wine Explorer
+              🍷 Dave's Virginia Wine Explorer
             </h1>
             <p className="text-xl md:text-2xl text-purple-100 mb-2">
               Discover {wineries.length} amazing wineries across Virginia
