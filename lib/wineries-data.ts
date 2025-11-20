@@ -1,6 +1,7 @@
 // lib/wineries-data.ts
 import { Winery } from '@/types/winery';
 
+
 export const wineries: Winery[] = [
   {
     id: "1",
