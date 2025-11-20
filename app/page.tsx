@@ -1,60 +1,189 @@
-import { wineries } from '@/lib/wineries-data';
+'use client';
+
+import { useState } from 'react';
+import Link from 'next/link';
+import { wineries, getRegions } from '@/lib/wineries-data';
+import { Winery } from '@/types/winery';
 
 export default function Home() {
+  const [searchQuery, setSearchQuery] = useState('');
+  const [searchResults, setSearchResults] = useState<Winery[]>([]);
+  const [showResults, setShowResults] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const regions = getRegions();
+
+  async function handleSearch(e: React.FormEvent) {
+    e.preventDefault();
+    if (!searchQuery.trim()) return;
+
+    setLoading(true);
+    try {
+      const res = await fetch(`/api/wineries/search?q=${encodeURIComponent(searchQuery)}`);
+      const data = await res.json();
+      setSearchResults(data.wineries || []);
+      setShowResults(true);
+    } catch (error) {
+      console.error('Search error:', error);
+      setSearchResults([]);
+    } finally {
+      setLoading(false);
+    }
+  }
+
   return (
-    <main className="min-h-screen bg-gradient-to-br from-purple-50 to-pink-50 p-8">
-      <div className="max-w-4xl mx-auto">
-        {/* Header */}
-        <header className="text-center mb-12">
-          <h1 className="text-5xl font-bold text-purple-900 mb-4">
-            🍷 Virginia Wine Explorer
-          </h1>
-          <p className="text-xl text-purple-700">
-            Discover {wineries.length} amazing wineries across Virginia
-          </p>
-        </header>
+    <main className="min-h-screen bg-gradient-to-br from-purple-900 via-purple-800 to-pink-900">
+      {/* Hero Section */}
+      <div className="relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-purple-600/20 to-pink-600/20"></div>
+        <div className="relative max-w-6xl mx-auto px-8 py-20">
+          <div className="text-center mb-12">
+            <h1 className="text-6xl md:text-7xl font-bold text-white mb-4 drop-shadow-lg">
+              🍷 Virginia Wine Explorer
+            </h1>
+            <p className="text-xl md:text-2xl text-purple-100 mb-2">
+              Discover {wineries.length} amazing wineries across Virginia
+            </p>
+            <p className="text-lg text-purple-200">Explore regions, find your favorites, and plan your wine adventures</p>
+          </div>
 
-        {/* Quick Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-          <div className="bg-white rounded-xl p-6 shadow-lg">
-            <div className="text-3xl font-bold text-purple-600 mb-2">{wineries.length}</div>
-            <div className="text-gray-600">Wineries</div>
-          </div>
-          <div className="bg-white rounded-xl p-6 shadow-lg">
-            <div className="text-3xl font-bold text-purple-600 mb-2">10</div>
-            <div className="text-gray-600">Regions</div>
-          </div>
-          <div className="bg-white rounded-xl p-6 shadow-lg">
-            <div className="text-3xl font-bold text-purple-600 mb-2">0</div>
-            <div className="text-gray-600">Visited</div>
-          </div>
-        </div>
+          {/* Search Bar */}
+          <form onSubmit={handleSearch} className="max-w-2xl mx-auto mb-12">
+            <div className="flex gap-3">
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Search by winery name, city, or region..."
+                className="flex-1 px-6 py-4 rounded-lg text-lg focus:outline-none focus:ring-4 focus:ring-pink-400 shadow-lg"
+              />
+              <button
+                type="submit"
+                disabled={loading}
+                className="px-8 py-4 bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white font-bold rounded-lg shadow-lg transition disabled:opacity-50"
+              >
+                {loading ? 'Searching...' : 'Search'}
+              </button>
+            </div>
+          </form>
 
-        {/* Coming Soon Features */}
-        <div className="bg-white rounded-xl p-8 shadow-lg">
-          <h2 className="text-2xl font-bold text-gray-800 mb-6">
-            Features Coming Soon
-          </h2>
-          <ul className="space-y-4">
-            <li className="flex items-center gap-3">
-              <span className="text-2xl">📍</span>
-              <span className="text-gray-700">Find wineries near you</span>
-            </li>
-            <li className="flex items-center gap-3">
-              <span className="text-2xl">⭐</span>
-              <span className="text-gray-700">Rate and review visits</span>
-            </li>
-            <li className="flex items-center gap-3">
-              <span className="text-2xl">📸</span>
-              <span className="text-gray-700">Upload photos</span>
-            </li>
-            <li className="flex items-center gap-3">
-              <span className="text-2xl">🗺️</span>
-              <span className="text-gray-700">Plan wine trail routes</span>
-            </li>
-          </ul>
+          {/* Quick Stats */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <div className="bg-white/10 backdrop-blur-md rounded-xl p-6 border border-white/20 shadow-lg">
+              <div className="text-4xl font-bold text-pink-300 mb-2">{wineries.length}</div>
+              <div className="text-purple-100">Total Wineries</div>
+            </div>
+            <div className="bg-white/10 backdrop-blur-md rounded-xl p-6 border border-white/20 shadow-lg">
+              <div className="text-4xl font-bold text-pink-300 mb-2">{regions.length}</div>
+              <div className="text-purple-100">Regions</div>
+            </div>
+            <div className="bg-white/10 backdrop-blur-md rounded-xl p-6 border border-white/20 shadow-lg">
+              <div className="text-4xl font-bold text-pink-300 mb-2">0</div>
+              <div className="text-purple-100">Visited</div>
+            </div>
+          </div>
         </div>
       </div>
+
+      {/* Search Results */}
+      {showResults && (
+        <div className="max-w-6xl mx-auto px-8 py-12">
+          <div className="bg-white/95 backdrop-blur-sm rounded-xl p-8 shadow-2xl">
+            <div className="flex justify-between items-center mb-6">
+              <h2 className="text-3xl font-bold text-gray-800">
+                Search Results <span className="text-pink-600">({searchResults.length})</span>
+              </h2>
+              <button
+                onClick={() => setShowResults(false)}
+                className="text-gray-500 hover:text-gray-700 text-2xl"
+              >
+                ✕
+              </button>
+            </div>
+
+            {searchResults.length === 0 ? (
+              <p className="text-gray-600 text-lg">No wineries found. Try a different search term.</p>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {searchResults.map((w) => (
+                  <div key={w.id} className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-lg p-6 border border-purple-200 hover:shadow-lg transition">
+                    <h3 className="text-xl font-bold text-purple-900 mb-2">{w.name}</h3>
+                    <p className="text-gray-700 mb-1">
+                      <span className="font-semibold">📍</span> {w.city}, {w.state}
+                    </p>
+                    <p className="text-gray-600 mb-3">
+                      <span className="font-semibold">🗺️</span> {w.region}
+                    </p>
+                    {w.phone && (
+                      <p className="text-gray-600 mb-2">
+                        <span className="font-semibold">📞</span> {w.phone}
+                      </p>
+                    )}
+                    {w.website && (
+                      <p className="text-purple-600 hover:text-purple-800">
+                        <span className="font-semibold">🌐</span>{' '}
+                        <a href={`https://${w.website}`} target="_blank" rel="noopener noreferrer" className="underline">
+                          {w.website}
+                        </a>
+                      </p>
+                    )}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* Features Section */}
+      <div className="max-w-6xl mx-auto px-8 py-16">
+        <h2 className="text-4xl font-bold text-white text-center mb-12">Explore by Region</h2>
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+          {regions.map((region) => (
+            <Link
+              key={region}
+              href={`/wineries?region=${encodeURIComponent(region)}`}
+              className="bg-white/10 backdrop-blur-md hover:bg-white/20 border border-white/30 rounded-lg p-4 text-center text-white font-semibold transition transform hover:scale-105"
+            >
+              {region}
+            </Link>
+          ))}
+        </div>
+      </div>
+
+      {/* Coming Soon Features */}
+      <div className="max-w-6xl mx-auto px-8 py-16">
+        <h2 className="text-4xl font-bold text-white text-center mb-12">Coming Soon</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-8 hover:bg-white/15 transition">
+            <div className="text-5xl mb-4">📍</div>
+            <h3 className="text-2xl font-bold text-white mb-2">Find Wineries Near You</h3>
+            <p className="text-purple-100">Use your location to discover wineries within a custom radius</p>
+          </div>
+          <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-8 hover:bg-white/15 transition">
+            <div className="text-5xl mb-4">⭐</div>
+            <h3 className="text-2xl font-bold text-white mb-2">Rate & Review</h3>
+            <p className="text-purple-100">Share your experiences and see what other visitors loved</p>
+          </div>
+          <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-8 hover:bg-white/15 transition">
+            <div className="text-5xl mb-4">📸</div>
+            <h3 className="text-2xl font-bold text-white mb-2">Upload Photos</h3>
+            <p className="text-purple-100">Capture and share your favorite moments from your visits</p>
+          </div>
+          <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-8 hover:bg-white/15 transition">
+            <div className="text-5xl mb-4">🗺️</div>
+            <h3 className="text-2xl font-bold text-white mb-2">Wine Trail Routes</h3>
+            <p className="text-purple-100">Plan the perfect wine tour with suggested routes and itineraries</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Footer */}
+      <footer className="bg-black/30 border-t border-white/10 py-8 mt-16">
+        <div className="max-w-6xl mx-auto px-8 text-center text-purple-200">
+          <p>🍷 Virginia Wine Explorer • Discover, Explore, Enjoy</p>
+        </div>
+      </footer>
     </main>
   );
 }
+

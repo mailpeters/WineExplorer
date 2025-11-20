@@ -1,0 +1,846 @@
+
+
+1. ✅ Browse all 273 Virginia wineries
+2. ✅ Filter by region (10 regions)
+3. ✅ Search by name, city, or region
+4. ✅ View winery details (address, phone, website, map)
+5. ✅ "Near Me" - Find wineries within X miles using GPS
+6. ✅ Get directions (link to Google Maps)
+7. ✅ Installable PWA (works like a native app)
+8. ✅ Works offline (cached winery data)
+Phase 2: User Features (Weeks 4-6)
+9. ✅ User accounts (sign up/login)
+10. ✅ Mark wineries as "Visited"
+11. ✅ Rate wineries (1-5 stars)
+12. ✅ Add personal notes about visits
+13. ✅ Upload photos from visits
+14. ✅ View your visit history
+15. ✅ Track progress (visited X of 273)
+Phase 3: Social Features (Weeks 7-9)
+16. ✅ View other users' ratings (aggregate)
+17. ✅ See popular wineries (most visited)
+18. ✅ Wine trail suggestions (route planning)
+19. ✅ Share your favorite wineries
+20. ✅ Export your visited list
+Phase 4: Advanced (Future)
+21. 🔮 Winery events calendar
+22. 🔮 Push notifications for nearby wineries
+23. 🔮 Check-in feature (like Untappd)
+24. 🔮 Wine tasting notes
+25. 🔮 Friend system (see what friends visited)
+
+🏗️ Technology Stack
+Frontend
+Next.js 15 (App Router)
+├── React 19
+├── TypeScript
+├── Tailwind CSS (styling)
+├── Shadcn UI (component library)
+├── PWA (Progressive Web App)
+│   ├── Service Worker (offline support)
+│   ├── Manifest.json (installable)
+│   └── IndexedDB (local storage)
+├── React Query (data fetching/caching)
+├── Zustand (client state management)
+└── Leaflet / Mapbox GL (maps)
+Backend (AWS)
+API Layer:
+├── Next.js API Routes (server-side)
+├── AWS Lambda (serverless functions)
+└── API Gateway (HTTP API)
+Database:
+└── DynamoDB
+    ├── Wineries Table
+    ├── Users Table
+    ├── Visits Table
+    └── Ratings Table
+Storage:
+├── S3 (photo uploads)
+└── CloudFront (CDN for images)
+Authentication:
+└── AWS Cognito
+    ├── User pools
+    ├── Email verification
+    └── Password reset
+Location Services:
+└── DynamoDB Geospatial Queries
+    └── Or: AWS Location Service (optional)
+Hosting & Deployment
+Frontend:
+└── Vercel
+    ├── Auto deploy from GitHub
+    ├── Free SSL certificate
+    ├── Built-in CDN
+    └── Edge functions
+Backend:
+└── AWS
+    ├── Lambda functions
+    ├── API Gateway
+    └── DynamoDB
+Domain:
+└── sierrapeters.com
+    └── DNS via domain registrar (free)
+Development Tools
+Code:
+├── VS Code
+├── Git / GitHub
+└── ESLint + Prettier
+AWS Management:
+├── AWS SDK for JavaScript v3
+├── AWS CLI
+└── AWS Console
+API Testing:
+├── Postman
+└── Thunder Client (VS Code)
+Monitoring:
+├── Vercel Analytics
+└── AWS CloudWatch (basic)
+
+🗄️ Database Design (DynamoDB)
+Table 1: Wineries
+javascript
+PK: WINERY#<wineryId>
+SK: METADATA
+Attributes:
+{
+  id: "WINERY#001",
+  name: "MountainRose Vineyards",
+  street: "10439 N. Reservoir Rd.",
+  city: "Wise",
+  state: "VA",
+  zip: "24293",
+  phone: "276-328-2013",
+  website: "mountainrosevineyard.com",
+  region: "Heart of Appalachia",
+  lat: 36.9759,
+  lng: -82.5748,
+  
+  // Aggregated data (updated via Lambda)
+  avgRating: 4.5,
+  totalRatings: 23,
+  totalVisits: 156,
+  
+  createdAt: "2024-01-01T00:00:00Z",
+  updatedAt: "2024-01-15T12:00:00Z"
+}
+// Global Secondary Index (GSI) for region queries
+GSI1:
+  PK: REGION#<region>
+  SK: WINERY#<name>
+// Global Secondary Index for geospatial queries
+GSI2:
+  PK: GEOHASH#<geohash>
+  SK: WINERY#<wineryId>
+Table 2: Users
+javascript
+PK: USER#<userId>
+SK: PROFILE
+Attributes:
+{
+  id: "USER#abc123",
+  email: "user@example.com",
+  name: "John Smith",
+  cognitoId: "cognito-sub-id",
+  
+  // Stats
+  totalVisits: 12,
+  totalPhotos: 8,
+  memberSince: "2024-01-01T00:00:00Z",
+  
+  createdAt: "2024-01-01T00:00:00Z",
+  updatedAt: "2024-01-15T12:00:00Z"
+}
+Table 3: Visits
+javascript
+PK: USER#<userId>
+SK: VISIT#<timestamp>#<wineryId>
+Attributes:
+{
+  userId: "USER#abc123",
+  wineryId: "WINERY#001",
+  visitDate: "2024-01-15T14:30:00Z",
+  rating: 5,
+  notes: "Amazing Chardonnay! Great views.",
+  photos: ["s3://bucket/user123/photo1.jpg"],
+  
+  createdAt: "2024-01-15T14:30:00Z",
+  updatedAt: "2024-01-15T14:30:00Z"
+}
+// GSI for querying by winery
+GSI1:
+  PK: WINERY#<wineryId>
+  SK: VISIT#<timestamp>
+Table 4: Ratings (Alternative: combine with Visits)
+javascript
+PK: WINERY#<wineryId>
+SK: RATING#<userId>
+Attributes:
+{
+  wineryId: "WINERY#001",
+  userId: "USER#abc123",
+  rating: 5,
+  timestamp: "2024-01-15T14:30:00Z"
+}
+// This allows quick lookup of user's rating for a winery
+// And aggregate calculations
+
+🚀 API Endpoints
+Public Endpoints (No Auth)
+typescript
+// Get all wineries
+GET /api/wineries
+Response: { wineries: Winery[] }
+// Get wineries by region
+GET /api/wineries?region=Northern+Virginia
+Response: { wineries: Winery[] }
+// Search wineries
+GET /api/wineries/search?q=mountain
+Response: { wineries: Winery[] }
+// Get single winery
+GET /api/wineries/[id]
+Response: { winery: Winery }
+// Get nearby wineries (GPS)
+GET /api/wineries/nearby?lat=38.5&lng=-77.5&radius=25
+Response: { wineries: Winery[], distances: number[] }
+// Get winery ratings (aggregate)
+GET /api/wineries/[id]/ratings
+Response: { avgRating: 4.5, totalRatings: 23, distribution: {...} }
+Protected Endpoints (Auth Required)
+typescript
+// Get my profile
+GET /api/users/me
+Response: { user: User, stats: {...} }
+// Update my profile
+PATCH /api/users/me
+Body: { name: "New Name" }
+Response: { user: User }
+// Get my visits
+GET /api/visits
+Response: { visits: Visit[] }
+// Add a visit
+POST /api/visits
+Body: { 
+  wineryId: "WINERY#001",
+  rating: 5,
+  notes: "Great wine!",
+  visitDate: "2024-01-15"
+}
+Response: { visit: Visit }
+// Update a visit
+PATCH /api/visits/[id]
+Body: { rating: 4, notes: "Updated notes" }
+Response: { visit: Visit }
+// Delete a visit
+DELETE /api/visits/[id]
+Response: { success: true }
+// Upload photo
+POST /api/photos/upload
+Body: FormData (multipart/form-data)
+Response: { photoUrl: "https://cdn.../photo.jpg" }
+// Get presigned URL for upload (better approach)
+POST /api/photos/presigned-url
+Body: { fileName: "photo.jpg", fileType: "image/jpeg" }
+Response: { uploadUrl: "...", photoUrl: "..." }
+```
+---
+## 📂 Project Structure
+```
+virginia-wine-trail/
+├── .github/
+│   └── workflows/
+│       └── deploy.yml                 # CI/CD
+│
+├── public/
+│   ├── icons/                         # PWA icons
+│   ├── manifest.json                  # PWA manifest
+│   └── sw.js                          # Service worker
+│
+├── src/
+│   ├── app/                           # Next.js App Router
+│   │   ├── api/                       # API routes
+│   │   │   ├── auth/
+│   │   │   │   ├── login/route.ts
+│   │   │   │   └── register/route.ts
+│   │   │   ├── wineries/
+│   │   │   │   ├── route.ts           # GET /api/wineries
+│   │   │   │   ├── [id]/route.ts      # GET /api/wineries/:id
+│   │   │   │   ├── nearby/route.ts    # GET /api/wineries/nearby
+│   │   │   │   └── search/route.ts
+│   │   │   ├── visits/
+│   │   │   │   ├── route.ts           # GET/POST /api/visits
+│   │   │   │   └── [id]/route.ts      # PATCH/DELETE
+│   │   │   ├── photos/
+│   │   │   │   ├── upload/route.ts
+│   │   │   │   └── presigned-url/route.ts
+│   │   │   └── users/
+│   │   │       └── me/route.ts
+│   │   │
+│   │   ├── (pages)/
+│   │   │   ├── page.tsx               # Home page
+│   │   │   ├── layout.tsx             # Root layout
+│   │   │   ├── wineries/
+│   │   │   │   ├── page.tsx           # Browse wineries
+│   │   │   │   └── [id]/page.tsx      # Winery detail
+│   │   │   ├── nearby/
+│   │   │   │   └── page.tsx           # Near me
+│   │   │   ├── profile/
+│   │   │   │   └── page.tsx           # User profile
+│   │   │   ├── visits/
+│   │   │   │   └── page.tsx           # My visits
+│   │   │   └── auth/
+│   │   │       ├── login/page.tsx
+│   │   │       └── register/page.tsx
+│   │   │
+│   │   └── globals.css                # Tailwind styles
+│   │
+│   ├── components/
+│   │   ├── ui/                        # Shadcn components
+│   │   │   ├── button.tsx
+│   │   │   ├── card.tsx
+│   │   │   ├── input.tsx
+│   │   │   └── ...
+│   │   ├── WineryCard.tsx
+│   │   ├── WineryMap.tsx
+│   │   ├── WineryList.tsx
+│   │   ├── SearchBar.tsx
+│   │   ├── FilterPanel.tsx
+│   │   ├── RatingStars.tsx
+│   │   ├── PhotoUpload.tsx
+│   │   ├── Navigation.tsx
+│   │   └── InstallPrompt.tsx          # PWA install prompt
+│   │
+│   ├── lib/
+│   │   ├── aws/
+│   │   │   ├── dynamodb.ts            # DynamoDB client
+│   │   │   ├── s3.ts                  # S3 client
+│   │   │   ├── cognito.ts             # Cognito client
+│   │   │   └── config.ts              # AWS config
+│   │   ├── db/
+│   │   │   ├── wineries.ts            # Winery queries
+│   │   │   ├── users.ts               # User queries
+│   │   │   └── visits.ts              # Visit queries
+│   │   ├── auth/
+│   │   │   ├── session.ts             # Session management
+│   │   │   └── middleware.ts          # Auth middleware
+│   │   ├── utils/
+│   │   │   ├── geolocation.ts         # GPS utilities
+│   │   │   ├── distance.ts            # Haversine formula
+│   │   │   ├── geohash.ts             # Geohash encoding
+│   │   │   └── validation.ts          # Input validation
+│   │   └── constants.ts
+│   │
+│   ├── hooks/
+│   │   ├── useWineries.ts             # React Query hook
+│   │   ├── useGeolocation.ts
+│   │   ├── useAuth.ts
+│   │   └── useVisits.ts
+│   │
+│   ├── store/
+│   │   └── authStore.ts               # Zustand store
+│   │
+│   └── types/
+│       ├── winery.ts
+│       ├── user.ts
+│       └── visit.ts
+│
+├── scripts/
+│   ├── seed-wineries.ts               # Import CSV to DynamoDB
+│   ├── setup-aws.ts                   # Create AWS resources
+│   └── generate-geohashes.ts          # Add geohashes to wineries
+│
+├── .env.local                         # Environment variables
+├── .env.example
+├── next.config.js
+├── tailwind.config.ts
+├── tsconfig.json
+└── package.json
+
+🔧 AWS Services Configuration
+1. DynamoDB Setup
+javascript
+// Create tables with AWS SDK or AWS Console
+Table: Wineries
+- Partition Key: id (String)
+- Billing Mode: On-demand (pay per request)
+- GSI 1: region-name-index
+  - PK: region (String)
+  - SK: name (String)
+- GSI 2: geohash-index
+  - PK: geohash (String)
+  - SK: id (String)
+Table: Users
+- Partition Key: id (String)
+- Billing Mode: On-demand
+Table: Visits
+- Partition Key: userId (String)
+- Sort Key: visitId (String) = VISIT#<timestamp>#<wineryId>
+- Billing Mode: On-demand
+- GSI 1: winery-timestamp-index
+  - PK: wineryId (String)
+  - SK: timestamp (String)
+2. S3 Bucket Setup
+javascript
+Bucket: virginia-wine-trail-photos
+- Region: us-east-1
+- Versioning: Disabled
+- Encryption: AES-256 (default)
+- Public access: Blocked (use presigned URLs)
+- Lifecycle rules:
+  - Delete incomplete multipart uploads after 7 days
+  
+Folder structure:
+├── users/
+│   ├── <userId>/
+│   │   ├── <photoId>.jpg
+│   │   └── <photoId>.jpg
+CORS Configuration:
+[
+  {
+    "AllowedHeaders": ["*"],
+    "AllowedMethods": ["PUT", "POST", "GET"],
+    "AllowedOrigins": ["https://sierrapeters.com"],
+    "ExposeHeaders": ["ETag"]
+  }
+]
+3. CloudFront Setup (Optional)
+javascript
+Distribution: virginia-wine-trail
+- Origin: S3 bucket (virginia-wine-trail-photos)
+- Alternate Domain: cdn.sierrapeters.com (optional)
+- SSL Certificate: ACM certificate
+- Price Class: Use Only US, Canada, Europe
+- Cache Behavior:
+  - Viewer Protocol: Redirect HTTP to HTTPS
+  - Allowed HTTP Methods: GET, HEAD
+  - Cache TTL: 86400 seconds (24 hours)
+4. Cognito User Pool Setup
+javascript
+User Pool: virginia-wine-trail-users
+- Sign-in options: Email
+- Password policy:
+  - Minimum length: 8
+  - Require: lowercase, uppercase, numbers
+- MFA: Optional (SMS or TOTP)
+- Account recovery: Email
+- Email verification: Required
+- Attributes:
+  - email (required, mutable)
+  - name (optional, mutable)
+App Client:
+- Name: web-client
+- Auth flows: USER_PASSWORD_AUTH
+- Token expiration:
+  - Access token: 1 hour
+  - ID token: 1 hour
+  - Refresh token: 30 days
+5. Lambda Functions (if needed)
+javascript
+Function: aggregate-ratings
+- Runtime: Node.js 20.x
+- Memory: 256 MB
+- Timeout: 10 seconds
+- Trigger: DynamoDB Stream (Visits table)
+- Purpose: Update winery avgRating when new rating added
+- Environment Variables:
+  - WINERIES_TABLE: virginia-wine-trail-wineries
+Function: resize-photos
+- Runtime: Node.js 20.x
+- Memory: 1024 MB
+- Timeout: 30 seconds
+- Trigger: S3 (on object creation)
+- Purpose: Create thumbnails of uploaded photos
+6. API Gateway Setup
+javascript
+API: virginia-wine-trail-api
+- Type: HTTP API (cheaper than REST)
+- CORS:
+  - Allow Origins: https://sierrapeters.com
+  - Allow Methods: GET, POST, PATCH, DELETE, OPTIONS
+  - Allow Headers: Content-Type, Authorization
+- Authorization: JWT (Cognito User Pool)
+- Throttling: 
+  - Rate: 100 requests/second
+  - Burst: 200 requests
+
+🔐 Environment Variables
+bash
+# .env.local
+# AWS Configuration
+AWS_REGION=us-east-1
+AWS_ACCESS_KEY_ID=your-access-key
+AWS_SECRET_ACCESS_KEY=your-secret-key
+# DynamoDB Tables
+DYNAMODB_WINERIES_TABLE=virginia-wine-trail-wineries
+DYNAMODB_USERS_TABLE=virginia-wine-trail-users
+DYNAMODB_VISITS_TABLE=virginia-wine-trail-visits
+# S3
+S3_BUCKET_NAME=virginia-wine-trail-photos
+S3_REGION=us-east-1
+CLOUDFRONT_DOMAIN=d1234567890.cloudfront.net
+# Cognito
+COGNITO_USER_POOL_ID=us-east-1_XXXXXXXXX
+COGNITO_CLIENT_ID=your-client-id
+COGNITO_REGION=us-east-1
+# Next.js
+NEXT_PUBLIC_API_URL=https://sierrapeters.com/api
+NEXT_PUBLIC_MAPBOX_TOKEN=your-mapbox-token (optional)
+# Security
+NEXTAUTH_SECRET=your-random-secret-key
+NEXTAUTH_URL=https://sierrapeters.com
+
+📦 Dependencies
+json
+{
+  "dependencies": {
+    "next": "^15.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    
+    // AWS SDK
+    "@aws-sdk/client-dynamodb": "^3.490.0",
+    "@aws-sdk/lib-dynamodb": "^3.490.0",
+    "@aws-sdk/client-s3": "^3.490.0",
+    "@aws-sdk/s3-request-presigner": "^3.490.0",
+    "@aws-sdk/client-cognito-identity-provider": "^3.490.0",
+    
+    // Authentication
+    "next-auth": "^5.0.0",
+    "amazon-cognito-identity-js": "^6.3.0",
+    
+    // State Management
+    "@tanstack/react-query": "^5.0.0",
+    "zustand": "^4.5.0",
+    
+    // UI Components
+    "@radix-ui/react-dialog": "^1.0.5",
+    "@radix-ui/react-dropdown-menu": "^2.0.6",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.0",
+    "tailwind-merge": "^2.2.0",
+    "lucide-react": "^0.344.0",
+    
+    // Maps
+    "leaflet": "^1.9.4",
+    "react-leaflet": "^4.2.1",
+    // OR: "mapbox-gl": "^3.0.0",
+    // OR: "@vis.gl/react-google-maps": "^1.0.0",
+    
+    // Utils
+    "date-fns": "^3.0.0",
+    "zod": "^3.22.0",
+    "ngeohash": "^0.6.3"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/react": "^19.0.0",
+    "@types/leaflet": "^1.9.8",
+    "typescript": "^5.3.0",
+    "tailwindcss": "^3.4.0",
+    "postcss": "^8.4.0",
+    "autoprefixer": "^10.4.0",
+    "eslint": "^8.56.0",
+    "prettier": "^3.2.0"
+  }
+}
+
+🚀 Implementation Timeline
+Week 1: Setup & Infrastructure
+Day 1-2: Project Setup
+• ✅ Initialize Next.js project
+• ✅ Set up TypeScript
+• ✅ Install dependencies
+• ✅ Configure Tailwind CSS
+• ✅ Set up Git repository
+Day 3-4: AWS Setup
+• ✅ Create AWS account (if needed)
+• ✅ Set up IAM user with appropriate permissions
+• ✅ Create DynamoDB tables
+• ✅ Create S3 bucket
+• ✅ Set up Cognito User Pool
+• ✅ Configure environment variables
+Day 5-7: Data Import
+• ✅ Write script to import 273 wineries from CSV
+• ✅ Add geohashes for location queries
+• ✅ Test DynamoDB queries
+• ✅ Verify all data imported correctly
+Week 2: Core Features
+Day 8-10: Winery Browsing
+• ✅ Create winery list page
+• ✅ Implement filter by region
+• ✅ Add search functionality
+• ✅ Build winery detail page
+• ✅ Add map view
+Day 11-14: Geolocation
+• ✅ Implement "Near Me" feature
+• ✅ Calculate distances (Haversine formula)
+• ✅ Sort by distance
+• ✅ Add "Get Directions" (Google Maps integration)
+• ✅ Test geolocation on mobile devices
+Week 3: PWA Setup
+Day 15-17: Progressive Web App
+• ✅ Create manifest.json
+• ✅ Add service worker
+• ✅ Implement offline caching
+• ✅ Add install prompt
+• ✅ Test on iOS and Android
+Day 18-21: UI Polish
+• ✅ Design responsive layouts
+• ✅ Add loading states
+• ✅ Implement error handling
+• ✅ Add animations/transitions
+• ✅ Optimize images
+Week 4: Authentication
+Day 22-24: Cognito Integration
+• ✅ Set up Cognito authentication
+• ✅ Create login/register pages
+• ✅ Implement session management
+• ✅ Add protected routes
+• ✅ Test auth flow
+Day 25-28: User Profile
+• ✅ Create user profile page
+• ✅ Display user stats
+• ✅ Allow profile editing
+• ✅ Add password reset
+• ✅ Email verification
+Week 5: User Features
+Day 29-32: Visit Tracking
+• ✅ Create "Add Visit" feature
+• ✅ Implement ratings (1-5 stars)
+• ✅ Add notes functionality
+• ✅ Display visit history
+• ✅ Edit/delete visits
+Day 33-35: Photo Uploads
+• ✅ Implement photo upload to S3
+• ✅ Use presigned URLs
+• ✅ Add image compression (client-side)
+• ✅ Display photos in visits
+• ✅ Delete photos
+Week 6: Polish & Deploy
+Day 36-38: Testing
+• ✅ Test all features end-to-end
+• ✅ Test on multiple devices
+• ✅ Test offline functionality
+• ✅ Fix bugs
+• ✅ Optimize performance
+Day 39-42: Deployment
+• ✅ Deploy to Vercel
+• ✅ Configure custom domain
+• ✅ Set up SSL certificate
+• ✅ Configure AWS Lambda (if needed)
+• ✅ Monitor initial usage
+
+🔒 Security Considerations
+Authentication
+typescript
+// Use HTTP-only cookies for tokens
+// Never store tokens in localStorage
+// Implement CSRF protection
+// Rate limit authentication attempts
+// Example middleware
+export async function authMiddleware(req: Request) {
+  const token = req.cookies.get('auth-token');
+  if (!token) {
+    return new Response('Unauthorized', { status: 401 });
+  }
+  
+  try {
+    const user = await verifyToken(token);
+    return user;
+  } catch (error) {
+    return new Response('Invalid token', { status: 401 });
+  }
+}
+API Security
+typescript
+// Input validation with Zod
+import { z } from 'zod';
+const WinerySchema = z.object({
+  name: z.string().min(1).max(100),
+  rating: z.number().min(1).max(5),
+  notes: z.string().max(500).optional()
+});
+// Rate limiting
+import rateLimit from 'express-rate-limit';
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100 // limit each IP to 100 requests per windowMs
+});
+S3 Security
+typescript
+// Never make bucket public
+// Use presigned URLs with expiration
+// Validate file types before upload
+// Scan uploads for malware (optional)
+export async function getPresignedUploadUrl(
+  fileName: string,
+  fileType: string,
+  userId: string
+) {
+  // Validate file type
+  const allowedTypes = ['image/jpeg', 'image/png', 'image/webp'];
+  if (!allowedTypes.includes(fileType)) {
+    throw new Error('Invalid file type');
+  }
+  
+  // Generate presigned URL (expires in 5 minutes)
+  const command = new PutObjectCommand({
+    Bucket: process.env.S3_BUCKET_NAME,
+    Key: `users/${userId}/${Date.now()}-${fileName}`,
+    ContentType: fileType,
+  });
+  
+  return await getSignedUrl(s3Client, command, { expiresIn: 300 });
+}
+DynamoDB Security
+typescript
+// Use IAM roles with least privilege
+// Enable point-in-time recovery
+// Enable encryption at rest
+// Never expose AWS credentials in frontend
+// Example IAM policy
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "dynamodb:GetItem",
+        "dynamodb:PutItem",
+        "dynamodb:Query",
+        "dynamodb:Scan",
+        "dynamodb:UpdateItem"
+      ],
+      "Resource": [
+        "arn:aws:dynamodb:us-east-1:*:table/virginia-wine-trail-*"
+      ]
+    }
+  ]
+}
+
+📊 Monitoring & Analytics
+Free Monitoring Options
+Vercel Analytics (Built-in, Free)
+typescript
+// Automatically tracks:
+// - Page views
+// - Performance metrics (Core Web Vitals)
+// - Real user monitoring
+// - Geographic distribution
+AWS CloudWatch (Basic, Free Tier)
+typescript
+// Monitor:
+// - Lambda execution errors
+// - API Gateway 4xx/5xx errors
+// - DynamoDB throttling
+// - S3 storage usage
+// Set up alarms for critical errors
+Custom Analytics (Optional)
+typescript
+// Track key events:
+// - Winery views
+// - "Near me" searches
+// - Visits added
+// - Photos uploaded
+// Simple event tracking
+export async function trackEvent(
+  userId: string,
+  event: string,
+  properties?: Record<string, any>
+) {
+  await dynamodb.putItem({
+    TableName: 'analytics-events',
+    Item: {
+      userId,
+      event,
+      properties,
+      timestamp: Date.now()
+    }
+  });
+}
+
+🧪 Testing Strategy
+Unit Tests
+typescript
+// Test utilities and helpers
+// Example: distance calculation
+import { calculateDistance } from '@/lib/utils/distance';
+describe('calculateDistance', () => {
+  it('should calculate distance between two points', () => {
+    const result = calculateDistance(
+      { lat: 38.5, lng: -77.5 },
+      { lat: 38.6, lng: -77.6 }
+    );
+    expect(result).toBeCloseTo(9.8, 1); // ~9.8 miles
+  });
+});
+Integration Tests
+typescript
+// Test API endpoints
+import { GET } from '@/app/api/wineries/route';
+describe('GET /api/wineries', () => {
+  it('should return all wineries', async () => {
+    const response = await GET(new Request('http://localhost:3000/api/wineries'));
+    const data = await response.json();
+    
+    expect(data.wineries).toHaveLength(273);
+    expect(data.wineries[0]).toHaveProperty('name');
+  });
+});
+E2E Tests (Optional - Playwright)
+typescript
+// Test critical user flows
+import { test, expect } from '@playwright/test';
+test('user can search for wineries', async ({ page }) => {
+  await page.goto('https://sierrapeters.com');
+  await page.fill('[data-testid="search-input"]', 'mountain');
+  await page.click('[data-testid="search-button"]');
+  
+  await expect(page.locator('[data-testid="winery-card"]')).toHaveCount(3);
+});
+```
+---
+## 💰 Final Cost Summary
+### **Monthly Costs (10 users, 50 photos)**
+```
+Vercel Hosting:         $0.00  (Free tier)
+DynamoDB:               $0.00  (minimal usage)
+S3 Storage:             $0.12  (5GB photos)
+Lambda:                 $0.00  (minimal usage)
+API Gateway:            $0.00  (minimal usage)
+CloudFront:             $0.02  (optional)
+Cognito:                $0.00  (< 50k MAU)
+Domain (separate):      $1.00  (annual/12)
+────────────────────────────────────────
+TOTAL:                  $0.14/month
+Annual Cost:            $1.68/year
+Scaling Costs
+
+Users/Month	Monthly Cost	Annual Cost
+10	$0.14	$1.68
+100	$0.88	$10.56
+1,000	$3.25	$39.00
+10,000	$28.00	$336.00
+
+🎯 Success Metrics
+Technical Metrics
+• ✅ Lighthouse score: 95+ (Performance)
+• ✅ First Contentful Paint: < 1.5s
+• ✅ Time to Interactive: < 3s
+• ✅ 99.9% uptime
+• ✅ < 100ms API response time
+User Metrics
+• ✅ 10 active users in month 1
+• ✅ 50+ active users by month 6
+• ✅ Average 5+ wineries viewed per session
+• ✅ 20% conversion to user accounts
+• ✅ 50+ winery visits logged
+
+🚦 Next Steps
+Ready to start? Here's what I can help you with next:
+26. Generate DynamoDB table definitions (CloudFormation/CDK)
+27. Create the winery import script (load your CSV into DynamoDB)
+28. Build the initial Next.js project structure
+29. Set up AWS credentials and configuration
+30. Create the first API endpoints (GET /api/wineries)
+31. Build the winery browse page
+Which would you like to tackle first?
