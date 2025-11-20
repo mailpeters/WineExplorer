@@ -6,7 +6,7 @@ export default function Home() {
         <header className="text-center mb-12">
           // app/page.tsx
           <h1 className="text-5xl font-bold text-purple-900 mb-4">
-            🍷 Virginia Wine Trail 🎊 Manual Webhook Works!
+            🍷 Virginia Wine Trail 🎊 Manual Webhook Works weird!
           </h1>
           <p className="text-xl text-purple-700">
             Discover 273 amazing wineries across Virginia
