@@ -7,7 +7,7 @@ export default function Home() {
         {/* Header */}
         <header className="text-center mb-12">
           <h1 className="text-5xl font-bold text-purple-900 mb-4">
-            🍷 Virginia Wine Trail
+            🍷 Virginia Wine Explorer
           </h1>
           <p className="text-xl text-purple-700">
             Discover {wineries.length} amazing wineries across Virginia
