@@ -113,7 +113,7 @@ export default function Home() {
                 className="px-4 py-2 bg-pink-500 hover:bg-pink-600 text-white font-semibold rounded-lg transition border border-white/30 backdrop-blur-sm shadow-md"
                 title="Find wineries near you"
               >
-                📍 Near Me
+                Near Me
               </Link>
               <button
                 onClick={() => setIsSettingsOpen(true)}
