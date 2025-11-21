@@ -177,15 +177,15 @@ export default function NearbyPage() {
               )}
 
               {!loading && results.length > 0 && (
-                <div className="space-y-3">
+                <div className="space-y-2">
                   {results.map(({ winery, distanceMiles }) => (
                     <div
                       key={winery.id}
-                      className="p-3 border border-purple-100 rounded-lg hover:border-purple-300 transition shadow-sm bg-white/80"
+                      className="p-2 border border-purple-100 rounded-lg hover:border-purple-300 transition shadow-sm bg-white"
                     >
-                      <div className="flex flex-wrap justify-between gap-3">
+                      <div className="flex flex-wrap justify-between gap-2 text-sm">
                         <div>
-                          <h3 className="text-lg font-semibold text-purple-900">{winery.name}</h3>
+                          <h3 className="text-base font-semibold text-purple-900">{winery.name}</h3>
                           <p className="text-xs text-purple-600">{winery.city}, {winery.state}</p>
                           <p className="text-xs text-gray-500">{winery.region}</p>
                         </div>
@@ -194,18 +194,26 @@ export default function NearbyPage() {
                           <p className="text-xl font-bold text-purple-900">{distanceMiles} mi</p>
                         </div>
                       </div>
-                      <div className="mt-2 flex items-center justify-between flex-wrap gap-3 text-xs">
+                      <div className="mt-1 flex items-center justify-between flex-wrap gap-2 text-[11px]">
                         <CategoryBadges categories={winery.categories} />
-                        {winery.website && (
-                          <a
-                            href={`https://${winery.website}`}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="text-purple-600 hover:text-purple-800 font-semibold"
+                        <div className="flex items-center gap-2">
+                          <button
+                            onClick={() => navigator.clipboard.writeText(`${winery.street}, ${winery.city}, ${winery.state} ${winery.zip}`)}
+                            className="px-2 py-1 bg-purple-100 text-purple-700 rounded border border-purple-200 hover:bg-purple-200"
                           >
-                            Visit Website ↗
-                          </a>
-                        )}
+                            Copy Address
+                          </button>
+                          {winery.website && (
+                            <a
+                              href={`https://${winery.website}`}
+                              target="_blank"
+                              rel="noreferrer"
+                              className="text-purple-600 hover:text-purple-800 font-semibold"
+                            >
+                              Visit ↗
+                            </a>
+                          )}
+                        </div>
                       </div>
                     </div>
                   ))}

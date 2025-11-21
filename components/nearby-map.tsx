@@ -28,6 +28,15 @@ const markerIcon = L.icon({
   shadowSize: [41, 41],
 });
 
+const userIcon = L.icon({
+  iconUrl: "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png",
+  shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
+  iconSize: [30, 48],
+  iconAnchor: [15, 48],
+  popupAnchor: [0, -42],
+  shadowSize: [48, 48],
+});
+
 export default function NearbyMap({ origin, results, radiusMiles }: NearbyMapProps) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<L.Map | null>(null);
@@ -64,22 +73,15 @@ export default function NearbyMap({ origin, results, radiusMiles }: NearbyMapPro
 
     if (origin) {
       const originMarker = L.marker(origin, {
-        icon: L.icon({
-          iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
-          shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
-          iconSize: [30, 46],
-          iconAnchor: [15, 46],
-          popupAnchor: [0, -40],
-          shadowSize: [46, 46],
-        }),
+        icon: userIcon,
       }).addTo(group);
       originMarker.bindPopup("You");
 
       L.circle(origin, {
         radius: radiusMiles * 1609.34,
-        color: "#ec4899",
-        fillColor: "#ec4899",
-        fillOpacity: 0.08,
+        color: "#22c55e",
+        fillColor: "#22c55e",
+        fillOpacity: 0.12,
         weight: 1.5,
       }).addTo(group);
 
