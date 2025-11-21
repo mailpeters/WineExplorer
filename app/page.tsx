@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { wineries, getRegions } from '@/lib/wineries-data';
 import { Winery } from '@/types/winery';
+import AuthButton from '@/components/auth-button';
 
 export default function Home() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -36,6 +37,10 @@ export default function Home() {
       <div className="relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-purple-600/20 to-pink-600/20"></div>
         <div className="relative max-w-6xl mx-auto px-8 py-20">
+          {/* Auth Button - Top Right */}
+          <div className="flex justify-end mb-8">
+            <AuthButton />
+          </div>
           <div className="text-center mb-12">
             <h1 className="text-6xl md:text-7xl font-bold text-white mb-4 drop-shadow-lg">
               🍷 Dave's Virginia Wine Explorer
