@@ -1,17 +1,38 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { wineries, getRegions } from '@/lib/wineries-data';
 import { Winery } from '@/types/winery';
 import AuthButton from '@/components/auth-button';
+import CategoryBadges from '@/components/category-badges';
+
+const videos = [
+  '/videos/landscape.mp4',
+  '/videos/pour.mp4',
+  '/videos/barrels.mp4',
+  '/videos/rows.mp4',
+];
 
 export default function Home() {
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState<Winery[]>([]);
   const [showResults, setShowResults] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [randomVideo, setRandomVideo] = useState('');
+  const [selectedCategories, setSelectedCategories] = useState({
+    winery: true,
+    cidery: false,
+    brewery: false,
+    distillery: false,
+  });
   const regions = getRegions();
+
+  useEffect(() => {
+    // Select a random video on component mount
+    const randomIndex = Math.floor(Math.random() * videos.length);
+    setRandomVideo(videos[randomIndex]);
+  }, []);
 
   async function handleSearch(e: React.FormEvent) {
     e.preventDefault();
@@ -21,7 +42,13 @@ export default function Home() {
     try {
       const res = await fetch(`/api/wineries/search?q=${encodeURIComponent(searchQuery)}`);
       const data = await res.json();
-      setSearchResults(data.wineries || []);
+
+      // Filter by selected categories
+      const filtered = (data.wineries || []).filter((w: Winery) => {
+        return w.categories.some(cat => selectedCategories[cat]);
+      });
+
+      setSearchResults(filtered);
       setShowResults(true);
     } catch (error) {
       console.error('Search error:', error);
@@ -31,35 +58,50 @@ export default function Home() {
     }
   }
 
+  const toggleCategory = (category: keyof typeof selectedCategories) => {
+    setSelectedCategories(prev => ({
+      ...prev,
+      [category]: !prev[category]
+    }));
+  };
+
   return (
     <main className="min-h-screen bg-gradient-to-br from-purple-900 via-purple-800 to-pink-900">
       {/* Hero Section */}
       <div className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-600/20 to-pink-600/20"></div>
-        <div className="relative max-w-6xl mx-auto px-8 py-20">
-          {/* Auth Button - Top Right */}
-          <div className="flex justify-end mb-8">
-            <AuthButton />
+        {/* Background Video */}
+        {randomVideo && (
+          <div className="absolute inset-0 overflow-hidden">
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-full object-cover"
+            >
+              <source src={randomVideo} type="video/mp4" />
+            </video>
           </div>
-          <div className="text-center mb-12">
-            <h1 className="text-6xl md:text-7xl font-bold text-white mb-4 drop-shadow-lg">
+        )}
+        <div className="absolute inset-0 bg-black/40"></div>
+        <div className="relative max-w-6xl mx-auto px-8 py-20">
+          {/* Header - Title and Auth Button */}
+          <div className="flex justify-between items-center mb-12">
+            <h1 className="text-4xl md:text-5xl font-bold text-white drop-shadow-lg">
               🍷 Dave's Virginia Wine Explorer
             </h1>
-            <p className="text-xl md:text-2xl text-purple-100 mb-2">
-              Discover {wineries.length} amazing wineries across Virginia
-            </p>
-            <p className="text-lg text-purple-200">Explore regions, find your favorites, and plan your wine adventures</p>
+            <AuthButton />
           </div>
 
           {/* Search Bar */}
-          <form onSubmit={handleSearch} className="max-w-2xl mx-auto mb-12">
+          <form onSubmit={handleSearch} className="max-w-2xl mx-auto mb-6 relative z-10">
             <div className="flex gap-3">
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search by winery name, city, or region..."
-                className="flex-1 px-6 py-4 rounded-lg text-lg focus:outline-none focus:ring-4 focus:ring-pink-400 shadow-lg"
+                className="flex-1 px-6 py-4 bg-white text-gray-900 rounded-lg text-lg focus:outline-none focus:ring-4 focus:ring-pink-400 shadow-lg placeholder:text-gray-400"
               />
               <button
                 type="submit"
@@ -71,19 +113,45 @@ export default function Home() {
             </div>
           </form>
 
-          {/* Quick Stats */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-            <div className="bg-white/10 backdrop-blur-md rounded-xl p-6 border border-white/20 shadow-lg">
-              <div className="text-4xl font-bold text-pink-300 mb-2">{wineries.length}</div>
-              <div className="text-purple-100">Total Wineries</div>
-            </div>
-            <div className="bg-white/10 backdrop-blur-md rounded-xl p-6 border border-white/20 shadow-lg">
-              <div className="text-4xl font-bold text-pink-300 mb-2">{regions.length}</div>
-              <div className="text-purple-100">Regions</div>
-            </div>
-            <div className="bg-white/10 backdrop-blur-md rounded-xl p-6 border border-white/20 shadow-lg">
-              <div className="text-4xl font-bold text-pink-300 mb-2">0</div>
-              <div className="text-purple-100">Visited</div>
+          {/* Category Filters */}
+          <div className="max-w-2xl mx-auto mb-12 relative z-10">
+            <div className="flex flex-wrap gap-4 justify-center bg-white/10 backdrop-blur-md rounded-lg p-4 border border-white/20">
+              <label className="flex items-center gap-2 cursor-pointer text-white">
+                <input
+                  type="checkbox"
+                  checked={selectedCategories.winery}
+                  onChange={() => toggleCategory('winery')}
+                  className="w-5 h-5 rounded accent-purple-500"
+                />
+                <span className="font-semibold">🍷 Wineries</span>
+              </label>
+              <label className="flex items-center gap-2 cursor-pointer text-white">
+                <input
+                  type="checkbox"
+                  checked={selectedCategories.cidery}
+                  onChange={() => toggleCategory('cidery')}
+                  className="w-5 h-5 rounded accent-amber-500"
+                />
+                <span className="font-semibold">🍎 Cideries</span>
+              </label>
+              <label className="flex items-center gap-2 cursor-pointer text-white">
+                <input
+                  type="checkbox"
+                  checked={selectedCategories.brewery}
+                  onChange={() => toggleCategory('brewery')}
+                  className="w-5 h-5 rounded accent-yellow-500"
+                />
+                <span className="font-semibold">🍺 Breweries</span>
+              </label>
+              <label className="flex items-center gap-2 cursor-pointer text-white">
+                <input
+                  type="checkbox"
+                  checked={selectedCategories.distillery}
+                  onChange={() => toggleCategory('distillery')}
+                  className="w-5 h-5 rounded accent-blue-500"
+                />
+                <span className="font-semibold">🥃 Distilleries</span>
+              </label>
             </div>
           </div>
         </div>
@@ -111,7 +179,10 @@ export default function Home() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {searchResults.map((w) => (
                   <div key={w.id} className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-lg p-6 border border-purple-200 hover:shadow-lg transition">
-                    <h3 className="text-xl font-bold text-purple-900 mb-2">{w.name}</h3>
+                    <div className="flex justify-between items-start mb-2">
+                      <h3 className="text-xl font-bold text-purple-900">{w.name}</h3>
+                      <CategoryBadges categories={w.categories} />
+                    </div>
                     <p className="text-gray-700 mb-1">
                       <span className="font-semibold">📍</span> {w.city}, {w.state}
                     </p>

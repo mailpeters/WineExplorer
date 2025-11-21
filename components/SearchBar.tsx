@@ -13,7 +13,7 @@ export default function SearchBar({ onSearch }: { onSearch: (q: string) => void 
   return (
     <form onSubmit={handleSubmit} className="w-full flex gap-3 mb-8">
       <input
-        className="flex-1 px-4 py-3 border-2 border-purple-200 rounded-lg focus:outline-none focus:border-purple-600 transition"
+        className="flex-1 px-4 py-3 bg-white text-gray-900 border-2 border-purple-200 rounded-lg focus:outline-none focus:border-purple-600 transition placeholder:text-gray-400"
         placeholder="Search by name, city, or region..."
         value={value}
         onChange={(e) => setValue(e.target.value)}

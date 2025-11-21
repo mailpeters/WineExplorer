@@ -11,7 +11,9 @@
       "Bash(git add:*)",
       "Bash(npm install:*)",
       "Bash(node -e:*)",
-      "Bash(npx kill-port:*)"
+      "Bash(npx kill-port:*)",
+      "Bash(node fix-categories.js:*)",
+      "Bash(node update-cideries.js:*)"
     ],
     "deny": [],
     "ask": []

@@ -12,7 +12,8 @@ export const wineries: Winery[] = [
     zip: "24293",
     phone: "276-328-2013",
     website: "mountainrosevineyard.com",
-    region: "Heart of Appalachia"
+    region: "Heart of Appalachia",
+    categories: ["winery"]
   },
   {
     id: "2",
@@ -23,7 +24,8 @@ export const wineries: Winery[] = [
     zip: "24266",
     phone: "276-219-4522",
     website: "vincentsvineyard.com",
-    region: "Heart of Appalachia"
+    region: "Heart of Appalachia",
+    categories: ["winery"]
   },
   {
     id: "3",
@@ -34,7 +36,8 @@ export const wineries: Winery[] = [
     zip: "23430",
     phone: "757-214-7494",
     website: "breezyhillmeadworks.com",
-    region: "Hampton Roads"
+    region: "Hampton Roads",
+  categories: ["winery"]
   },
   {
     id: "4",
@@ -45,7 +48,8 @@ export const wineries: Winery[] = [
     zip: "23011",
     phone: "757-350-3125",
     website: "gauthiervineyard.com",
-    region: "Hampton Roads"
+    region: "Hampton Roads",
+  categories: ["winery"]
   },
   {
     id: "5",
@@ -56,7 +60,8 @@ export const wineries: Winery[] = [
     zip: "23846",
     phone: "757-899-0203",
     website: "hamptonroadswinery.com",
-    region: "Hampton Roads"
+    region: "Hampton Roads",
+  categories: ["winery"]
   },
   {
     id: "6",
@@ -67,7 +72,8 @@ export const wineries: Winery[] = [
     zip: "23141",
     phone: "804-557-5316",
     website: "jolenefamilywinery.com",
-    region: "Hampton Roads"
+    region: "Hampton Roads",
+  categories: ["winery"]
   },
   {
     id: "7",
@@ -78,7 +84,8 @@ export const wineries: Winery[] = [
     zip: "23510",
     phone: "757-233-4155",
     website: "mermaidwinery.com",
-    region: "Hampton Roads"
+    region: "Hampton Roads",
+  categories: ["winery"]
   },
   {
     id: "8",
@@ -89,7 +96,8 @@ export const wineries: Winery[] = [
     zip: "23124",
     phone: "804-922-7414",
     website: "newkentwinery.com",
-    region: "Hampton Roads"
+    region: "Hampton Roads",
+  categories: ["winery"]
   },
   {
     id: "9",
@@ -100,7 +108,8 @@ export const wineries: Winery[] = [
     zip: "23089",
     phone: "804-966-5896",
     website: "saudecreek.com",
-    region: "Hampton Roads"
+    region: "Hampton Roads",
+  categories: ["winery"]
   },
   {
     id: "10",
@@ -111,7 +120,8 @@ export const wineries: Winery[] = [
     zip: "23663",
     phone: "amelia@slyclyde.com",
     website: "slyclyde.com",
-    region: "Hampton Roads"
+    region: "Hampton Roads",
+  categories: ["cidery"]
   },
   {
     id: "11",
@@ -122,7 +132,8 @@ export const wineries: Winery[] = [
     zip: "23430",
     phone: "757-797-9463",
     website: "smithfieldwinery.com",
-    region: "Hampton Roads"
+    region: "Hampton Roads",
+  categories: ["winery"]
   },
   {
     id: "12",
@@ -133,7 +144,8 @@ export const wineries: Winery[] = [
     zip: "23430",
     phone: "757-357-2173",
     website: "swvsmithfield.com",
-    region: "Hampton Roads"
+    region: "Hampton Roads",
+  categories: ["winery"]
   },
   {
     id: "13",
@@ -144,7 +156,8 @@ export const wineries: Winery[] = [
     zip: "23030",
     phone: "804-829-9463",
     website: "uppershirley.com",
-    region: "Hampton Roads"
+    region: "Hampton Roads",
+  categories: ["winery"]
   },
   {
     id: "14",
@@ -155,7 +168,8 @@ export const wineries: Winery[] = [
     zip: "23185",
     phone: "757-229-0999",
     website: "williamsburgwinery.com",
-    region: "Hampton Roads"
+    region: "Hampton Roads",
+  categories: ["winery"]
   },
   {
     id: "15",
@@ -166,7 +180,8 @@ export const wineries: Winery[] = [
     zip: "23405",
     phone: "757-678-5588",
     website: "chathamvineyards.com",
-    region: "Eastern Shore"
+    region: "Eastern Shore",
+  categories: ["winery"]
   },
   {
     id: "16",
@@ -177,7 +192,8 @@ export const wineries: Winery[] = [
     zip: "22485",
     phone: "540-940-3939",
     website: "backporchvineyard.com",
-    region: "Chesapeake Bay"
+    region: "Chesapeake Bay",
+  categories: ["winery"]
   },
   {
     id: "17",
@@ -188,7 +204,8 @@ export const wineries: Winery[] = [
     zip: "22436",
     phone: "540-413-6454",
     website: "caretcellars.com",
-    region: "Chesapeake Bay"
+    region: "Chesapeake Bay",
+  categories: ["winery"]
   },
   {
     id: "18",
@@ -199,7 +216,8 @@ export const wineries: Winery[] = [
     zip: "22482",
     phone: "804-435-3851",
     website: "ditchleyciderworks.com",
-    region: "Chesapeake Bay"
+    region: "Chesapeake Bay",
+  categories: ["cidery"]
   },
   {
     id: "19",
@@ -210,7 +228,8 @@ export const wineries: Winery[] = [
     zip: "22469",
     phone: "804-472-3172",
     website: "generalsridgevineyard.com",
-    region: "Chesapeake Bay"
+    region: "Chesapeake Bay",
+  categories: ["winery"]
   },
   {
     id: "20",
@@ -221,7 +240,8 @@ export const wineries: Winery[] = [
     zip: "22482",
     phone: "804-435-1416",
     website: "goodluckcellars.com",
-    region: "Chesapeake Bay"
+    region: "Chesapeake Bay",
+  categories: ["winery"]
   },
   {
     id: "21",
@@ -232,7 +252,8 @@ export const wineries: Winery[] = [
     zip: "22443",
     phone: "804-224-8687",
     website: "inglesidevineyards.com",
-    region: "Chesapeake Bay"
+    region: "Chesapeake Bay",
+  categories: ["winery"]
   },
   {
     id: "22",
@@ -243,7 +264,8 @@ export const wineries: Winery[] = [
     zip: "22473",
     phone: "804-580-4053",
     website: "jaceyvineyard.com",
-    region: "Chesapeake Bay"
+    region: "Chesapeake Bay",
+  categories: ["winery"]
   },
   {
     id: "23",
@@ -254,7 +276,8 @@ export const wineries: Winery[] = [
     zip: "23181",
     phone: "",
     website: "mattaponyreserve.info",
-    region: "Chesapeake Bay"
+    region: "Chesapeake Bay",
+  categories: ["winery"]
   },
   {
     id: "24",
@@ -265,7 +288,8 @@ export const wineries: Winery[] = [
     zip: "22443",
     phone: "804-410-5628",
     website: "monroebaywine.com",
-    region: "Chesapeake Bay"
+    region: "Chesapeake Bay",
+  categories: ["winery"]
   },
   {
     id: "25",
@@ -276,7 +300,8 @@ export const wineries: Winery[] = [
     zip: "22488",
     phone: "804-599-8552",
     website: "rivahvineyards.com",
-    region: "Chesapeake Bay"
+    region: "Chesapeake Bay",
+  categories: ["winery"]
   },
   {
     id: "26",
@@ -287,7 +312,8 @@ export const wineries: Winery[] = [
     zip: "22485",
     phone: "540-656-6958",
     website: "theestateatwhitehall.com",
-    region: "Chesapeake Bay"
+    region: "Chesapeake Bay",
+  categories: ["winery"]
   },
   {
     id: "27",
@@ -298,7 +324,8 @@ export const wineries: Winery[] = [
     zip: "22469",
     phone: "804-472-5283",
     website: "thehaguewinery.com",
-    region: "Chesapeake Bay"
+    region: "Chesapeake Bay",
+  categories: ["winery"]
   },
   {
     id: "28",
@@ -309,7 +336,8 @@ export const wineries: Winery[] = [
     zip: "22473",
     phone: "804-724-5765",
     website: "triplevfarms.com",
-    region: "Chesapeake Bay"
+    region: "Chesapeake Bay",
+  categories: ["winery"]
   },
   {
     id: "29",
@@ -320,7 +348,8 @@ export const wineries: Winery[] = [
     zip: "22560",
     phone: "804-238-5544",
     website: "windvineyards.com",
-    region: "Chesapeake Bay"
+    region: "Chesapeake Bay",
+  categories: ["winery"]
   },
   {
     id: "30",
@@ -331,7 +360,8 @@ export const wineries: Winery[] = [
     zip: "23050",
     phone: "774-275-7581",
     website: "zollvineyards.com",
-    region: "Chesapeake Bay"
+    region: "Chesapeake Bay",
+  categories: ["winery"]
   },
   {
     id: "31",
@@ -342,7 +372,8 @@ export const wineries: Winery[] = [
     zip: "23103",
     phone: "804-784-6051 ext: 4",
     website: "7ladyvineyards.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
   {
     id: "32",
@@ -353,7 +384,8 @@ export const wineries: Winery[] = [
     zip: "22920",
     phone: "540-456-8667",
     website: "aftonmountainvineyards.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
   {
     id: "33",
@@ -364,7 +396,8 @@ export const wineries: Winery[] = [
     zip: "22959",
     phone: "434-297-2326",
     website: "albemarleciderworks.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["cidery"]
   },
   {
     id: "34",
@@ -375,7 +408,8 @@ export const wineries: Winery[] = [
     zip: "24521",
     phone: "434-922-7678",
     website: "ankidaridge.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
   {
     id: "35",
@@ -386,7 +420,8 @@ export const wineries: Winery[] = [
     zip: "23831",
     phone: "804-896-1586",
     website: "ashtoncreekvineyard.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
   {
     id: "36",
@@ -397,7 +432,8 @@ export const wineries: Winery[] = [
     zip: "22923",
     phone: "540-832-3824",
     website: "bbvwine.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
   {
     id: "37",
@@ -408,7 +444,8 @@ export const wineries: Winery[] = [
     zip: "22923",
     phone: "434-981-3793",
     website: "barnat678.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
   {
     id: "38",
@@ -419,7 +456,8 @@ export const wineries: Winery[] = [
     zip: "23230",
     phone: "804-998-7090",
     website: "blackheathmeadery.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
   {
     id: "39",
@@ -430,7 +468,8 @@ export const wineries: Winery[] = [
     zip: "22902",
     phone: "434-293-5366",
     website: "blenheimvineyards.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
   {
     id: "40",
@@ -441,7 +480,8 @@ export const wineries: Winery[] = [
     zip: "23230",
     phone: "804-231-0280",
     website: "bluebeecider.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["cidery"]
   },
   {
     id: "41",
@@ -452,7 +492,8 @@ export const wineries: Winery[] = [
     zip: "22719",
     phone: "540-923-4048",
     website: "bluequartzwinery.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
   {
     id: "42",
@@ -463,7 +504,8 @@ export const wineries: Winery[] = [
     zip: "22967",
     phone: "434-760-9200",
     website: "bluetoadhardcider.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["cidery"]
   },
   {
     id: "43",
@@ -474,7 +516,8 @@ export const wineries: Winery[] = [
     zip: "22958",
     phone: "434-361-1030",
     website: "boldrock.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["cidery"]
   },
   {
     id: "44",
@@ -485,7 +528,8 @@ export const wineries: Winery[] = [
     zip: "22938",
     phone: "434-826-0722",
     website: "brentmanorvineyards.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
   {
     id: "45",
@@ -496,7 +540,8 @@ export const wineries: Winery[] = [
     zip: "22967",
     phone: "804-799-0401",
     website: "bryantscider.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["cidery"]
   },
   {
     id: "46",
@@ -507,7 +552,8 @@ export const wineries: Winery[] = [
     zip: "22923",
     phone: "434-906-0173",
     website: "burnleywines.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
   {
     id: "47",
@@ -518,7 +564,8 @@ export const wineries: Winery[] = [
     zip: "23230",
     phone: "804-355-0100",
     website: "buskeycider.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["cidery"]
   },
   {
     id: "48",
@@ -529,7 +576,8 @@ export const wineries: Winery[] = [
     zip: "23063",
     phone: "804-652-5663",
     website: "byrdcellars.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
   {
     id: "49",
@@ -540,7 +588,8 @@ export const wineries: Winery[] = [
     zip: "22967",
     phone: "571-643-1692",
     website: "chivineyard.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
   {
     id: "50",
@@ -551,7 +600,8 @@ export const wineries: Winery[] = [
     zip: "22920",
     phone: "540-456-8400",
     website: "cardinalpointwinery.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
   {
     id: "51",
@@ -562,7 +612,8 @@ export const wineries: Winery[] = [
     zip: "23047",
     phone: "804-763-9677",
     website: "castleglenwine.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
   {
     id: "52",
@@ -573,7 +624,8 @@ export const wineries: Winery[] = [
     zip: "22947",
     phone: "434-296-0047",
     website: "castlehillcider.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["cidery"]
   },
   {
     id: "53",
@@ -584,7 +636,8 @@ export const wineries: Winery[] = [
     zip: "22960",
     phone: "540-656-6177",
     website: "chateaumerrillanne.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
   {
     id: "54",
@@ -595,7 +648,8 @@ export const wineries: Winery[] = [
     zip: "22923",
     phone: "434-964-9104",
     website: "chestnutoakvineyard.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
   {
     id: "55",
@@ -606,7 +660,8 @@ export const wineries: Winery[] = [
     zip: "22936",
     phone: "434-971-8796",
     website: "chisholmvineyards.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
 {
     id: "56",
@@ -617,7 +672,8 @@ export const wineries: Winery[] = [
     zip: "22943",
     phone: "434-252-2947",
     website: "chiswellwinery.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
   {
     id: "57",
@@ -628,7 +684,8 @@ export const wineries: Winery[] = [
     zip: "23102",
     phone: "804-543-3157",
     website: "courthousecreek.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["cidery"]
   },
   {
     id: "58",
@@ -639,7 +696,8 @@ export const wineries: Winery[] = [
     zip: "23117",
     phone: "540-894-1053",
     website: "coyotehole.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
   {
     id: "59",
@@ -650,7 +708,8 @@ export const wineries: Winery[] = [
     zip: "22963",
     phone: "434-207-3907",
     website: "cunninghamcreek.wine",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
   {
     id: "60",
@@ -661,7 +720,8 @@ export const wineries: Winery[] = [
     zip: "24538",
     phone: "434-993-0722",
     website: "devaultvineyard.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
   {
     id: "61",
@@ -672,7 +732,8 @@ export const wineries: Winery[] = [
     zip: "22719",
     phone: "540-923-4206",
     website: "ducardvineyards.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
   {
     id: "62",
@@ -683,7 +744,8 @@ export const wineries: Winery[] = [
     zip: "23936",
     phone: "757-880-7006",
     website: "eaglezenwinery.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
   {
     id: "63",
@@ -694,7 +756,8 @@ export const wineries: Winery[] = [
     zip: "22727",
     phone: "540-948-9005",
     website: "earlymountain.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
   {
     id: "64",
@@ -705,7 +768,8 @@ export const wineries: Winery[] = [
     zip: "22902",
     phone: "434-264-6727",
     website: "eastwoodfarmandwinery.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
   {
     id: "65",
@@ -716,7 +780,8 @@ export const wineries: Winery[] = [
     zip: "23063",
     phone: "804-627-3929",
     website: "elkislandwinery.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
   {
     id: "66",
@@ -727,7 +792,8 @@ export const wineries: Winery[] = [
     zip: "23117",
     phone: "804-464-5667",
     website: "everleighvineyards.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
   {
     id: "67",
@@ -738,7 +804,8 @@ export const wineries: Winery[] = [
     zip: "22932",
     phone: "757-647-9398",
     website: "fallentreevineyard.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
   {
     id: "68",
@@ -749,7 +816,8 @@ export const wineries: Winery[] = [
     zip: "23093",
     phone: "540-894-1536",
     website: "53rdwinery.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
   {
     id: "69",
@@ -760,7 +828,8 @@ export const wineries: Winery[] = [
     zip: "22920",
     phone: "434-361-1692",
     website: "flyingfoxvineyard.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
   {
     id: "70",
@@ -771,7 +840,8 @@ export const wineries: Winery[] = [
     zip: "22902",
     phone: "434-981-1677",
     website: "gabrieleraussewinery.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
   {
     id: "71",
@@ -782,7 +852,8 @@ export const wineries: Winery[] = [
     zip: "23221",
     phone: "804-918-6158",
     website: "gardengrovebrewing.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
   {
     id: "72",
@@ -793,7 +864,8 @@ export const wineries: Winery[] = [
     zip: "22940",
     phone: "434-975-0094",
     website: "glasshousewinery.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
   {
     id: "73",
@@ -804,7 +876,8 @@ export const wineries: Winery[] = [
     zip: "22932",
     phone: "434-823-1486",
     website: "graceestatewinery.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
   {
     id: "74",
@@ -815,7 +888,8 @@ export const wineries: Winery[] = [
     zip: "23065",
     phone: "804-556-3917",
     website: "grayhavenwinery.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
   {
     id: "75",
@@ -826,7 +900,8 @@ export const wineries: Winery[] = [
     zip: "23860",
     phone: "804-668-5943",
     website: "haleyshoneymeadery.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
   {
     id: "76",
@@ -837,7 +912,8 @@ export const wineries: Winery[] = [
     zip: "24590",
     phone: "434-286-4710",
     website: "hardwarehills.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
   {
     id: "77",
@@ -848,7 +924,8 @@ export const wineries: Winery[] = [
     zip: "22936",
     phone: "434-964-9463",
     website: "harkvineyards.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
   {
     id: "78",
@@ -859,7 +936,8 @@ export const wineries: Winery[] = [
     zip: "23083",
     phone: "804-250-1421",
     website: "hauntedvineyards.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
   {
     id: "79",
@@ -870,7 +948,8 @@ export const wineries: Winery[] = [
     zip: "22920",
     phone: "540-302-2529",
     website: "hazy-mountain.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
   {
     id: "80",
@@ -881,7 +960,8 @@ export const wineries: Winery[] = [
     zip: "22932",
     phone: "434-823-7848",
     website: "henleysorchard.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["cidery"]
   },
   {
     id: "81",
@@ -892,7 +972,8 @@ export const wineries: Winery[] = [
     zip: "22958",
     phone: "434-361-1266",
     website: "hilltopberrywine.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
   {
     id: "82",
@@ -903,7 +984,8 @@ export const wineries: Winery[] = [
     zip: "22942",
     phone: "540-308-7724",
     website: "honahleevineyard.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
   {
     id: "83",
@@ -914,7 +996,8 @@ export const wineries: Winery[] = [
     zip: "22942",
     phone: "540-832-7440",
     website: "hortonwine.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
   {
     id: "84",
@@ -925,7 +1008,8 @@ export const wineries: Winery[] = [
     zip: "23059",
     phone: "804-550-7516",
     website: "jamesrivercellars.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
   {
     id: "85",
@@ -936,7 +1020,8 @@ export const wineries: Winery[] = [
     zip: "22902",
     phone: "434-977-3042",
     website: "jeffersonvineyards.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
   {
     id: "86",
@@ -947,7 +1032,8 @@ export const wineries: Winery[] = [
     zip: "22947",
     phone: "434-244-3341",
     website: "keswickvineyards.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
   {
     id: "87",
@@ -958,7 +1044,8 @@ export const wineries: Winery[] = [
     zip: "22932",
     phone: "434-823-7800",
     website: "kingfamilyvineyards.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
   {
     id: "88",
@@ -969,7 +1056,8 @@ export const wineries: Winery[] = [
     zip: "22901",
     phone: "434-260-9424",
     website: "knightsgambitvineyard.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
   {
     id: "89",
@@ -980,7 +1068,8 @@ export const wineries: Winery[] = [
     zip: "24521",
     phone: "434-381-6088",
     website: "lazydayswinery.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
   {
     id: "90",
@@ -991,7 +1080,8 @@ export const wineries: Winery[] = [
     zip: "22959",
     phone: "434-984-0774",
     website: "lovingcupwine.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
   {
     id: "91",
@@ -1002,7 +1092,8 @@ export const wineries: Winery[] = [
     zip: "22949",
     phone: "434-263-8467",
     website: "lovingstonwinery.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
   {
     id: "92",
@@ -1013,7 +1104,8 @@ export const wineries: Winery[] = [
     zip: "22947",
     phone: "434-365-3006",
     website: "merriemillfarm.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
   {
     id: "93",
@@ -1024,7 +1116,8 @@ export const wineries: Winery[] = [
     zip: "22902",
     phone: "434-296-3438",
     website: "michaelshapswines.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
   {
     id: "94",
@@ -1035,7 +1128,8 @@ export const wineries: Winery[] = [
     zip: "22968",
     phone: "434-989-9115",
     website: "montifalcovineyard.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
   {
     id: "95",
@@ -1046,7 +1140,8 @@ export const wineries: Winery[] = [
     zip: "22935",
     phone: "434-990-0111",
     website: "mossvineyards.net",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
   {
     id: "96",
@@ -1057,7 +1152,8 @@ export const wineries: Winery[] = [
     zip: "22937",
     phone: "804-476-0883",
     website: "mountaltovineyards.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
   {
     id: "97",
@@ -1068,7 +1164,8 @@ export const wineries: Winery[] = [
     zip: "22932",
     phone: "646-453-7600",
     website: "mountfairvineyard.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
   {
     id: "98",
@@ -1079,7 +1176,8 @@ export const wineries: Winery[] = [
     zip: "22938",
     phone: "434-263-6100",
     website: "delfossewine.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
   {
     id: "99",
@@ -1090,7 +1188,8 @@ export const wineries: Winery[] = [
     zip: "24590",
     phone: "410-365-4175",
     website: "muddypawswinery.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
   {
     id: "100",
@@ -1101,7 +1200,8 @@ export const wineries: Winery[] = [
     zip: "22901",
     phone: "434-234-7066",
     website: "oakencroftfarm.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
   {
     id: "101",
@@ -1112,7 +1212,8 @@ export const wineries: Winery[] = [
     zip: "22959",
     phone: "434-202-8063",
     website: "pippinhillfarm.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
   {
     id: "102",
@@ -1123,7 +1224,8 @@ export const wineries: Winery[] = [
     zip: "22943",
     phone: "540-456-8844",
     website: "pollakvineyards.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
   {
     id: "103",
@@ -1134,7 +1236,8 @@ export const wineries: Winery[] = [
     zip: "22903",
     phone: "434-244-2767",
     website: "potterscraftcider.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["cidery"]
   },
   {
     id: "104",
@@ -1145,7 +1248,8 @@ export const wineries: Winery[] = [
     zip: "22725",
     phone: "800-800-9463",
     website: "princemichel.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
   {
     id: "105",
@@ -1156,7 +1260,8 @@ export const wineries: Winery[] = [
     zip: "23038",
     phone: "804-389-1164",
     website: "rassawek.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
   {
     id: "106",
@@ -1167,7 +1272,8 @@ export const wineries: Winery[] = [
     zip: "24521",
     phone: "434-946-5168",
     website: "rebecwinery.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
   {
     id: "107",
@@ -1178,7 +1284,8 @@ export const wineries: Winery[] = [
     zip: "24504",
     phone: "434-316-2752",
     website: "reservelbc.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
   {
     id: "108",
@@ -1189,7 +1296,8 @@ export const wineries: Winery[] = [
     zip: "22727",
     phone: "540-407-1236",
     website: "revalationvineyards.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
   {
     id: "109",
@@ -1200,7 +1308,8 @@ export const wineries: Winery[] = [
     zip: "22923",
     phone: "540-832-3895",
     website: "reynardflorence.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
   {
     id: "110",
@@ -1211,7 +1320,8 @@ export const wineries: Winery[] = [
     zip: "23231",
     phone: "804-385-3770",
     website: "riverdogwinery.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
 {
     id: "111",
@@ -1222,7 +1332,8 @@ export const wineries: Winery[] = [
     zip: "22943",
     phone: "434-996-6292",
     website: "septenarywinery.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
   {
     id: "112",
@@ -1233,7 +1344,8 @@ export const wineries: Winery[] = [
     zip: "23139",
     phone: "804-598-7291",
     website: "skipperscreekvineyard.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
   {
     id: "113",
@@ -1244,7 +1356,8 @@ export const wineries: Winery[] = [
     zip: "24590",
     phone: "202-251-5291",
     website: "whitehallfarmandvineyard.com/winery",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
   {
     id: "114",
@@ -1255,7 +1368,8 @@ export const wineries: Winery[] = [
     zip: "23093",
     phone: "540-260-5494",
     website: "southernrevere.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
   {
     id: "115",
@@ -1266,7 +1380,8 @@ export const wineries: Winery[] = [
     zip: "22947",
     phone: "434-212-3244",
     website: "smvwines.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
   {
     id: "116",
@@ -1277,7 +1392,8 @@ export const wineries: Winery[] = [
     zip: "22932",
     phone: "434-823-7300",
     website: "stinsonvineyards.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
   {
     id: "117",
@@ -1288,7 +1404,8 @@ export const wineries: Winery[] = [
     zip: "22935",
     phone: "434-990-9463",
     website: "stonemountainvineyards.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
   {
     id: "118",
@@ -1299,7 +1416,8 @@ export const wineries: Winery[] = [
     zip: "24595",
     phone: "434-381-0409",
     website: "sbc.edu/farm",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
   {
     id: "119",
@@ -1310,7 +1428,8 @@ export const wineries: Winery[] = [
     zip: "22567",
     phone: "703-942-9336",
     website: "thevines.farm",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
   {
     id: "120",
@@ -1321,7 +1440,8 @@ export const wineries: Winery[] = [
     zip: "24590",
     phone: "434-286-4282",
     website: "mountidareserve.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
   {
     id: "121",
@@ -1332,7 +1452,8 @@ export const wineries: Winery[] = [
     zip: "22902",
     phone: "434-266-9909",
     website: "trumpwinery.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
   {
     id: "122",
@@ -1343,7 +1464,8 @@ export const wineries: Winery[] = [
     zip: "22920",
     phone: "540-456-6350",
     website: "valleyroadwines.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
   {
     id: "123",
@@ -1354,7 +1476,8 @@ export const wineries: Winery[] = [
     zip: "22920",
     phone: "540-456-8000",
     website: "veritaswines.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
   {
     id: "124",
@@ -1365,7 +1488,8 @@ export const wineries: Winery[] = [
     zip: "22932",
     phone: "434-823-8615",
     website: "whitehallvineyards.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
   {
     id: "125",
@@ -1376,7 +1500,8 @@ export const wineries: Winery[] = [
     zip: "22959",
     phone: "434-984-4272",
     website: "wisdomoakwinery.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
   {
     id: "126",
@@ -1387,7 +1512,8 @@ export const wineries: Winery[] = [
     zip: "22960",
     phone: "540-219-1874",
     website: "woodbrookfarmvineyard.com",
-    region: "Central Virginia"
+    region: "Central Virginia",
+  categories: ["winery"]
   },
   {
     id: "127",
@@ -1398,7 +1524,8 @@ export const wineries: Winery[] = [
     zip: "24211",
     phone: "276-623-1255",
     website: "abingdonvineyards.com",
-    region: "Blue Ridge"
+    region: "Blue Ridge",
+  categories: ["winery"]
   },
   {
     id: "128",
@@ -1409,7 +1536,8 @@ export const wineries: Winery[] = [
     zip: "24060",
     phone: "540-961-0505",
     website: "beliveauwinery.com",
-    region: "Blue Ridge"
+    region: "Blue Ridge",
+  categories: ["winery"]
   },
   {
     id: "129",
@@ -1420,7 +1548,8 @@ export const wineries: Winery[] = [
     zip: "24091",
     phone: "540-593-2865",
     website: "thedogs.com",
-    region: "Blue Ridge"
+    region: "Blue Ridge",
+  categories: ["winery"]
   },
   {
     id: "130",
@@ -1431,7 +1560,8 @@ export const wineries: Winery[] = [
     zip: "24368",
     phone: "276-686-8855",
     website: "davisvalleywinery.com",
-    region: "Blue Ridge"
+    region: "Blue Ridge",
+  categories: ["winery"]
   },
   {
     id: "131",
@@ -1442,7 +1572,8 @@ export const wineries: Winery[] = [
     zip: "24347",
     phone: "540-320-0203",
     website: "ironheartwinery.com",
-    region: "Blue Ridge"
+    region: "Blue Ridge",
+  categories: ["winery"]
   },
   {
     id: "132",
@@ -1453,7 +1584,8 @@ export const wineries: Winery[] = [
     zip: "24134",
     phone: "540-250-7291",
     website: "jbrvineyards.com",
-    region: "Blue Ridge"
+    region: "Blue Ridge",
+  categories: ["winery"]
   },
   {
     id: "133",
@@ -1464,7 +1596,8 @@ export const wineries: Winery[] = [
     zip: "24202",
     phone: "276-299-3260",
     website: "nicewonderfarm.com",
-    region: "Blue Ridge"
+    region: "Blue Ridge",
+  categories: ["winery"]
   },
   {
     id: "134",
@@ -1475,7 +1608,8 @@ export const wineries: Winery[] = [
     zip: "24324",
     phone: "540-922-9829",
     website: "spinningjennyvineyard.com",
-    region: "Blue Ridge"
+    region: "Blue Ridge",
+  categories: ["winery"]
   },
   {
     id: "135",
@@ -1486,7 +1620,8 @@ export const wineries: Winery[] = [
     zip: "24202",
     phone: "276-294-2196",
     website: "squabblestate.com",
-    region: "Blue Ridge"
+    region: "Blue Ridge",
+  categories: ["cidery","distillery"]
   },
   {
     id: "136",
@@ -1497,7 +1632,8 @@ export const wineries: Winery[] = [
     zip: "24141",
     phone: "540-633-0033",
     website: "nrvwine.com",
-    region: "Blue Ridge"
+    region: "Blue Ridge",
+  categories: ["winery"]
   },
   {
     id: "137",
@@ -1508,7 +1644,8 @@ export const wineries: Winery[] = [
     zip: "24210",
     phone: "276-451-5901",
     website: "tumblingcreekcider.com",
-    region: "Blue Ridge"
+    region: "Blue Ridge",
+  categories: ["cidery"]
   },
   {
     id: "138",
@@ -1519,7 +1656,8 @@ export const wineries: Winery[] = [
     zip: "24091",
     phone: "540-593-3100",
     website: "villaappalaccia.com",
-    region: "Blue Ridge"
+    region: "Blue Ridge",
+  categories: ["winery"]
   },
   {
     id: "139",
@@ -1530,7 +1668,8 @@ export const wineries: Winery[] = [
     zip: "24360",
     phone: "276-699-2020",
     website: "westwindwine.com",
-    region: "Blue Ridge"
+    region: "Blue Ridge",
+  categories: ["winery"]
   },
   {
     id: "140",
@@ -1541,7 +1680,8 @@ export const wineries: Winery[] = [
     zip: "24465",
     phone: "540-468-2322",
     website: "bigfishcider.com",
-    region: "Virginia Mountains"
+    region: "Virginia Mountains",
+  categories: ["cidery"]
   },
   {
     id: "141",
@@ -1552,7 +1692,8 @@ export const wineries: Winery[] = [
     zip: "24184",
     phone: "540-721-5215",
     website: "brooksmillwine.com",
-    region: "Virginia Mountains"
+    region: "Virginia Mountains",
+  categories: ["winery"]
   },
   {
     id: "142",
@@ -1563,7 +1704,8 @@ export const wineries: Winery[] = [
     zip: "24551",
     phone: "336-339-5634",
     website: "burnbraevineyards.com",
-    region: "Virginia Mountains"
+    region: "Virginia Mountains",
+  categories: ["winery"]
   },
   {
     id: "143",
@@ -1574,7 +1716,8 @@ export const wineries: Winery[] = [
     zip: "24095",
     phone: "540-420-0916",
     website: "fablesandfeatherswinery.com",
-    region: "Virginia Mountains"
+    region: "Virginia Mountains",
+  categories: ["winery"]
   },
   {
     id: "144",
@@ -1585,7 +1728,8 @@ export const wineries: Winery[] = [
     zip: "24523",
     phone: "540-986-5621",
     website: "grahamordinary.com",
-    region: "Virginia Mountains"
+    region: "Virginia Mountains",
+  categories: ["winery"]
   },
   {
     id: "145",
@@ -1596,7 +1740,8 @@ export const wineries: Winery[] = [
     zip: "24121",
     phone: "540-296-1393",
     website: "SMLwine.com",
-    region: "Virginia Mountains"
+    region: "Virginia Mountains",
+  categories: ["winery"]
   },
   {
     id: "146",
@@ -1607,7 +1752,8 @@ export const wineries: Winery[] = [
     zip: "24523",
     phone: "540-586-3707",
     website: "peaksofotterwinery.com",
-    region: "Virginia Mountains"
+    region: "Virginia Mountains",
+  categories: ["winery"]
   },
   {
     id: "147",
@@ -1618,7 +1764,8 @@ export const wineries: Winery[] = [
     zip: "24121",
     phone: "540-797-6056",
     website: "ramuloseridgevineyards.com",
-    region: "Virginia Mountains"
+    region: "Virginia Mountains",
+  categories: ["winery"]
   },
   {
     id: "148",
@@ -1629,7 +1776,8 @@ export const wineries: Winery[] = [
     zip: "24104",
     phone: "540-605-8745",
     website: "sevendoorswinery.com",
-    region: "Virginia Mountains"
+    region: "Virginia Mountains",
+  categories: ["winery"]
   },
   {
     id: "149",
@@ -1640,7 +1788,8 @@ export const wineries: Winery[] = [
     zip: "24175",
     phone: "540-591-7089",
     website: "stoneybrookvineyards.com",
-    region: "Virginia Mountains"
+    region: "Virginia Mountains",
+  categories: ["winery"]
   },
   {
     id: "150",
@@ -1651,7 +1800,8 @@ export const wineries: Winery[] = [
     zip: "24484",
     phone: "info@troddenvale.com",
     website: "troddenvale.com",
-    region: "Virginia Mountains"
+    region: "Virginia Mountains",
+  categories: ["winery"]
   },
   {
     id: "151",
@@ -1662,7 +1812,8 @@ export const wineries: Winery[] = [
     zip: "24018",
     phone: "540-725-9463",
     website: "valhallawines.com",
-    region: "Virginia Mountains"
+    region: "Virginia Mountains",
+  categories: ["winery"]
   },
   {
     id: "152",
@@ -1673,7 +1824,8 @@ export const wineries: Winery[] = [
     zip: "24090",
     phone: "540-473-2979",
     website: "vmvines.com",
-    region: "Virginia Mountains"
+    region: "Virginia Mountains",
+  categories: ["winery"]
   },
   {
     id: "153",
@@ -1684,7 +1836,8 @@ export const wineries: Winery[] = [
     zip: "24541",
     phone: "434-549-2739",
     website: "2witcheswinebrew.com",
-    region: "Southern Virginia"
+    region: "Southern Virginia",
+  categories: ["winery"]
   },
   {
     id: "154",
@@ -1695,7 +1848,8 @@ export const wineries: Winery[] = [
     zip: "24563",
     phone: "434-324-4160",
     website: "altillovineyards.com",
-    region: "Southern Virginia"
+    region: "Southern Virginia",
+  categories: ["winery"]
   },
   {
     id: "155",
@@ -1706,7 +1860,8 @@ export const wineries: Winery[] = [
     zip: "23924",
     phone: "434-262-1250",
     website: "americanwaycountrywines.com",
-    region: "Southern Virginia"
+    region: "Southern Virginia",
+  categories: ["winery"]
   },
   {
     id: "156",
@@ -1717,7 +1872,8 @@ export const wineries: Winery[] = [
     zip: "24577",
     phone: "434-349-9463",
     website: "brightmeadowsfarm.com",
-    region: "Southern Virginia"
+    region: "Southern Virginia",
+  categories: ["winery"]
   },
   {
     id: "157",
@@ -1728,7 +1884,8 @@ export const wineries: Winery[] = [
     zip: "24055",
     phone: "276-629-2121",
     website: "hamletvineyards.com",
-    region: "Southern Virginia"
+    region: "Southern Virginia",
+  categories: ["winery"]
   },
   {
     id: "158",
@@ -1739,7 +1896,8 @@ export const wineries: Winery[] = [
     zip: "24534",
     phone: "434-454-9219",
     website: "hcvwines.com",
-    region: "Southern Virginia"
+    region: "Southern Virginia",
+  categories: ["winery"]
   },
   {
     id: "159",
@@ -1750,7 +1908,8 @@ export const wineries: Winery[] = [
     zip: "23950",
     phone: "434-636-9463",
     website: "rosemontofvirginia.com",
-    region: "Southern Virginia"
+    region: "Southern Virginia",
+  categories: ["winery"]
   },
   {
     id: "160",
@@ -1761,7 +1920,8 @@ export const wineries: Winery[] = [
     zip: "24531",
     phone: "434-432-9463",
     website: "thehomeplacevineyard.com",
-    region: "Southern Virginia"
+    region: "Southern Virginia",
+  categories: ["winery"]
   },
   {
     id: "161",
@@ -1772,7 +1932,8 @@ export const wineries: Winery[] = [
     zip: "23927",
     phone: "434-298-6693",
     website: "threesistersofshineyrock.com",
-    region: "Southern Virginia"
+    region: "Southern Virginia",
+  categories: ["winery"]
   },
   {
     id: "162",
@@ -1783,7 +1944,8 @@ export const wineries: Winery[] = [
     zip: "24529",
     phone: "434-222-1459",
     website: "woodbinevineyardsandwinery.com",
-    region: "Southern Virginia"
+    region: "Southern Virginia",
+  categories: ["winery"]
   },
   {
     id: "163",
@@ -1794,7 +1956,8 @@ export const wineries: Winery[] = [
     zip: "24483",
     phone: "434-996-4252",
     website: "12ridges.com",
-    region: "Shenandoah Valley"
+    region: "Shenandoah Valley",
+  categories: ["winery"]
   },
   {
     id: "164",
@@ -1805,7 +1968,8 @@ export const wineries: Winery[] = [
     zip: "24459",
     phone: "540-430-4394",
     website: "agwinery.com",
-    region: "Shenandoah Valley"
+    region: "Shenandoah Valley",
+  categories: ["winery"]
   },
   {
     id: "165",
@@ -1816,7 +1980,8 @@ export const wineries: Winery[] = [
     zip: "22939",
     phone: "540-248-3300",
     website: "barrenridgevineyards.com",
-    region: "Shenandoah Valley"
+    region: "Shenandoah Valley",
+  categories: ["winery"]
   },
 {
     id: "166",
@@ -1827,7 +1992,8 @@ export const wineries: Winery[] = [
     zip: "24085",
     phone: "540-798-7642",
     website: "blueridgevineyard.com",
-    region: "Shenandoah Valley"
+    region: "Shenandoah Valley",
+  categories: ["winery"]
   },
   {
     id: "167",
@@ -1838,7 +2004,8 @@ export const wineries: Winery[] = [
     zip: "22812",
     phone: "540-828-0099",
     website: "bluestonevineyard.com",
-    region: "Shenandoah Valley"
+    region: "Shenandoah Valley",
+  categories: ["winery"]
   },
   {
     id: "168",
@@ -1849,7 +2016,8 @@ export const wineries: Winery[] = [
     zip: "22603",
     phone: "540-664-2048",
     website: "briedevineyards.com",
-    region: "Shenandoah Valley"
+    region: "Shenandoah Valley",
+  categories: ["winery"]
   },
   {
     id: "169",
@@ -1860,7 +2028,8 @@ export const wineries: Winery[] = [
     zip: "22840",
     phone: "540-810-0566",
     website: "brixandcolumns.com",
-    region: "Shenandoah Valley"
+    region: "Shenandoah Valley",
+  categories: ["winery"]
   },
   {
     id: "170",
@@ -1871,7 +2040,8 @@ export const wineries: Winery[] = [
     zip: "22842",
     phone: "540-477-2585",
     website: "caveridge.com",
-    region: "Shenandoah Valley"
+    region: "Shenandoah Valley",
+  categories: ["winery"]
   },
   {
     id: "171",
@@ -1882,7 +2052,8 @@ export const wineries: Winery[] = [
     zip: "24401",
     phone: "540-416-2120",
     website: "cidersfrommars.com",
-    region: "Shenandoah Valley"
+    region: "Shenandoah Valley",
+  categories: ["cidery"]
   },
   {
     id: "172",
@@ -1893,7 +2064,8 @@ export const wineries: Winery[] = [
     zip: "22980",
     phone: "chardonel@commonwealthcrush.com",
     website: "commonwealthcrush.com",
-    region: "Shenandoah Valley"
+    region: "Shenandoah Valley",
+  categories: ["winery"]
   },
   {
     id: "173",
@@ -1904,7 +2076,8 @@ export const wineries: Winery[] = [
     zip: "22841",
     phone: "540-234-0505",
     website: "crosskeysvineyards.com",
-    region: "Shenandoah Valley"
+    region: "Shenandoah Valley",
+  categories: ["winery"]
   },
   {
     id: "174",
@@ -1915,7 +2088,8 @@ export const wineries: Winery[] = [
     zip: "24435",
     phone: "540-817-0419",
     website: "eccoadesso.com",
-    region: "Shenandoah Valley"
+    region: "Shenandoah Valley",
+  categories: ["winery"]
   },
   {
     id: "175",
@@ -1926,7 +2100,8 @@ export const wineries: Winery[] = [
     zip: "22630",
     phone: "540-635-6324",
     website: "glenmanorvineyards.com",
-    region: "Shenandoah Valley"
+    region: "Shenandoah Valley",
+  categories: ["winery"]
   },
   {
     id: "176",
@@ -1937,7 +2112,8 @@ export const wineries: Winery[] = [
     zip: "24578",
     phone: "540-521-6163",
     website: "greatvalleyfarmbrewery.com",
-    region: "Shenandoah Valley"
+    region: "Shenandoah Valley",
+  categories: ["winery"]
   },
   {
     id: "177",
@@ -1948,7 +2124,8 @@ export const wineries: Winery[] = [
     zip: "24578",
     phone: "540-291-1340",
     website: "halcyondayscider.com",
-    region: "Shenandoah Valley"
+    region: "Shenandoah Valley",
+  categories: ["cidery"]
   },
   {
     id: "178",
@@ -1959,7 +2136,8 @@ export const wineries: Winery[] = [
     zip: "22980",
     phone: "540-490-2609",
     website: "stablecraftbrewing.com",
-    region: "Shenandoah Valley"
+    region: "Shenandoah Valley",
+  categories: ["cidery","brewery"]
   },
   {
     id: "179",
@@ -1970,7 +2148,8 @@ export const wineries: Winery[] = [
     zip: "22630",
     phone: "540-692-6032",
     website: "honeyandhopsbrewworks.com",
-    region: "Shenandoah Valley"
+    region: "Shenandoah Valley",
+  categories: ["winery"]
   },
   {
     id: "180",
@@ -1981,7 +2160,8 @@ export const wineries: Winery[] = [
     zip: "22602",
     phone: "540-931-4386",
     website: "jamescharleswine.com",
-    region: "Shenandoah Valley"
+    region: "Shenandoah Valley",
+  categories: ["winery"]
   },
   {
     id: "181",
@@ -1992,7 +2172,8 @@ export const wineries: Winery[] = [
     zip: "24473",
     phone: "540-348-6730",
     website: "jumpwines.com",
-    region: "Shenandoah Valley"
+    region: "Shenandoah Valley",
+  categories: ["winery"]
   },
   {
     id: "182",
@@ -2003,7 +2184,8 @@ export const wineries: Winery[] = [
     zip: "24473",
     phone: "540-462-2974",
     website: "lexingtonvalleyvineyard.com",
-    region: "Shenandoah Valley"
+    region: "Shenandoah Valley",
+  categories: ["winery"]
   },
   {
     id: "183",
@@ -2014,7 +2196,8 @@ export const wineries: Winery[] = [
     zip: "22980",
     phone: "Wines@lightwellsurvey.com",
     website: "lightwellsurvey.com",
-    region: "Shenandoah Valley"
+    region: "Shenandoah Valley",
+  categories: ["winery"]
   },
   {
     id: "184",
@@ -2025,7 +2208,8 @@ export const wineries: Winery[] = [
     zip: "22841",
     phone: "540-212-9798",
     website: "marcelinevineyards.com",
-    region: "Shenandoah Valley"
+    region: "Shenandoah Valley",
+  categories: ["winery"]
   },
   {
     id: "185",
@@ -2036,7 +2220,8 @@ export const wineries: Winery[] = [
     zip: "22603",
     phone: "540-336-2273",
     website: "mistymountainmead.com",
-    region: "Shenandoah Valley"
+    region: "Shenandoah Valley",
+  categories: ["winery"]
   },
   {
     id: "186",
@@ -2047,7 +2232,8 @@ export const wineries: Winery[] = [
     zip: "22664",
     phone: "540-459-7033",
     website: "musevineyards.com",
-    region: "Shenandoah Valley"
+    region: "Shenandoah Valley",
+  categories: ["winery"]
   },
   {
     id: "187",
@@ -2058,7 +2244,8 @@ export const wineries: Winery[] = [
     zip: "22644",
     phone: "540-436-9463",
     website: "northmountainvineyard.com",
-    region: "Shenandoah Valley"
+    region: "Shenandoah Valley",
+  categories: ["winery"]
   },
   {
     id: "188",
@@ -2069,7 +2256,8 @@ export const wineries: Winery[] = [
     zip: "22853",
     phone: "540-896-7582",
     website: "showaltersorchard.com",
-    region: "Shenandoah Valley"
+    region: "Shenandoah Valley",
+  categories: ["cidery"]
   },
   {
     id: "189",
@@ -2080,7 +2268,8 @@ export const wineries: Winery[] = [
     zip: "24401",
     phone: "540-849-7926",
     website: "oxeyevineyards.com",
-    region: "Shenandoah Valley"
+    region: "Shenandoah Valley",
+  categories: ["winery"]
   },
   {
     id: "190",
@@ -2091,7 +2280,8 @@ export const wineries: Winery[] = [
     zip: "22630",
     phone: "540-550-0334",
     website: "reitanovineyards.com",
-    region: "Shenandoah Valley"
+    region: "Shenandoah Valley",
+  categories: ["winery"]
   },
   {
     id: "191",
@@ -2102,7 +2292,8 @@ export const wineries: Winery[] = [
     zip: "24472",
     phone: "540-377-6204",
     website: "rockbridgevineyard.com",
-    region: "Shenandoah Valley"
+    region: "Shenandoah Valley",
+  categories: ["winery"]
   },
   {
     id: "192",
@@ -2113,7 +2304,8 @@ export const wineries: Winery[] = [
     zip: "22630",
     phone: "339-221-3115",
     website: "sagameadery.com",
-    region: "Shenandoah Valley"
+    region: "Shenandoah Valley",
+  categories: ["winery"]
   },
   {
     id: "193",
@@ -2124,7 +2316,8 @@ export const wineries: Winery[] = [
     zip: "22802",
     phone: "540-607-8084",
     website: "sagebirdciderworks.com",
-    region: "Shenandoah Valley"
+    region: "Shenandoah Valley",
+  categories: ["cidery"]
   },
   {
     id: "194",
@@ -2135,7 +2328,8 @@ export const wineries: Winery[] = [
     zip: "22824",
     phone: "540-984-8699",
     website: "shenandoahvineyardsva.com",
-    region: "Shenandoah Valley"
+    region: "Shenandoah Valley",
+  categories: ["winery"]
   },
   {
     id: "195",
@@ -2146,7 +2340,8 @@ export const wineries: Winery[] = [
     zip: "22657",
     phone: "540-514-1687",
     website: "starinthevalley.com",
-    region: "Shenandoah Valley"
+    region: "Shenandoah Valley",
+  categories: ["winery"]
   },
   {
     id: "196",
@@ -2157,7 +2352,8 @@ export const wineries: Winery[] = [
     zip: "",
     phone: "540-416-2267",
     website: "starpartywinery.com",
-    region: "Shenandoah Valley"
+    region: "Shenandoah Valley",
+  categories: ["winery"]
   },
   {
     id: "197",
@@ -2168,7 +2364,8 @@ export const wineries: Winery[] = [
     zip: "22842",
     phone: "540-477-3570",
     website: "kindredpointe.com",
-    region: "Shenandoah Valley"
+    region: "Shenandoah Valley",
+  categories: ["winery"]
   },
   {
     id: "198",
@@ -2179,7 +2376,8 @@ export const wineries: Winery[] = [
     zip: "22847",
     phone: "540-740-8464",
     website: "demellovineyardsthirdhillwinery.com",
-    region: "Shenandoah Valley"
+    region: "Shenandoah Valley",
+  categories: ["winery"]
   },
   {
     id: "199",
@@ -2190,7 +2388,8 @@ export const wineries: Winery[] = [
     zip: "20135",
     phone: "540-554-4547",
     website: "twinoakstavernwinery.com",
-    region: "Shenandoah Valley"
+    region: "Shenandoah Valley",
+  categories: ["winery"]
   },
   {
     id: "200",
@@ -2201,7 +2400,8 @@ export const wineries: Winery[] = [
     zip: "22655",
     phone: "540-869-9567",
     website: "valeriehillwinery.com",
-    region: "Shenandoah Valley"
+    region: "Shenandoah Valley",
+  categories: ["winery"]
   },
   {
     id: "201",
@@ -2212,7 +2412,8 @@ export const wineries: Winery[] = [
     zip: "22611",
     phone: "540-955-5510",
     website: "veramar.com",
-    region: "Shenandoah Valley"
+    region: "Shenandoah Valley",
+  categories: ["winery"]
   },
   {
     id: "202",
@@ -2223,7 +2424,8 @@ export const wineries: Winery[] = [
     zip: "22801",
     phone: "540-421-6345",
     website: "whiteoaklavender.com",
-    region: "Shenandoah Valley"
+    region: "Shenandoah Valley",
+  categories: ["winery"]
   },
   {
     id: "203",
@@ -2234,7 +2436,8 @@ export const wineries: Winery[] = [
     zip: "22601",
     phone: "540-686-7832",
     website: "winchesterciderworks.com",
-    region: "Shenandoah Valley"
+    region: "Shenandoah Valley",
+  categories: ["cidery"]
   },
   {
     id: "204",
@@ -2245,7 +2448,8 @@ export const wineries: Winery[] = [
     zip: "22851",
     phone: "540-742-5215",
     website: "wisteriavineyard.com",
-    region: "Shenandoah Valley"
+    region: "Shenandoah Valley",
+  categories: ["winery"]
   },
   {
     id: "205",
@@ -2256,7 +2460,8 @@ export const wineries: Winery[] = [
     zip: "22824",
     phone: "540-984-3306",
     website: "wolfgapvineyard.com",
-    region: "Shenandoah Valley"
+    region: "Shenandoah Valley",
+  categories: ["winery"]
   },
   {
     id: "206",
@@ -2267,7 +2472,8 @@ export const wineries: Winery[] = [
     zip: "20117",
     phone: "571-367-4760",
     website: "50westvineyards.com",
-    region: "Northern Virginia"
+    region: "Northern Virginia",
+  categories: ["winery"]
   },
   {
     id: "207",
@@ -2278,7 +2484,8 @@ export const wineries: Winery[] = [
     zip: "20197",
     phone: "571-439-2255",
     website: "8chainsnorth.com",
-    region: "Northern Virginia"
+    region: "Northern Virginia",
+  categories: ["winery"]
   },
   {
     id: "208",
@@ -2289,7 +2496,8 @@ export const wineries: Winery[] = [
     zip: "20132",
     phone: "540-668-7008",
     website: "868estatevineyards.com",
-    region: "Northern Virginia"
+    region: "Northern Virginia",
+  categories: ["winery"]
   },
   {
     id: "209",
@@ -2300,7 +2508,8 @@ export const wineries: Winery[] = [
     zip: "20144",
     phone: "540-422-3443",
     website: "arterrawines.com",
-    region: "Northern Virginia"
+    region: "Northern Virginia",
+  categories: ["winery"]
   },
   {
     id: "210",
@@ -2311,7 +2520,8 @@ export const wineries: Winery[] = [
     zip: "20144",
     phone: "540-364-1722",
     website: "aspendalewinery.com",
-    region: "Northern Virginia"
+    region: "Northern Virginia",
+  categories: ["winery"]
   },
   {
     id: "211",
@@ -2322,7 +2532,8 @@ export const wineries: Winery[] = [
     zip: "22407",
     phone: "540-903-0917",
     website: "bacchusva.com",
-    region: "Northern Virginia"
+    region: "Northern Virginia",
+  categories: ["winery"]
   },
   {
     id: "212",
@@ -2333,7 +2544,8 @@ export const wineries: Winery[] = [
     zip: "20144",
     phone: "540-364-6402",
     website: "barreloak.com",
-    region: "Northern Virginia"
+    region: "Northern Virginia",
+  categories: ["winery"]
   },
   {
     id: "213",
@@ -2344,7 +2556,8 @@ export const wineries: Winery[] = [
     zip: "20176",
     phone: "703-297-2617",
     website: "bleufrogvineyards.com",
-    region: "Northern Virginia"
+    region: "Northern Virginia",
+  categories: ["winery"]
   },
   {
     id: "214",
@@ -2355,7 +2568,8 @@ export const wineries: Winery[] = [
     zip: "20144",
     phone: "540-364-2347",
     website: "bluevalleyvineyardandwinery.com",
-    region: "Northern Virginia"
+    region: "Northern Virginia",
+  categories: ["winery"]
   },
   {
     id: "215",
@@ -2366,7 +2580,8 @@ export const wineries: Winery[] = [
     zip: "20129",
     phone: "540-454-2505",
     website: "bluewallcider.com",
-    region: "Northern Virginia"
+    region: "Northern Virginia",
+  categories: ["cidery","winery"]
   },
   {
     id: "216",
@@ -2377,7 +2592,8 @@ export const wineries: Winery[] = [
     zip: "20135",
     phone: "540-554-8439",
     website: "bluemontvineyard.com",
-    region: "Northern Virginia"
+    region: "Northern Virginia",
+  categories: ["winery"]
   },
   {
     id: "217",
@@ -2388,7 +2604,8 @@ export const wineries: Winery[] = [
     zip: "20117",
     phone: "540-687-8778",
     website: "boxwoodwinery.com",
-    region: "Northern Virginia"
+    region: "Northern Virginia",
+  categories: ["winery"]
   },
   {
     id: "218",
@@ -2399,7 +2616,8 @@ export const wineries: Winery[] = [
     zip: "20132",
     phone: "571-918-9001",
     website: "bozwines.com",
-    region: "Northern Virginia"
+    region: "Northern Virginia",
+  categories: ["winery"]
   },
   {
     id: "219",
@@ -2410,7 +2628,8 @@ export const wineries: Winery[] = [
     zip: "20132",
     phone: "540-668-6299",
     website: "breauxvineyards.com",
-    region: "Northern Virginia"
+    region: "Northern Virginia",
+  categories: ["winery"]
   },
   {
     id: "220",
@@ -2421,7 +2640,8 @@ export const wineries: Winery[] = [
     zip: "20117",
     phone: "703-348-2458",
     website: "canavineyards.com",
-    region: "Northern Virginia"
+    region: "Northern Virginia",
+  categories: ["winery"]
   },
 {
     id: "221",
@@ -2432,7 +2652,8 @@ export const wineries: Winery[] = [
     zip: "22642",
     phone: "540-308-9463",
     website: "capstonevineyards.com",
-    region: "Northern Virginia"
+    region: "Northern Virginia",
+  categories: ["winery"]
   },
   {
     id: "222",
@@ -2443,7 +2664,8 @@ export const wineries: Winery[] = [
     zip: "20197",
     phone: "571-239-9120",
     website: "chwwinery.com",
-    region: "Northern Virginia"
+    region: "Northern Virginia",
+  categories: ["winery"]
   },
   {
     id: "223",
@@ -2454,7 +2676,8 @@ export const wineries: Winery[] = [
     zip: "20175",
     phone: "540-751-1776",
     website: "casanelvineyards.com",
-    region: "Northern Virginia"
+    region: "Northern Virginia",
+  categories: ["winery"]
   },
   {
     id: "224",
@@ -2465,7 +2688,8 @@ export const wineries: Winery[] = [
     zip: "22643",
     phone: "540-364-6441",
     website: "chateauobrien.com",
-    region: "Northern Virginia"
+    region: "Northern Virginia",
+  categories: ["winery"]
   },
   {
     id: "225",
@@ -2476,7 +2700,8 @@ export const wineries: Winery[] = [
     zip: "22630",
     phone: "540-636-8086",
     website: "chestergapcellars.com",
-    region: "Northern Virginia"
+    region: "Northern Virginia",
+  categories: ["winery"]
   },
   {
     id: "226",
@@ -2487,7 +2712,8 @@ export const wineries: Winery[] = [
     zip: "20117",
     phone: "540-687-8222",
     website: "chrysaliswine.com",
-    region: "Northern Virginia"
+    region: "Northern Virginia",
+  categories: ["winery"]
   },
   {
     id: "227",
@@ -2498,7 +2724,8 @@ export const wineries: Winery[] = [
     zip: "20144",
     phone: "703-344-8610",
     website: "cobblermountain.com",
-    region: "Northern Virginia"
+    region: "Northern Virginia",
+  categories: ["cidery"]
   },
   {
     id: "228",
@@ -2509,7 +2736,8 @@ export const wineries: Winery[] = [
     zip: "20197",
     phone: "540-882-9073",
     website: "corcoranvineyards.com",
-    region: "Northern Virginia"
+    region: "Northern Virginia",
+  categories: ["cidery","winery"]
   },
   {
     id: "229",
@@ -2520,7 +2748,8 @@ export const wineries: Winery[] = [
     zip: "20180",
     phone: "540-822-3825",
     website: "creeksedgewinery.com",
-    region: "Northern Virginia"
+    region: "Northern Virginia",
+  categories: ["winery"]
   },
   {
     id: "230",
@@ -2531,7 +2760,8 @@ export const wineries: Winery[] = [
     zip: "22642",
     phone: "540-506-5062",
     website: "crimsonlanevineyards.com",
-    region: "Northern Virginia"
+    region: "Northern Virginia",
+  categories: ["winery"]
   },
   {
     id: "231",
@@ -2542,7 +2772,8 @@ export const wineries: Winery[] = [
     zip: "20132",
     phone: "571-374-9463",
     website: "crushedcellars.com",
-    region: "Northern Virginia"
+    region: "Northern Virginia",
+  categories: ["winery"]
   },
   {
     id: "232",
@@ -2553,7 +2784,8 @@ export const wineries: Winery[] = [
     zip: "20144",
     phone: "540-592-7210",
     website: "delaplanecellars.com",
-    region: "Northern Virginia"
+    region: "Northern Virginia",
+  categories: ["winery"]
   },
   {
     id: "233",
@@ -2564,7 +2796,8 @@ export const wineries: Winery[] = [
     zip: "20180",
     phone: "703-870-1225",
     website: "domainefortier.com",
-    region: "Northern Virginia"
+    region: "Northern Virginia",
+  categories: ["winery"]
   },
   {
     id: "234",
@@ -2575,7 +2808,8 @@ export const wineries: Winery[] = [
     zip: "20132",
     phone: "540-668-6464",
     website: "doukeniewinery.com",
-    region: "Northern Virginia"
+    region: "Northern Virginia",
+  categories: ["winery"]
   },
   {
     id: "235",
@@ -2586,7 +2820,8 @@ export const wineries: Winery[] = [
     zip: "20176",
     phone: "703-851-0699",
     website: "eagletreevineyards.com",
-    region: "Northern Virginia"
+    region: "Northern Virginia",
+  categories: ["winery"]
   },
   {
     id: "236",
@@ -2597,7 +2832,8 @@ export const wineries: Winery[] = [
     zip: "22407",
     phone: "818-468-2936",
     website: "edentrywinery.com",
-    region: "Northern Virginia"
+    region: "Northern Virginia",
+  categories: ["winery"]
   },
   {
     id: "237",
@@ -2608,7 +2844,8 @@ export const wineries: Winery[] = [
     zip: "20181",
     phone: "703-594-2300",
     website: "effinghammanor.com",
-    region: "Northern Virginia"
+    region: "Northern Virginia",
+  categories: ["winery"]
   },
   {
     id: "238",
@@ -2619,7 +2856,8 @@ export const wineries: Winery[] = [
     zip: "20132",
     phone: "info@ev-wine.com",
     website: "endhardtvineyards.com",
-    region: "Northern Virginia"
+    region: "Northern Virginia",
+  categories: ["winery"]
   },
   {
     id: "239",
@@ -2630,7 +2868,8 @@ export const wineries: Winery[] = [
     zip: "20176",
     phone: "703-771-1197",
     website: "fabbioliwines.com",
-    region: "Northern Virginia"
+    region: "Northern Virginia",
+  categories: ["winery"]
   },
   {
     id: "240",
@@ -2641,7 +2880,8 @@ export const wineries: Winery[] = [
     zip: "20158",
     phone: "703-314-5650",
     website: "fireflycellars.com",
-    region: "Northern Virginia"
+    region: "Northern Virginia",
+  categories: ["winery"]
   },
   {
     id: "241",
@@ -2652,7 +2892,8 @@ export const wineries: Winery[] = [
     zip: "20175",
     phone: "703-722-2124",
     website: "fleetwoodfarmwinery.com",
-    region: "Northern Virginia"
+    region: "Northern Virginia",
+  categories: ["winery"]
   },
   {
     id: "242",
@@ -2663,7 +2904,8 @@ export const wineries: Winery[] = [
     zip: "22642",
     phone: "540-636-6777",
     website: "foxmeadowwinery.com",
-    region: "Northern Virginia"
+    region: "Northern Virginia",
+  categories: ["winery"]
   },
   {
     id: "243",
@@ -2674,7 +2916,8 @@ export const wineries: Winery[] = [
     zip: "22747",
     phone: "540-987-9292",
     website: "gadinocellars.com",
-    region: "Northern Virginia"
+    region: "Northern Virginia",
+  categories: ["winery"]
   },
   {
     id: "244",
@@ -2685,7 +2928,8 @@ export const wineries: Winery[] = [
     zip: "20141",
     phone: "571-479-3417",
     website: "goodspiritfarmva.com",
-    region: "Northern Virginia"
+    region: "Northern Virginia",
+  categories: ["winery"]
   },
   {
     id: "245",
@@ -2696,7 +2940,8 @@ export const wineries: Winery[] = [
     zip: "20186",
     phone: "540-349-5185",
     website: "gh.wine",
-    region: "Northern Virginia"
+    region: "Northern Virginia",
+  categories: ["winery"]
   },
   {
     id: "246",
@@ -2707,7 +2952,8 @@ export const wineries: Winery[] = [
     zip: "20106",
     phone: "540-937-4869",
     website: "grayghostvineyards.com",
-    region: "Northern Virginia"
+    region: "Northern Virginia",
+  categories: ["winery"]
   },
   {
     id: "247",
@@ -2718,7 +2964,8 @@ export const wineries: Winery[] = [
     zip: "20117",
     phone: "540-687-6968",
     website: "experiencegreenhill.com",
-    region: "Northern Virginia"
+    region: "Northern Virginia",
+  categories: ["winery"]
   },
   {
     id: "248",
@@ -2729,7 +2976,8 @@ export const wineries: Winery[] = [
     zip: "20176",
     phone: "703-737-3935",
     website: "hiddenbrookwinery.com",
-    region: "Northern Virginia"
+    region: "Northern Virginia",
+  categories: ["winery"]
   },
   {
     id: "249",
@@ -2740,7 +2988,8 @@ export const wineries: Winery[] = [
     zip: "20180",
     phone: "540-535-5367",
     website: "hiddencroftvineyards.com",
-    region: "Northern Virginia"
+    region: "Northern Virginia",
+  categories: ["winery"]
   },
   {
     id: "250",
@@ -2751,7 +3000,8 @@ export const wineries: Winery[] = [
     zip: "20132",
     phone: "540-668-6216",
     website: "hillsboroughwine.com",
-    region: "Northern Virginia"
+    region: "Northern Virginia",
+  categories: ["winery"]
   },
   {
     id: "251",
@@ -2762,7 +3012,8 @@ export const wineries: Winery[] = [
     zip: "20132",
     phone: "540-717-8118",
     website: "kalerovineyard.com",
-    region: "Northern Virginia"
+    region: "Northern Virginia",
+  categories: ["winery"]
   },
   {
     id: "252",
@@ -2773,7 +3024,8 @@ export const wineries: Winery[] = [
     zip: "22551",
     phone: "540-895-5085",
     website: "lawinery.com",
-    region: "Northern Virginia"
+    region: "Northern Virginia",
+  categories: ["winery"]
   },
   {
     id: "253",
@@ -2784,7 +3036,8 @@ export const wineries: Winery[] = [
     zip: "22642",
     phone: "540-364-1997",
     website: "lindenvineyards.com",
-    region: "Northern Virginia"
+    region: "Northern Virginia",
+  categories: ["winery"]
   },
   {
     id: "254",
@@ -2795,7 +3048,8 @@ export const wineries: Winery[] = [
     zip: "22747",
     phone: "540-987-8330",
     website: "littlewashingtonwinery.com",
-    region: "Northern Virginia"
+    region: "Northern Virginia",
+  categories: ["winery"]
   },
   {
     id: "255",
@@ -2806,7 +3060,8 @@ export const wineries: Winery[] = [
     zip: "22314",
     phone: "703-566-5737",
     website: "lostboycider.com",
-    region: "Northern Virginia"
+    region: "Northern Virginia",
+  categories: ["cidery"]
   },
   {
     id: "256",
@@ -2817,7 +3072,8 @@ export const wineries: Winery[] = [
     zip: "20106",
     phone: "703-785-8190",
     website: "magnoliavineyards.com",
-    region: "Northern Virginia"
+    region: "Northern Virginia",
+  categories: ["winery"]
   },
   {
     id: "257",
@@ -2828,7 +3084,8 @@ export const wineries: Winery[] = [
     zip: "22551",
     phone: "540-582-2897",
     website: "mattaponiwinery.com",
-    region: "Northern Virginia"
+    region: "Northern Virginia",
+  categories: ["winery"]
   },
   {
     id: "258",
@@ -2839,7 +3096,8 @@ export const wineries: Winery[] = [
     zip: "20186",
     phone: "540-428-1984",
     website: "mediterraneancellars.com",
-    region: "Northern Virginia"
+    region: "Northern Virginia",
+  categories: ["winery"]
   },
   {
     id: "259",
@@ -2850,7 +3108,8 @@ export const wineries: Winery[] = [
     zip: "20186",
     phone: "540-439-5460",
     website: "molonlavevineyards.com",
-    region: "Northern Virginia"
+    region: "Northern Virginia",
+  categories: ["winery"]
   },
   {
     id: "260",
@@ -2861,7 +3120,8 @@ export const wineries: Winery[] = [
     zip: "22712",
     phone: "540-729-4823",
     website: "moraisvineyards.com",
-    region: "Northern Virginia"
+    region: "Northern Virginia",
+  categories: ["winery"]
   },
   {
     id: "261",
@@ -2872,7 +3132,8 @@ export const wineries: Winery[] = [
     zip: "22701",
     phone: "703-638-5559",
     website: "mountainrunwinery.com",
-    region: "Northern Virginia"
+    region: "Northern Virginia",
+  categories: ["winery"]
   },
   {
     id: "262",
@@ -2883,7 +3144,8 @@ export const wineries: Winery[] = [
     zip: "20117",
     phone: "540-883-3176",
     website: "mtdefiance.com",
-    region: "Northern Virginia"
+    region: "Northern Virginia",
+  categories: ["cidery"]
   },
   {
     id: "263",
@@ -2894,7 +3156,8 @@ export const wineries: Winery[] = [
     zip: "22643",
     phone: "540-364-1609",
     website: "nakedmtnwinery.com",
-    region: "Northern Virginia"
+    region: "Northern Virginia",
+  categories: ["winery"]
   },
   {
     id: "264",
@@ -2905,7 +3168,8 @@ export const wineries: Winery[] = [
     zip: "20106",
     phone: "540-937-8215",
     website: "narmadawinery.com",
-    region: "Northern Virginia"
+    region: "Northern Virginia",
+  categories: ["winery"]
   },
   {
     id: "265",
@@ -2916,7 +3180,8 @@ export const wineries: Winery[] = [
     zip: "20181",
     phone: "703-330-3467",
     website: "nokesvillewinery.com",
-    region: "Northern Virginia"
+    region: "Northern Virginia",
+  categories: ["winery"]
   },
   {
     id: "266",
@@ -2927,7 +3192,8 @@ export const wineries: Winery[] = [
     zip: "20132",
     phone: "540-668-6756",
     website: "notaviva.com",
-    region: "Northern Virginia"
+    region: "Northern Virginia",
+  categories: ["winery"]
   },
   {
     id: "267",
@@ -2938,7 +3204,8 @@ export const wineries: Winery[] = [
     zip: "20175",
     phone: "thepaintstripe@octoberonevineyard.com",
     website: "octoberonevineyard.com/wine-tasting-shop-leesburg/",
-    region: "Northern Virginia"
+    region: "Northern Virginia",
+  categories: ["winery"]
   },
   {
     id: "268",
@@ -2949,7 +3216,8 @@ export const wineries: Winery[] = [
     zip: "20105",
     phone: "571-899-4380",
     website: "oldfarmwineryhartland.com",
-    region: "Northern Virginia"
+    region: "Northern Virginia",
+  categories: ["winery"]
   },
   {
     id: "269",
@@ -2960,7 +3228,8 @@ export const wineries: Winery[] = [
     zip: "22701",
     phone: "540-423-1032",
     website: "oldhousetoday.com",
-    region: "Northern Virginia"
+    region: "Northern Virginia",
+  categories: ["winery"]
   },
   {
     id: "270",
@@ -2971,7 +3240,8 @@ export const wineries: Winery[] = [
     zip: "22714",
     phone: "540-729-1740",
     website: "oldtradebrewery.com",
-    region: "Northern Virginia"
+    region: "Northern Virginia",
+  categories: ["cidery","brewery"]
   },
   {
     id: "271",
@@ -2982,7 +3252,8 @@ export const wineries: Winery[] = [
     zip: "20132",
     phone: "540-338-2027",
     website: "otiumcellars.com",
-    region: "Northern Virginia"
+    region: "Northern Virginia",
+  categories: ["winery"]
   },
   {
     id: "272",
@@ -2993,7 +3264,8 @@ export const wineries: Winery[] = [
     zip: "20124",
     phone: "703-830-9463",
     website: "paradisespringswinery.com",
-    region: "Northern Virginia"
+    region: "Northern Virginia",
+  categories: ["winery"]
   },
   {
     id: "273",
@@ -3004,7 +3276,8 @@ export const wineries: Winery[] = [
     zip: "20137",
     phone: "540-347-3475",
     website: "pearmundcellars.com",
-    region: "Northern Virginia"
+    region: "Northern Virginia",
+  categories: ["winery"]
   }
 ];
 
