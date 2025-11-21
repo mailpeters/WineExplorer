@@ -1,8 +1,11 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import dynamic from "next/dynamic";
 import { NearbyWinery } from "@/lib/wineries-data";
 import CategoryBadges from "@/components/category-badges";
+
+const NearbyMap = dynamic(() => import("@/components/nearby-map"), { ssr: false });
 
 interface Coordinates {
   lat: number;
@@ -148,64 +151,87 @@ export default function NearbyPage() {
         )}
 
         <section className="bg-white rounded-2xl shadow-xl border border-purple-100 p-6">
-          <div className="flex items-center justify-between mb-6">
+          <div className="grid gap-8 md:grid-cols-2">
             <div>
-              <h2 className="text-2xl font-bold text-purple-900">Nearby Wineries</h2>
-              <p className="text-purple-600 text-sm">
-                {coords
-                  ? loading
-                    ? "Searching for locations..."
-                    : `${results.length} place${results.length === 1 ? "" : "s"} within ${radius} miles`
-                  : "Share your location to see nearby results."}
-              </p>
+              <div className="flex items-center justify-between mb-6">
+                <div>
+                  <h2 className="text-2xl font-bold text-purple-900">Nearby Wineries</h2>
+                  <p className="text-purple-600 text-sm">
+                    {coords
+                      ? loading
+                        ? "Searching for locations..."
+                        : `${results.length} place${results.length === 1 ? "" : "s"} within ${radius} miles`
+                      : "Share your location to see nearby results."}
+                  </p>
+                </div>
+              </div>
+
+              {loading && (
+                <p className="text-purple-600">Loading nearby wineries...</p>
+              )}
+
+              {!loading && coords && results.length === 0 && (
+                <p className="text-gray-500">
+                  No wineries found within {radius} miles. Try expanding the radius.
+                </p>
+              )}
+
+              {!loading && results.length > 0 && (
+                <div className="space-y-3">
+                  {results.map(({ winery, distanceMiles }) => (
+                    <div
+                      key={winery.id}
+                      className="p-3 border border-purple-100 rounded-lg hover:border-purple-300 transition shadow-sm bg-white/80"
+                    >
+                      <div className="flex flex-wrap justify-between gap-3">
+                        <div>
+                          <h3 className="text-lg font-semibold text-purple-900">{winery.name}</h3>
+                          <p className="text-xs text-purple-600">{winery.city}, {winery.state}</p>
+                          <p className="text-xs text-gray-500">{winery.region}</p>
+                        </div>
+                        <div className="text-right">
+                          <p className="text-xs uppercase text-purple-500 font-semibold">Distance</p>
+                          <p className="text-xl font-bold text-purple-900">{distanceMiles} mi</p>
+                        </div>
+                      </div>
+                      <div className="mt-2 flex items-center justify-between flex-wrap gap-3 text-xs">
+                        <CategoryBadges categories={winery.categories} />
+                        {winery.website && (
+                          <a
+                            href={`https://${winery.website}`}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="text-purple-600 hover:text-purple-800 font-semibold"
+                          >
+                            Visit Website ↗
+                          </a>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            <div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
+                <div>
+                  <h2 className="text-2xl font-bold text-purple-900">Map View</h2>
+                  <p className="text-purple-600 text-sm">
+                    {coords ? `Viewing wineries within ${radius} miles` : "Share your location to center the map"}
+                  </p>
+                </div>
+                {coords && (
+                  <div className="text-sm text-purple-500 font-semibold">
+                    {coords.lat.toFixed(3)}, {coords.lng.toFixed(3)}
+                  </div>
+                )}
+              </div>
+              <div className="flex-1 min-h-[300px] md:min-h-[500px]">
+                <NearbyMap origin={coords} results={results} radiusMiles={radius} />
+              </div>
             </div>
           </div>
-
-          {loading && (
-            <p className="text-purple-600">Loading nearby wineries...</p>
-          )}
-
-          {!loading && coords && results.length === 0 && (
-            <p className="text-gray-500">
-              No wineries found within {radius} miles. Try expanding the radius.
-            </p>
-          )}
-
-          {!loading && results.length > 0 && (
-            <div className="space-y-4">
-              {results.map(({ winery, distanceMiles }) => (
-                <div
-                  key={winery.id}
-                  className="p-5 border border-purple-100 rounded-xl hover:border-purple-300 transition shadow-sm bg-gradient-to-r from-white to-purple-50"
-                >
-                  <div className="flex flex-wrap justify-between gap-3">
-                    <div>
-                      <h3 className="text-xl font-semibold text-purple-900">{winery.name}</h3>
-                      <p className="text-sm text-purple-600">{winery.city}, {winery.state}</p>
-                      <p className="text-gray-500">{winery.region}</p>
-                    </div>
-                    <div className="text-right">
-                      <p className="text-sm uppercase text-purple-500 font-semibold">Distance</p>
-                      <p className="text-2xl font-bold text-purple-900">{distanceMiles} mi</p>
-                    </div>
-                  </div>
-                  <div className="mt-3 flex items-center justify-between flex-wrap gap-3">
-                    <CategoryBadges categories={winery.categories} />
-                    {winery.website && (
-                      <a
-                        href={`https://${winery.website}`}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="text-purple-600 hover:text-purple-800 font-semibold"
-                      >
-                        Visit Website ↗
-                      </a>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
         </section>
       </div>
     </main>

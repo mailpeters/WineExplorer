@@ -344,21 +344,37 @@ export default function Home() {
         </div>
       </div>
 
+      {/* Near Me Feature */}
+      <section className="max-w-6xl mx-auto px-8 py-16">
+        <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-8 md:p-12 flex flex-col gap-6 md:flex-row md:items-center">
+          <div className="text-6xl md:text-7xl">📍</div>
+          <div className="flex-1">
+            <h2 className="text-4xl font-bold text-white mb-4 flex items-center gap-3">
+              Find Wineries Near You
+              <span className="text-xs bg-emerald-500/80 text-white px-3 py-1 rounded-full">New</span>
+            </h2>
+            <p className="text-purple-100 text-lg mb-4">
+              Tap into GPS-powered discovery to locate the closest wineries, cideries, and breweries within a custom radius—perfect for weekend getaways or impromptu tastings.
+            </p>
+            <div className="flex flex-wrap gap-4">
+              <Link
+                href="/nearby"
+                className="inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-pink-500 to-rose-500 text-white font-semibold rounded-xl shadow-lg hover:from-pink-600 hover:to-rose-600 transition"
+              >
+                Open Near Me Tool →
+              </Link>
+              <p className="text-sm text-purple-200">
+                Works great on mobile—allow location access when prompted for the best results.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Coming Soon Features */}
       <div className="max-w-6xl mx-auto px-8 py-16">
         <h2 className="text-4xl font-bold text-white text-center mb-12">Coming Soon</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <Link
-            href="/nearby"
-            className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-8 hover:bg-white/15 transition block"
-          >
-            <div className="text-5xl mb-4">📍</div>
-            <h3 className="text-2xl font-bold text-white mb-2 flex items-center gap-2">
-              Find Wineries Near You
-              <span className="text-xs bg-emerald-500/80 text-white px-2 py-1 rounded-full">New</span>
-            </h3>
-            <p className="text-purple-100">Use your location to discover wineries within a custom radius</p>
-          </Link>
           <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-8 hover:bg-white/15 transition">
             <div className="text-5xl mb-4">⭐</div>
             <h3 className="text-2xl font-bold text-white mb-2">Rate & Review</h3>
