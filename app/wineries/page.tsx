@@ -1,12 +1,12 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { Winery } from "@/types/winery";
 import SearchBar from "@/components/SearchBar";
 import CategoryBadges from "@/components/category-badges";
 
-export default function WineriesPage() {
+function WineriesPageContent() {
   const searchParams = useSearchParams();
   const region = searchParams.get("region");
 
@@ -131,5 +131,19 @@ export default function WineriesPage() {
         )}
       </div>
     </main>
+  );
+}
+
+export default function WineriesPage() {
+  return (
+    <Suspense fallback={
+      <main className="min-h-screen bg-gradient-to-br from-purple-50 to-pink-50 p-8">
+        <div className="max-w-4xl mx-auto">
+          <h1 className="text-4xl font-bold text-purple-900 mb-8">🍷 Loading...</h1>
+        </div>
+      </main>
+    }>
+      <WineriesPageContent />
+    </Suspense>
   );
 }
