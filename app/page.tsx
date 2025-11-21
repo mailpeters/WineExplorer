@@ -135,18 +135,104 @@ export default function Home() {
       )}
 
       {/* Features Section */}
-      <div className="max-w-6xl mx-auto px-8 py-16">
-        <h2 className="text-4xl font-bold text-white text-center mb-12">Explore by Region</h2>
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-          {regions.map((region) => (
-            <Link
-              key={region}
-              href={`/wineries?region=${encodeURIComponent(region)}`}
-              className="bg-white/10 backdrop-blur-md hover:bg-white/20 border border-white/30 rounded-lg p-4 text-center text-white font-semibold transition transform hover:scale-105"
-            >
-              {region}
+      <div className="max-w-7xl mx-auto px-8 py-16">
+        <h2 className="text-4xl font-bold text-white text-center mb-12">Explore Virginia Wine Regions</h2>
+
+        {/* Virginia Map Layout - 3 Rows */}
+        <div className="space-y-6 max-w-6xl mx-auto">
+          {/* Row 1 - Northern */}
+          <div className="grid grid-cols-2 gap-4">
+            <Link href="/wineries?region=Shenandoah Valley">
+              <img
+                src="/regions/valley.png"
+                alt="Shenandoah Valley"
+                className="w-full h-auto hover:scale-105 transition-transform cursor-pointer rounded-lg shadow-lg hover:shadow-2xl"
+                title="Shenandoah Valley"
+              />
             </Link>
-          ))}
+            <Link href="/wineries?region=Northern Virginia">
+              <img
+                src="/regions/north.png"
+                alt="Northern Virginia"
+                className="w-full h-auto hover:scale-105 transition-transform cursor-pointer rounded-lg shadow-lg hover:shadow-2xl"
+                title="Northern Virginia"
+              />
+            </Link>
+          </div>
+
+          {/* Row 2 - Central */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <Link href="/wineries?region=Mountains">
+              <img
+                src="/regions/mountains.png"
+                alt="Mountains"
+                className="w-full h-auto hover:scale-105 transition-transform cursor-pointer rounded-lg shadow-lg hover:shadow-2xl"
+                title="Mountains"
+              />
+            </Link>
+            <Link href="/wineries?region=Central Virginia">
+              <img
+                src="/regions/central.png"
+                alt="Central Virginia"
+                className="w-full h-auto hover:scale-105 transition-transform cursor-pointer rounded-lg shadow-lg hover:shadow-2xl"
+                title="Central Virginia"
+              />
+            </Link>
+            <Link href="/wineries?region=Chesapeake Bay">
+              <img
+                src="/regions/bay.png"
+                alt="Chesapeake Bay"
+                className="w-full h-auto hover:scale-105 transition-transform cursor-pointer rounded-lg shadow-lg hover:shadow-2xl"
+                title="Chesapeake Bay"
+              />
+            </Link>
+            <Link href="/wineries?region=Eastern Shore">
+              <img
+                src="/regions/shore.png"
+                alt="Eastern Shore"
+                className="w-full h-auto hover:scale-105 transition-transform cursor-pointer rounded-lg shadow-lg hover:shadow-2xl"
+                title="Eastern Shore"
+              />
+            </Link>
+
+          </div>
+
+          {/* Row 3 - Southern */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <Link href="/wineries?region=Heart of Appalachia">
+              <img
+                src="/regions/appalatia.png"
+                alt="Heart of Appalachia"
+                className="w-full h-auto hover:scale-105 transition-transform cursor-pointer rounded-lg shadow-lg hover:shadow-2xl"
+                title="Heart of Appalachia"
+              />
+            </Link>
+
+            <Link href="/wineries?region=Blue Ridge">
+              <img
+                src="/regions/blue.png"
+                alt="Blue Ridge"
+                className="w-full h-auto hover:scale-105 transition-transform cursor-pointer rounded-lg shadow-lg hover:shadow-2xl"
+                title="Blue Ridge"
+              />
+            </Link>
+            <Link href="/wineries?region=Southern Virginia">
+              <img
+                src="/regions/south.png"
+                alt="Southern Virginia"
+                className="w-full h-auto hover:scale-105 transition-transform cursor-pointer rounded-lg shadow-lg hover:shadow-2xl"
+                title="Southern Virginia"
+              />
+            </Link>
+            <Link href="/wineries?region=Hampton Roads">
+              <img
+                src="/regions/hampton.png"
+                alt="Hampton Roads"
+                className="w-full h-auto hover:scale-105 transition-transform cursor-pointer rounded-lg shadow-lg hover:shadow-2xl"
+                title="Hampton Roads"
+              />
+            </Link>
+          </div>
         </div>
       </div>
 
