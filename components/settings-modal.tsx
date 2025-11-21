@@ -1,12 +1,25 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { loadSettings, saveSettings, UserSettings } from "@/lib/user-settings";
-import { getRegions } from "@/lib/wineries-data";
+import { loadSettings, saveSettings, UserSettings, US_STATES } from "@/lib/user-settings";
+
+// Helper function to format phone number
+const formatPhoneNumber = (value: string): string => {
+  const cleaned = value.replace(/\D/g, '');
+  if (cleaned.length <= 3) return cleaned;
+  if (cleaned.length <= 6) return `(${cleaned.slice(0, 3)}) ${cleaned.slice(3)}`;
+  return `(${cleaned.slice(0, 3)}) ${cleaned.slice(3, 6)}-${cleaned.slice(6, 10)}`;
+};
+
+// Helper function to format zip code
+const formatZipCode = (value: string): string => {
+  const cleaned = value.replace(/\D/g, '');
+  if (cleaned.length <= 5) return cleaned;
+  return `${cleaned.slice(0, 5)}-${cleaned.slice(5, 9)}`;
+};
 
 export default function SettingsModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
   const [settings, setSettings] = useState<UserSettings>(loadSettings());
-  const regions = getRegions();
 
   useEffect(() => {
     if (isOpen) {
@@ -76,22 +89,26 @@ export default function SettingsModal({ isOpen, onClose }: { isOpen: boolean; on
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">State</label>
-                  <input
-                    type="text"
+                  <select
                     value={settings.state || 'VA'}
                     onChange={(e) => setSettings({ ...settings, state: e.target.value })}
-                    placeholder="State"
-                    maxLength={2}
                     className="w-full px-4 py-2 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-purple-500"
-                  />
+                  >
+                    {US_STATES.map((state) => (
+                      <option key={state} value={state}>
+                        {state}
+                      </option>
+                    ))}
+                  </select>
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">ZIP</label>
                   <input
                     type="text"
                     value={settings.zip || ''}
-                    onChange={(e) => setSettings({ ...settings, zip: e.target.value })}
-                    placeholder="ZIP code"
+                    onChange={(e) => setSettings({ ...settings, zip: formatZipCode(e.target.value) })}
+                    placeholder="12345 or 12345-6789"
+                    maxLength={10}
                     className="w-full px-4 py-2 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-purple-500"
                   />
                 </div>
@@ -172,18 +189,17 @@ export default function SettingsModal({ isOpen, onClose }: { isOpen: boolean; on
                 <span className="font-semibold">☎️ Phone</span>
               </label>
               {settings.communicationPreferences.phone && (
-                <label className="flex items-center gap-3 p-3 bg-blue-50 rounded-lg cursor-pointer ml-6">
+                <div className="ml-6">
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
                   <input
-                    type="checkbox"
-                    checked={settings.communicationPreferences.phoneRequired}
-                    onChange={(e) => setSettings({
-                      ...settings,
-                      communicationPreferences: { ...settings.communicationPreferences, phoneRequired: e.target.checked }
-                    })}
-                    className="w-5 h-5 rounded accent-blue-500"
+                    type="tel"
+                    value={settings.phone || ''}
+                    onChange={(e) => setSettings({ ...settings, phone: formatPhoneNumber(e.target.value) })}
+                    placeholder="(123) 456-7890"
+                    maxLength={14}
+                    className="w-full px-4 py-2 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-blue-500"
                   />
-                  <span className="text-sm">Require phone for alerts</span>
-                </label>
+                </div>
               )}
               <label className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-gray-100">
                 <input
@@ -230,65 +246,6 @@ export default function SettingsModal({ isOpen, onClose }: { isOpen: boolean; on
             )}
           </div>
 
-          {/* Display Preferences */}
-          <div className="border-b pb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">🎨 Display Preferences</h3>
-            
-            <div className="mb-4">
-              <label className="block text-sm font-medium text-gray-700 mb-2">Favorite Region</label>
-              <select
-                value={settings.favoriteRegion || ''}
-                onChange={(e) => setSettings({ ...settings, favoriteRegion: e.target.value || undefined })}
-                className="w-full px-4 py-2 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-purple-500"
-              >
-                <option value="">None</option>
-                {regions.map((region) => (
-                  <option key={region.name} value={region.name}>
-                    {region.name} ({region.count} venues)
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            <div className="mb-4">
-              <label className="block text-sm font-medium text-gray-700 mb-2">Default Sort Order</label>
-              <select
-                value={settings.sortBy}
-                onChange={(e) => setSettings({ ...settings, sortBy: e.target.value as any })}
-                className="w-full px-4 py-2 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-purple-500"
-              >
-                <option value="name">Name (A-Z)</option>
-                <option value="distance">Distance (Coming Soon)</option>
-                <option value="rating">Rating (Coming Soon)</option>
-              </select>
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">View Mode</label>
-              <div className="flex gap-3">
-                <button
-                  onClick={() => setSettings({ ...settings, viewMode: 'grid' })}
-                  className={`flex-1 px-4 py-3 rounded-lg font-semibold transition ${
-                    settings.viewMode === 'grid'
-                      ? 'bg-purple-600 text-white'
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                  }`}
-                >
-                  📊 Grid View
-                </button>
-                <button
-                  onClick={() => setSettings({ ...settings, viewMode: 'list' })}
-                  className={`flex-1 px-4 py-3 rounded-lg font-semibold transition ${
-                    settings.viewMode === 'list'
-                      ? 'bg-purple-600 text-white'
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                  }`}
-                >
-                  📝 List View
-                </button>
-              </div>
-            </div>
-          </div>
         </div>
 
         <div className="p-6 border-t border-gray-200 flex justify-end gap-3">

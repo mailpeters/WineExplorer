@@ -72,6 +72,19 @@ function WineriesPageContent() {
         </h1>
         <SearchBar onSearch={handleSearch} />
 
+        {/* Region Input Box */}
+        {region && (
+          <div className="mb-8">
+            <label className="block text-sm font-semibold text-purple-900 mb-2">Region</label>
+            <input
+              type="text"
+              value={region}
+              readOnly
+              className="w-full px-4 py-3 bg-white border-2 border-purple-200 rounded-lg text-purple-900 font-semibold"
+            />
+          </div>
+        )}
+
         {/* Category Filters */}
         <div className="mb-8">
           <div className="flex flex-wrap gap-4 bg-white rounded-lg p-4 border-2 border-purple-200 shadow-sm">

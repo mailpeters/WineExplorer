@@ -1,5 +1,14 @@
 import { BeverageType } from '@/types/winery';
 
+// US States list
+export const US_STATES = [
+  'AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA',
+  'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD',
+  'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ',
+  'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC',
+  'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY'
+];
+
 export interface UserSettings {
   // Profile
   name?: string;
@@ -7,6 +16,7 @@ export interface UserSettings {
   city?: string;
   state?: string;
   zip?: string;
+  phone?: string;
 
   // Interested in
   defaultCategories: {
@@ -26,11 +36,6 @@ export interface UserSettings {
   // Alerts
   enableAlerts: boolean;
   alertRadius?: number; // in miles
-
-  // Display preferences
-  favoriteRegion?: string;
-  sortBy: 'name' | 'distance' | 'rating';
-  viewMode: 'grid' | 'list';
 }
 
 const DEFAULT_SETTINGS: UserSettings = {
@@ -39,6 +44,7 @@ const DEFAULT_SETTINGS: UserSettings = {
   city: '',
   state: 'VA',
   zip: '',
+  phone: '',
   defaultCategories: {
     winery: true,
     cidery: false,
@@ -52,8 +58,6 @@ const DEFAULT_SETTINGS: UserSettings = {
   },
   enableAlerts: false,
   alertRadius: 25,
-  sortBy: 'name',
-  viewMode: 'grid',
 };
 
 export function loadSettings(): UserSettings {

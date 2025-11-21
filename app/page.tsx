@@ -104,9 +104,11 @@ export default function Home() {
           {/* Header - Title and Buttons */}
           <div className="flex justify-between items-center mb-12">
             <h1 className="text-4xl md:text-5xl font-bold text-white drop-shadow-lg">
-              🍷 Dave's Virginia Wine Explorer
+              Dave's Craft Beverage Explorer (Virginia)
+            
             </h1>
-            <div className="flex gap-3 items-center">
+            <div className="flex flex-col gap-2 items-end">
+              <AuthButton />
               <button
                 onClick={() => setIsSettingsOpen(true)}
                 className="px-4 py-2 bg-white/20 hover:bg-white/30 text-white font-semibold rounded-lg transition border border-white/30 backdrop-blur-sm"
@@ -114,7 +116,6 @@ export default function Home() {
               >
                 ⚙️ Settings
               </button>
-              <AuthButton />
             </div>
           </div>
 
