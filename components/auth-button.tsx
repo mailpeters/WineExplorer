@@ -23,7 +23,7 @@ export default function AuthButton() {
           onClick={() => signOut()}
           className="px-6 py-2 bg-white/20 hover:bg-white/30 text-white rounded-lg transition border border-white/40"
         >
-          Sign Out
+         Logout
         </button>
       </div>
     );

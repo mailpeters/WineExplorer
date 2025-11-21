@@ -103,12 +103,18 @@ export default function Home() {
         <div className="relative max-w-6xl mx-auto px-8 py-20">
           {/* Header - Title and Buttons */}
           <div className="flex justify-between items-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-bold text-white drop-shadow-lg">
+            <h2 className="text-4xl md:text-5xl font-bold text-white drop-shadow-lg">
               Dave's Craft Beverage Explorer (Virginia)
-            
-            </h1>
+            </h2>
             <div className="flex flex-col gap-2 items-end">
               <AuthButton />
+              <Link
+                href="/nearby"
+                className="px-4 py-2 bg-pink-500 hover:bg-pink-600 text-white font-semibold rounded-lg transition border border-white/30 backdrop-blur-sm shadow-md"
+                title="Find wineries near you"
+              >
+                📍 Near Me
+              </Link>
               <button
                 onClick={() => setIsSettingsOpen(true)}
                 className="px-4 py-2 bg-white/20 hover:bg-white/30 text-white font-semibold rounded-lg transition border border-white/30 backdrop-blur-sm"
@@ -342,11 +348,17 @@ export default function Home() {
       <div className="max-w-6xl mx-auto px-8 py-16">
         <h2 className="text-4xl font-bold text-white text-center mb-12">Coming Soon</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-8 hover:bg-white/15 transition">
+          <Link
+            href="/nearby"
+            className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-8 hover:bg-white/15 transition block"
+          >
             <div className="text-5xl mb-4">📍</div>
-            <h3 className="text-2xl font-bold text-white mb-2">Find Wineries Near You</h3>
+            <h3 className="text-2xl font-bold text-white mb-2 flex items-center gap-2">
+              Find Wineries Near You
+              <span className="text-xs bg-emerald-500/80 text-white px-2 py-1 rounded-full">New</span>
+            </h3>
             <p className="text-purple-100">Use your location to discover wineries within a custom radius</p>
-          </div>
+          </Link>
           <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-8 hover:bg-white/15 transition">
             <div className="text-5xl mb-4">⭐</div>
             <h3 className="text-2xl font-bold text-white mb-2">Rate & Review</h3>

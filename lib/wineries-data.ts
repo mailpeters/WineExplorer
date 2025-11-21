@@ -1,5 +1,6 @@
 // lib/wineries-data.ts
 import { Winery } from '@/types/winery';
+import { calculateDistanceMiles } from '@/lib/geo';
 
 
 export const wineries: Winery[] = [
@@ -13,7 +14,9 @@ export const wineries: Winery[] = [
     phone: "276-328-2013",
     website: "mountainrosevineyard.com",
     region: "Heart of Appalachia",
-    categories: ["winery"]
+    categories: ["winery"],
+    lat: 36.9759,
+    lng: -82.5748
   },
   {
     id: "2",
@@ -25,7 +28,9 @@ export const wineries: Winery[] = [
     phone: "276-219-4522",
     website: "vincentsvineyard.com",
     region: "Heart of Appalachia",
-    categories: ["winery"]
+    categories: ["winery"],
+    lat: 36.9001,
+    lng: -82.0887
   },
   {
     id: "3",
@@ -37,7 +42,9 @@ export const wineries: Winery[] = [
     phone: "757-214-7494",
     website: "breezyhillmeadworks.com",
     region: "Hampton Roads",
-  categories: ["winery"]
+    categories: ["winery"],
+    lat: 36.9832,
+    lng: -76.6297
   },
   {
     id: "4",
@@ -49,7 +56,9 @@ export const wineries: Winery[] = [
     phone: "757-350-3125",
     website: "gauthiervineyard.com",
     region: "Hampton Roads",
-  categories: ["winery"]
+    categories: ["winery"],
+    lat: 37.4404,
+    lng: -76.842
   },
   {
     id: "5",
@@ -61,7 +70,9 @@ export const wineries: Winery[] = [
     phone: "757-899-0203",
     website: "hamptonroadswinery.com",
     region: "Hampton Roads",
-  categories: ["winery"]
+    categories: ["winery"],
+    lat: 37.0915,
+    lng: -76.9304
   },
   {
     id: "6",
@@ -73,7 +84,9 @@ export const wineries: Winery[] = [
     phone: "804-557-5316",
     website: "jolenefamilywinery.com",
     region: "Hampton Roads",
-  categories: ["winery"]
+    categories: ["winery"],
+    lat: 37.5227,
+    lng: -77.1602
   },
   {
     id: "7",
@@ -85,7 +98,9 @@ export const wineries: Winery[] = [
     phone: "757-233-4155",
     website: "mermaidwinery.com",
     region: "Hampton Roads",
-  categories: ["winery"]
+    categories: ["winery"],
+    lat: 36.8508,
+    lng: -76.289
   },
   {
     id: "8",
@@ -97,7 +112,9 @@ export const wineries: Winery[] = [
     phone: "804-922-7414",
     website: "newkentwinery.com",
     region: "Hampton Roads",
-  categories: ["winery"]
+    categories: ["winery"],
+    lat: 37.5173,
+    lng: -77.0472
   },
   {
     id: "9",
@@ -121,7 +138,9 @@ export const wineries: Winery[] = [
     phone: "amelia@slyclyde.com",
     website: "slyclyde.com",
     region: "Hampton Roads",
-  categories: ["cidery"]
+    categories: ["cidery"],
+    lat: 37.0299,
+    lng: -76.3398
   },
   {
     id: "11",
@@ -133,7 +152,9 @@ export const wineries: Winery[] = [
     phone: "757-797-9463",
     website: "smithfieldwinery.com",
     region: "Hampton Roads",
-  categories: ["winery"]
+    categories: ["winery"],
+    lat: 36.9824,
+    lng: -76.6316
   },
   {
     id: "12",
@@ -145,7 +166,9 @@ export const wineries: Winery[] = [
     phone: "757-357-2173",
     website: "swvsmithfield.com",
     region: "Hampton Roads",
-  categories: ["winery"]
+    categories: ["winery"],
+    lat: 36.935,
+    lng: -76.578
   },
   {
     id: "13",
@@ -157,7 +180,9 @@ export const wineries: Winery[] = [
     phone: "804-829-9463",
     website: "uppershirley.com",
     region: "Hampton Roads",
-  categories: ["winery"]
+    categories: ["winery"],
+    lat: 37.3298,
+    lng: -77.1784
   },
   {
     id: "14",
@@ -181,7 +206,9 @@ export const wineries: Winery[] = [
     phone: "757-678-5588",
     website: "chathamvineyards.com",
     region: "Eastern Shore",
-  categories: ["winery"]
+  categories: ["winery"],
+    lat: 37.4273,
+    lng: -75.9579
   },
   {
     id: "16",
@@ -3305,5 +3332,41 @@ export function searchWineries(query: string): Winery[] {
     w.city.toLowerCase().includes(lowerQuery) ||
     w.region.toLowerCase().includes(lowerQuery)
   );
-}  
+}
+
+export interface NearbyWinery {
+  winery: Winery;
+  distanceMiles: number;
+}
+
+interface NearbyOptions {
+  lat: number;
+  lng: number;
+  radiusMiles?: number;
+  limit?: number;
+}
+
+export function getNearbyWineries({
+  lat,
+  lng,
+  radiusMiles = 25,
+  limit = 50,
+}: NearbyOptions): NearbyWinery[] {
+  const origin = { lat, lng };
+  const sanitizedRadius = Math.min(Math.max(radiusMiles, 1), 250);
+  const sanitizedLimit = Math.min(Math.max(Math.floor(limit), 1), 100);
+
+  const matches = wineries
+    .filter(w => typeof w.lat === 'number' && typeof w.lng === 'number')
+    .map(w => ({
+      winery: w,
+      distanceMiles: Number(
+        calculateDistanceMiles(origin, { lat: w.lat!, lng: w.lng! }).toFixed(1)
+      )
+    }))
+    .filter(entry => entry.distanceMiles <= sanitizedRadius)
+    .sort((a, b) => a.distanceMiles - b.distanceMiles);
+
+  return matches.slice(0, sanitizedLimit);
+}
 
