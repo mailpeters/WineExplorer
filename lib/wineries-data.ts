@@ -3281,10 +3281,15 @@ export const wineries: Winery[] = [
   }
 ];
 
-// Helper function to get all unique regions
-export function getRegions(): string[] {
-  const regions = new Set(wineries.map(w => w.region));
-  return Array.from(regions).sort();
+// Helper function to get all unique regions with counts
+export function getRegions(): { name: string; count: number }[] {
+  const regionMap = new Map<string, number>();
+  wineries.forEach(w => {
+    regionMap.set(w.region, (regionMap.get(w.region) || 0) + 1);
+  });
+  return Array.from(regionMap.entries())
+    .map(([name, count]) => ({ name, count }))
+    .sort((a, b) => a.name.localeCompare(b.name));
 }
 
 // Helper function to get wineries by region
