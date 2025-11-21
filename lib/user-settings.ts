@@ -1,24 +1,57 @@
 import { BeverageType } from '@/types/winery';
 
 export interface UserSettings {
+  // Profile
+  name?: string;
+  address?: string;
+  city?: string;
+  state?: string;
+  zip?: string;
+
+  // Interested in
   defaultCategories: {
     winery: boolean;
     cidery: boolean;
     brewery: boolean;
     distillery: boolean;
   };
+
+  // Communication preferences
+  communicationPreferences: {
+    phone: boolean;
+    email: boolean;
+    phoneRequired?: boolean;
+  };
+
+  // Alerts
+  enableAlerts: boolean;
+  alertRadius?: number; // in miles
+
+  // Display preferences
   favoriteRegion?: string;
   sortBy: 'name' | 'distance' | 'rating';
   viewMode: 'grid' | 'list';
 }
 
 const DEFAULT_SETTINGS: UserSettings = {
+  name: '',
+  address: '',
+  city: '',
+  state: 'VA',
+  zip: '',
   defaultCategories: {
     winery: true,
     cidery: false,
     brewery: false,
     distillery: false,
   },
+  communicationPreferences: {
+    phone: false,
+    email: true,
+    phoneRequired: false,
+  },
+  enableAlerts: false,
+  alertRadius: 25,
   sortBy: 'name',
   viewMode: 'grid',
 };

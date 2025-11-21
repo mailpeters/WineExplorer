@@ -22,6 +22,7 @@ export default function Home() {
   const [showResults, setShowResults] = useState(false);
   const [loading, setLoading] = useState(false);
   const [randomVideo, setRandomVideo] = useState('');
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [selectedCategories, setSelectedCategories] = useState({
     winery: true,
     cidery: false,
@@ -100,12 +101,21 @@ export default function Home() {
         )}
         <div className="absolute inset-0 bg-black/40"></div>
         <div className="relative max-w-6xl mx-auto px-8 py-20">
-          {/* Header - Title and Auth Button */}
+          {/* Header - Title and Buttons */}
           <div className="flex justify-between items-center mb-12">
             <h1 className="text-4xl md:text-5xl font-bold text-white drop-shadow-lg">
               🍷 Dave's Virginia Wine Explorer
             </h1>
-            <AuthButton />
+            <div className="flex gap-3 items-center">
+              <button
+                onClick={() => setIsSettingsOpen(true)}
+                className="px-4 py-2 bg-white/20 hover:bg-white/30 text-white font-semibold rounded-lg transition border border-white/30 backdrop-blur-sm"
+                title="Open settings"
+              >
+                ⚙️ Settings
+              </button>
+              <AuthButton />
+            </div>
           </div>
 
           {/* Search Bar */}
@@ -360,6 +370,9 @@ export default function Home() {
           <p>🍷 Virginia Wine Explorer • Discover, Explore, Enjoy</p>
         </div>
       </footer>
+
+      {/* Settings Modal */}
+      <SettingsModal isOpen={isSettingsOpen} onClose={() => setIsSettingsOpen(false)} />
     </main>
   );
 }
