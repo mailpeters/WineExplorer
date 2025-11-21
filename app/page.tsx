@@ -6,6 +6,8 @@ import { wineries, getRegions } from '@/lib/wineries-data';
 import { Winery } from '@/types/winery';
 import AuthButton from '@/components/auth-button';
 import CategoryBadges from '@/components/category-badges';
+import { loadSettings, saveSettings } from '@/lib/user-settings';
+import SettingsModal from '@/components/settings-modal';
 
 const videos = [
   '/videos/landscape.mp4',
@@ -32,6 +34,10 @@ export default function Home() {
     // Select a random video on component mount
     const randomIndex = Math.floor(Math.random() * videos.length);
     setRandomVideo(videos[randomIndex]);
+
+    // Load user settings
+    const settings = loadSettings();
+    setSelectedCategories(settings.defaultCategories);
   }, []);
 
   async function handleSearch(e: React.FormEvent) {
@@ -59,10 +65,19 @@ export default function Home() {
   }
 
   const toggleCategory = (category: keyof typeof selectedCategories) => {
-    setSelectedCategories(prev => ({
-      ...prev,
-      [category]: !prev[category]
-    }));
+    setSelectedCategories(prev => {
+      const newCategories = {
+        ...prev,
+        [category]: !prev[category]
+      };
+
+      // Save to settings
+      const settings = loadSettings();
+      settings.defaultCategories = newCategories;
+      saveSettings(settings);
+
+      return newCategories;
+    });
   };
 
   return (
@@ -128,11 +143,11 @@ export default function Home() {
               <label className="flex items-center gap-2 cursor-pointer text-white">
                 <input
                   type="checkbox"
-                  checked={selectedCategories.cidery}
-                  onChange={() => toggleCategory('cidery')}
-                  className="w-5 h-5 rounded accent-amber-500"
+                  checked={selectedCategories.distillery}
+                  onChange={() => toggleCategory('distillery')}
+                  className="w-5 h-5 rounded accent-blue-500"
                 />
-                <span className="font-semibold">🍎 Cideries</span>
+                <span className="font-semibold">🥃 Distilleries</span>
               </label>
               <label className="flex items-center gap-2 cursor-pointer text-white">
                 <input
@@ -146,11 +161,11 @@ export default function Home() {
               <label className="flex items-center gap-2 cursor-pointer text-white">
                 <input
                   type="checkbox"
-                  checked={selectedCategories.distillery}
-                  onChange={() => toggleCategory('distillery')}
-                  className="w-5 h-5 rounded accent-blue-500"
+                  checked={selectedCategories.cidery}
+                  onChange={() => toggleCategory('cidery')}
+                  className="w-5 h-5 rounded accent-amber-500"
                 />
-                <span className="font-semibold">🥃 Distilleries</span>
+                <span className="font-semibold">🍎 Cideries</span>
               </label>
             </div>
           </div>

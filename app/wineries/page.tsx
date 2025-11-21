@@ -5,6 +5,7 @@ import { useSearchParams } from "next/navigation";
 import { Winery } from "@/types/winery";
 import SearchBar from "@/components/SearchBar";
 import CategoryBadges from "@/components/category-badges";
+import { loadSettings, saveSettings } from "@/lib/user-settings";
 
 function WineriesPageContent() {
   const searchParams = useSearchParams();
@@ -13,11 +14,10 @@ function WineriesPageContent() {
   const [wineries, setWineries] = useState<Winery[]>([]);
   const [loading, setLoading] = useState(false);
   const [searched, setSearched] = useState(false);
-  const [selectedCategories, setSelectedCategories] = useState({
-    winery: true,
-    cidery: false,
-    brewery: false,
-    distillery: false,
+  const [selectedCategories, setSelectedCategories] = useState(() => {
+    // Load settings on initialization
+    const settings = loadSettings();
+    return settings.defaultCategories;
   });
 
   async function handleSearch(q: string) {
@@ -42,10 +42,19 @@ function WineriesPageContent() {
   }
 
   const toggleCategory = (category: keyof typeof selectedCategories) => {
-    setSelectedCategories(prev => ({
-      ...prev,
-      [category]: !prev[category]
-    }));
+    setSelectedCategories(prev => {
+      const newCategories = {
+        ...prev,
+        [category]: !prev[category]
+      };
+
+      // Save to settings
+      const settings = loadSettings();
+      settings.defaultCategories = newCategories;
+      saveSettings(settings);
+
+      return newCategories;
+    });
   };
 
   // Auto-search when region parameter is present or categories change
@@ -78,11 +87,11 @@ function WineriesPageContent() {
             <label className="flex items-center gap-2 cursor-pointer">
               <input
                 type="checkbox"
-                checked={selectedCategories.cidery}
-                onChange={() => toggleCategory('cidery')}
-                className="w-5 h-5 rounded accent-amber-500"
+                checked={selectedCategories.distillery}
+                onChange={() => toggleCategory('distillery')}
+                className="w-5 h-5 rounded accent-blue-500"
               />
-              <span className="font-semibold text-amber-800">🍎 Cideries</span>
+              <span className="font-semibold text-blue-800">🥃 Distilleries</span>
             </label>
             <label className="flex items-center gap-2 cursor-pointer">
               <input
@@ -96,11 +105,11 @@ function WineriesPageContent() {
             <label className="flex items-center gap-2 cursor-pointer">
               <input
                 type="checkbox"
-                checked={selectedCategories.distillery}
-                onChange={() => toggleCategory('distillery')}
-                className="w-5 h-5 rounded accent-blue-500"
+                checked={selectedCategories.cidery}
+                onChange={() => toggleCategory('cidery')}
+                className="w-5 h-5 rounded accent-amber-500"
               />
-              <span className="font-semibold text-blue-800">🥃 Distilleries</span>
+              <span className="font-semibold text-amber-800">🍎 Cideries</span>
             </label>
           </div>
         </div>
@@ -120,9 +129,25 @@ function WineriesPageContent() {
                       <h2 className="text-xl font-bold text-purple-900">{w.name}</h2>
                       <CategoryBadges categories={w.categories} />
                     </div>
-                    <p className="text-gray-600">{w.city}, {w.state}</p>
-                    <p className="text-sm text-gray-500">{w.region}</p>
-                    {w.phone && <p className="text-sm text-gray-600 mt-2">{w.phone}</p>}
+                    <p className="text-gray-700 mb-1">
+                      <span className="font-semibold">📍</span> {w.city}, {w.state}
+                    </p>
+                    <p className="text-gray-600 mb-2">
+                      <span className="font-semibold">🗺️</span> {w.region}
+                    </p>
+                    {w.phone && (
+                      <p className="text-gray-600 mb-2">
+                        <span className="font-semibold">📞</span> {w.phone}
+                      </p>
+                    )}
+                    {w.website && (
+                      <p className="text-purple-600 hover:text-purple-800">
+                        <span className="font-semibold">🌐</span>{' '}
+                        <a href={`https://${w.website}`} target="_blank" rel="noopener noreferrer" className="underline">
+                          {w.website}
+                        </a>
+                      </p>
+                    )}
                   </div>
                 ))}
               </div>
