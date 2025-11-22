@@ -1,30 +1,17 @@
 // lib/wineries-data.ts
 import { Winery } from '@/types/winery';
 import { calculateDistanceMiles } from '@/lib/geo';
-"VA",
-    zip: "24293",
-    phone: "276-328-2013",
-    website: "mountainrosevineyard.com",
-    region: "Heart of Appalachia",
-    categories: ["winery"],
-    lat: 36.97064250951611,
-    lng: -82.52447474
-  },
-  {
-    id: "2",
-    name: "Vincent's Vineyard",
-    street: "2313 E. Main St.",
-    city: "Lebanon",
-    state: "VA",
-    zip: "24266",
-    phone: "
+
+
 export const wineries: Winery[] = [
   {
     id: "1",
     name: "MountainRose Vineyards",
     street: "10439 N. Reservoir Rd.",
     city: "Wise",
-    state: 276-219-4522",
+    state: "VA",
+    zip: "24293",
+    phone: "276-219-4522",
     website: "vincentsvineyard.com",
     region: "Heart of Appalachia",
     categories: ["winery"],
@@ -3825,10 +3812,6 @@ export const wineries: Winery[] = [
     lat: 38.78455,
     lng: -77.738849
   },
-export const wineries: Winery[] = [
-  // ... your existing records ...
-
-  // Region: Virginia Mountains
   {
     id: "274",
     name: "J.H. Bards Spirit Company",
