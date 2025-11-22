@@ -29,8 +29,15 @@ export default function SettingsModal({ isOpen, onClose }: { isOpen: boolean; on
   useEffect(() => {
     const loadSettings = async () => {
       if (isOpen && userId) {
-        const loadedSettings = await DataService.getUserSettings(userId);
-        setSettings(loadedSettings);
+        try {
+          const res = await fetch(`/api/user-settings?userId=${encodeURIComponent(userId)}`);
+          if (!res.ok) throw new Error('Failed to load settings');
+          const data = await res.json();
+          setSettings(data || DEFAULT_SETTINGS);
+        } catch (error) {
+          console.error('Error loading settings:', error);
+          setSettings(DEFAULT_SETTINGS);
+        }
       }
     };
     loadSettings();
@@ -38,10 +45,21 @@ export default function SettingsModal({ isOpen, onClose }: { isOpen: boolean; on
 
   const handleSave = async () => {
     if (userId) {
-      await DataService.saveUserSettings(userId, settings);
-      onClose();
-      // Reload the page to apply settings
-      window.location.reload();
+      try {
+        const res = await fetch('/api/user-settings', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ userId, settings })
+        });
+        if (!res.ok) throw new Error('Failed to save settings');
+        alert('Settings saved successfully!');
+        onClose();
+        // Reload the page to apply settings
+        window.location.reload();
+      } catch (error) {
+        alert('Failed to save settings. Please try again.');
+        console.error('Error saving settings:', error);
+      }
     }
   };
 

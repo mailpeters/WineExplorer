@@ -20,6 +20,7 @@ export const dynamoDb = DynamoDBDocumentClient.from(client, {
 
 // Table names
 export const TABLES = {
-  USER_SETTINGS: process.env.DYNAMODB_TABLE_SETTINGS || "WineExplorer-UserSettings",
-  WINERY_VISITS: process.env.DYNAMODB_TABLE_VISITS || "WineExplorer-WineryVisits",
+  USER_SETTINGS: process.env.DYNAMODB_TABLE_SETTINGS || "WineApp-UserSettings",
+  WINERY_VISITS: process.env.DYNAMODB_TABLE_VISITS || "WineApp-WineryVisits",
+  RATINGS: process.env.DYNAMODB_TABLE_RATINGS || "WineApp-Ratings"
 };

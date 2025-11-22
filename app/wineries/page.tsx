@@ -29,13 +29,25 @@ function WineriesPageContent() {
   useEffect(() => {
     const loadInitialSettings = async () => {
       if (userId) {
-        const settings = await DataService.getUserSettings(userId);
-        setSelectedCategories(settings.defaultCategories || {
-          winery: true,
-          cidery: false,
-          brewery: false,
-          distillery: false
-        });
+        try {
+          const res = await fetch(`/api/user-settings?userId=${encodeURIComponent(userId)}`);
+          if (!res.ok) throw new Error('Failed to load settings');
+          const data = await res.json();
+          setSelectedCategories(data.defaultCategories || {
+            winery: true,
+            cidery: false,
+            brewery: false,
+            distillery: false
+          });
+        } catch (error) {
+          console.error('Error loading settings:', error);
+          setSelectedCategories({
+            winery: true,
+            cidery: false,
+            brewery: false,
+            distillery: false
+          });
+        }
       }
     };
     loadInitialSettings();

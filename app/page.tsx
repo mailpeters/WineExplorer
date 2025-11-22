@@ -13,6 +13,46 @@ import WineryCard from '@/components/winery-card';
 import { DataService } from '@/lib/dataService';
 import SettingsModal from '@/components/settings-modal';
 
+
+// // Test Email Component
+// function TestEmail() {
+//   const [isSending, setIsSending] = useState(false);
+
+//   const sendTest = async () => {
+//     setIsSending(true);
+//     try {
+//       const res = await fetch('/api/send-email', {
+//         method: 'POST',
+//         headers: { 'Content-Type': 'application/json' },
+//         body: JSON.stringify({
+//           to: process.env.NEXT_PUBLIC_EMAIL_USER || 'craftbeverageexplorer@gmail.com',
+//           message: 'This is a test email from the Wine Explorer app',
+//           subject: 'Test Notification'
+//         })
+//       });
+      
+//       const data = await res.json();
+//       if (!res.ok) throw new Error(data.error || 'Failed to send');
+//       alert('Email sent successfully!');
+//     } catch (err) {
+//       alert(err instanceof Error ? err.message : 'Failed to send email');
+//     } finally {
+//       setIsSending(false);
+//     }
+//   };
+
+//   return (
+//     <button 
+//       onClick={sendTest}
+//       disabled={isSending}
+//       className="fixed bottom-4 right-4 bg-purple-600 text-white px-4 py-2 rounded-md shadow-lg disabled:opacity-50 z-50"
+//     >
+//       {isSending ? 'Sending Test Email...' : 'Send Test Email'}
+//     </button>
+//   );
+// }
+
+
 const NearbyMap = dynamic(() => import('@/components/nearby-map'), { ssr: false });
 
 const videos = [
@@ -73,13 +113,25 @@ export default function Home() {
 
     const loadInitialSettings = async () => {
       if (userId) {
-        const settings = await DataService.getUserSettings(userId);
-        setSelectedCategories(settings.defaultCategories || {
-          winery: true,
-          cidery: false,
-          brewery: false,
-          distillery: false
-        });
+        try {
+          const res = await fetch(`/api/user-settings?userId=${encodeURIComponent(userId)}`);
+          if (!res.ok) throw new Error('Failed to load settings');
+          const data = await res.json();
+          setSelectedCategories(data.defaultCategories || {
+            winery: true,
+            cidery: false,
+            brewery: false,
+            distillery: false
+          });
+        } catch (error) {
+          console.error('Error loading settings:', error);
+          setSelectedCategories({
+            winery: true,
+            cidery: false,
+            brewery: false,
+            distillery: false
+          });
+        }
       }
     };
     loadInitialSettings();
@@ -92,11 +144,16 @@ export default function Home() {
         [category]: !prev[category]
       };
 
-      // Save to settings
+      // Save to settings via API
       if (userId) {
-        DataService.saveUserSettings(userId, {
-          defaultCategories: newCategories
-        });
+        fetch('/api/user-settings', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            userId,
+            defaultCategories: newCategories
+          })
+        }).catch(err => console.error('Failed to save settings:', err));
       }
 
       return newCategories;
@@ -591,6 +648,11 @@ export default function Home() {
 
       {/* Settings Modal */}
       <SettingsModal isOpen={isSettingsOpen} onClose={() => setIsSettingsOpen(false)} />
+      
+      {/* Test Email Button */}
+      {/* <TestEmail /> */}
+
+
     </main>
   );
 }
