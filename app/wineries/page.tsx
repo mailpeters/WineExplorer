@@ -2,6 +2,7 @@
 
 import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
+import { useSession } from "next-auth/react";
 import { Winery } from "@/types/winery";
 import SearchBar from "@/components/SearchBar";
 import CategoryBadges from "@/components/category-badges";
@@ -9,6 +10,8 @@ import WineryCard from "@/components/winery-card";
 import { loadSettings, saveSettings } from "@/lib/user-settings";
 
 function WineriesPageContent() {
+  const { data: session } = useSession();
+  const userId = session?.user?.email || undefined;
   const searchParams = useSearchParams();
   const region = searchParams.get("region");
 
@@ -17,7 +20,7 @@ function WineriesPageContent() {
   const [searched, setSearched] = useState(false);
   const [selectedCategories, setSelectedCategories] = useState(() => {
     // Load settings on initialization
-    const settings = loadSettings();
+    const settings = loadSettings(userId);
     return settings.defaultCategories;
   });
 
@@ -52,9 +55,9 @@ function WineriesPageContent() {
       };
 
       // Save to settings
-      const settings = loadSettings();
+      const settings = loadSettings(userId);
       settings.defaultCategories = newCategories;
-      saveSettings(settings);
+      saveSettings(settings, userId);
 
       return newCategories;
     });

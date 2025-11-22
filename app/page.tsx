@@ -2,6 +2,7 @@
 
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { useState, useEffect } from 'react';
+import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { wineries, getRegions, NearbyWinery } from '@/lib/wineries-data';
@@ -29,6 +30,9 @@ interface Coordinates {
 const DEFAULT_RADIUS = 25;
 
 export default function Home() {
+  const { data: session } = useSession();
+  const userId = session?.user?.email || undefined;
+
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState<Winery[]>([]);
   const [showResults, setShowResults] = useState(false);
@@ -63,9 +67,9 @@ export default function Home() {
     setRandomVideo(videos[randomIndex]);
 
     // Load user settings
-    const settings = loadSettings();
+    const settings = loadSettings(userId);
     setSelectedCategories(settings.defaultCategories);
-  }, []);
+  }, [userId]);
 
   async function handleSearch(e: React.FormEvent) {
     e.preventDefault();
@@ -99,9 +103,9 @@ export default function Home() {
       };
 
       // Save to settings
-      const settings = loadSettings();
+      const settings = loadSettings(userId);
       settings.defaultCategories = newCategories;
-      saveSettings(settings);
+      saveSettings(settings, userId);
 
       return newCategories;
     });

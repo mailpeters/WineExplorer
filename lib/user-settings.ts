@@ -60,11 +60,13 @@ const DEFAULT_SETTINGS: UserSettings = {
   alertRadius: 25,
 };
 
-export function loadSettings(): UserSettings {
+export function loadSettings(userId?: string): UserSettings {
   if (typeof window === 'undefined') return DEFAULT_SETTINGS;
 
   try {
-    const stored = localStorage.getItem('wineExplorerSettings');
+    // Use user-specific key if userId is provided, otherwise use global key
+    const storageKey = userId ? `wineExplorerSettings_${userId}` : 'wineExplorerSettings';
+    const stored = localStorage.getItem(storageKey);
     if (stored) {
       return { ...DEFAULT_SETTINGS, ...JSON.parse(stored) };
     }
@@ -75,11 +77,13 @@ export function loadSettings(): UserSettings {
   return DEFAULT_SETTINGS;
 }
 
-export function saveSettings(settings: UserSettings): void {
+export function saveSettings(settings: UserSettings, userId?: string): void {
   if (typeof window === 'undefined') return;
 
   try {
-    localStorage.setItem('wineExplorerSettings', JSON.stringify(settings));
+    // Use user-specific key if userId is provided, otherwise use global key
+    const storageKey = userId ? `wineExplorerSettings_${userId}` : 'wineExplorerSettings';
+    localStorage.setItem(storageKey, JSON.stringify(settings));
   } catch (error) {
     console.error('Error saving settings:', error);
   }

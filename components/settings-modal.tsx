@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useSession } from "next-auth/react";
 import { loadSettings, saveSettings, UserSettings, US_STATES } from "@/lib/user-settings";
 
 // Helper function to format phone number
@@ -19,16 +20,18 @@ const formatZipCode = (value: string): string => {
 };
 
 export default function SettingsModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
-  const [settings, setSettings] = useState<UserSettings>(loadSettings());
+  const { data: session } = useSession();
+  const userId = session?.user?.email || undefined;
+  const [settings, setSettings] = useState<UserSettings>(loadSettings(userId));
 
   useEffect(() => {
     if (isOpen) {
-      setSettings(loadSettings());
+      setSettings(loadSettings(userId));
     }
-  }, [isOpen]);
+  }, [isOpen, userId]);
 
   const handleSave = () => {
-    saveSettings(settings);
+    saveSettings(settings, userId);
     onClose();
     // Reload the page to apply settings
     window.location.reload();
