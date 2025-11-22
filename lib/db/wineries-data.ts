@@ -1805,8 +1805,8 @@ export const wineries: Winery[] = [
     zip: "24368",
     phone: "276-686-8855",
     website: "davisvalleywinery.com",
-    region: "Blue Ridge",
-    categories: ["winery"],
+    region: "Heart of Appalachia",
+    categories: ["winery", "distillery"],
     lat: 36.902861,
     lng: -81.360307
   },
@@ -3938,8 +3938,6 @@ export const wineries: Winery[] = [
     lat: 36.9082785,
     lng: -80.3385368082471
   },
-
-  // Region: Heart of Appalachia (Mapped from PDF's 'Southwest Virginia')
   {
     id: "283",
     name: "Appalachian Heritage Distillery",
@@ -3982,22 +3980,6 @@ export const wineries: Winery[] = [
     lat: 36.9107739,
     lng: -82.0419435
   },
-  {
-    id: "286",
-    name: "Davis Valley Distillery",
-    street: "1167 Davis Valley Rd.",
-    city: "Rural Retreat",
-    state: "VA",
-    zip: "24368",
-    phone: "(276) 686-8855",
-    website: "",
-    region: "Heart of Appalachia",
-    categories: ["distillery"],
-    lat: 36.8986382,
-    lng: -81.3590697
-  },
-
-  // Region: Shenandoah Valley
   {
     id: "287",
     name: "Filibuster Distillery",
@@ -4096,8 +4078,6 @@ export const wineries: Winery[] = [
     lat: 37.8139232,
     lng: -79.3982503
   },
-
-  // Region: Southern Virginia
   {
     id: "294",
     name: "Bondurant Brothers Distillery",
@@ -4140,8 +4120,6 @@ export const wineries: Winery[] = [
     lat: 36.68490955797585,
     lng: -79.0341051411981
   },
-
-  // Region: Northern Virginia
   {
     id: "297",
     name: "A. Smith Bowman Distillery",
@@ -4310,8 +4288,6 @@ export const wineries: Winery[] = [
     lat: 38.783039,
     lng: -77.57089
   },
-
-  // Region: Hampton Roads (Mapped from PDF's 'Coastal Virginia')
   {
     id: "309",
     name: "The Vanguard Brewpub & Distillery (Caiseal Beer & Spirits Co.)",
@@ -4508,8 +4484,6 @@ export const wineries: Winery[] = [
     lat: 37.25980165,
     lng: -76.6701031671165
   },
-
-  // Region: Central Virginia
   {
     id: "323",
     name: "Spirit Lab Distilling",
@@ -4817,6 +4791,300 @@ export const wineries: Winery[] = [
     categories: ["distillery"],
     lat: 38.031987,
     lng: -78.495511
+  },
+  {
+    id: "345",
+    name: "Waterbird Spirits",
+    street: "700 Harris St",
+    city: "Charlottesville",
+    state: "VA",
+    zip: "22903",
+    phone: "",
+    website: "waterbirdspirits.com",
+    region: "Central Virginia",
+    categories: ["distillery"],
+    lat: 38.035883999999996,
+    lng: -78.4842710789168
+  },
+  {
+    id: "346",
+    name: "Lincoln Ridge Distillery",
+    street: "11600 Lincoln Ridge Ln",
+    city: "Chesterfield",
+    state: "VA",
+    zip: "23838",
+    phone: "",
+    website: "lincolnridgeinc.com/distillery",
+    region: "Central Virginia",
+    categories: ["distillery"],
+    lat: 37.343534,
+    lng: -77.554589
+  },
+  {
+    id: "347",
+    name: "Glenno Distillery",
+    street: "1610 Anderson Hwy",
+    city: "Cumberland",
+    state: "VA",
+    zip: "23040",
+    phone: "",
+    website: "glennodistillery.com",
+    region: "Central Virginia",
+    categories: ["distillery"],
+    lat: 37.487324832863564,
+    lng: -78.2596250073075
+  },
+  {
+    id: "348",
+    name: "Dome & Spear Distillery",
+    street: "2680 Evington Rd",
+    city: "Evington",
+    state: "VA",
+    zip: "24550",
+    phone: "",
+    website: "",
+    region: "Central Virginia",
+    categories: ["distillery"],
+    lat: 37.2633327,
+    lng: -79.3119119
+  },
+  {
+    id: "349",
+    name: "Woods Mill Distillery",
+    street: "1600 Woods Mill Ln",
+    city: "Faber",
+    state: "VA",
+    zip: "22938",
+    phone: "",
+    website: "instagram.com/woodsmilldistillery",
+    region: "Central Virginia",
+    categories: ["distillery"],
+    lat: 37.8315231,
+    lng: -78.7371019
+  },
+  {
+    id: "350",
+    name: "Laird & Company",
+    street: "4395 Three Notched Rd",
+    city: "North Garden",
+    state: "VA",
+    zip: "22959",
+    phone: "",
+    website: "lairdandcompany.com",
+    region: "Central Virginia",
+    categories: ["distillery"],
+    lat: 37.9670648,
+    lng: -78.6352139
+  },
+  {
+    id: "351",
+    name: "The Arsenal Distillery",
+    street: "18367 Blue Ridge Run",
+    city: "Rapidan",
+    state: "VA",
+    zip: "22733",
+    phone: "",
+    website: "warcraftbrewery.com",
+    region: "Central Virginia",
+    categories: ["distillery"],
+    lat: 38.312578,
+    lng: -78.0658296
+  },
+  {
+    id: "352",
+    name: "Mean Spirits Distillery",
+    street: "758 W 22nd St",
+    city: "Norfolk",
+    state: "VA",
+    zip: "23517",
+    phone: "",
+    website: "meanspiritsdistillery.com",
+    region: "Coastal Virginia",
+    categories: ["distillery"],
+    lat: 36.871483,
+    lng: -76.295082
+  },
+  {
+    id: "353",
+    name: "Blue Sky Distillery",
+    street: "21002 Brewers Neck Blvd",
+    city: "Carrollton",
+    state: "VA",
+    zip: "23314",
+    phone: "",
+    website: "blueskydistillery.com",
+    region: "Coastal Virginia",
+    categories: ["distillery"],
+    lat: 36.9823313,
+    lng: -76.6310242
+  },
+  {
+    id: "354",
+    name: "Boardwalk Distilling",
+    street: "1804 Richmond Rd",
+    city: "Williamsburg",
+    state: "VA",
+    zip: "23185",
+    phone: "",
+    website: "alibigin.com",
+    region: "Coastal Virginia",
+    categories: ["distillery"],
+    lat: 37.29497888778325,
+    lng: -76.7252726234897
+  },
+  {
+    id: "355",
+    name: "Old Ox Brewery",
+    street: "44652 Guilford Dr",
+    city: "Ashburn",
+    state: "VA",
+    zip: "20147",
+    phone: "",
+    website: "oldoxbrewery.com",
+    region: "Northern Virginia",
+    categories: ["distillery"],
+    lat: 39.0239811,
+    lng: -77.4551791
+  },
+  {
+    id: "356",
+    name: "Greenspur Distillery",
+    street: "2811 Merrilee Dr Ste D",
+    city: "Fairfax",
+    state: "VA",
+    zip: "22031",
+    phone: "",
+    website: "lostwhiskey.com",
+    region: "Northern Virginia",
+    categories: ["distillery"],
+    lat: 38.877361943083685,
+    lng: -77.2309328673746
+  },
+  {
+    id: "357",
+    name: "Falls Church Distillers",
+    street: "442 S Washington St",
+    city: "Falls Church",
+    state: "VA",
+    zip: "22046",
+    phone: "",
+    website: "fcdistillers.com",
+    region: "Northern Virginia",
+    categories: ["distillery"],
+    lat: 38.88002275,
+    lng: -77.1763518488757
+  },
+  {
+    id: "358",
+    name: "Ironclad Distillery",
+    street: "1101 Sophia St",
+    city: "Fredericksburg",
+    state: "VA",
+    zip: "22401",
+    phone: "",
+    website: "ironcladinn.com",
+    region: "Northern Virginia",
+    categories: ["distillery"],
+    lat: 38.3053143,
+    lng: -77.4591657553149
+  },
+  {
+    id: "359",
+    name: "Cool Spring Distillery",
+    street: "40043 Charles Town Pike",
+    city: "Lovettsville",
+    state: "VA",
+    zip: "20180",
+    phone: "",
+    website: "https://www.facebook.com/CSDguy/",
+    region: "Northern Virginia",
+    categories: ["distillery"],
+    lat: 39.2747722,
+    lng: -77.6393091
+  },
+  {
+    id: "360",
+    name: "Open Road Distilling Co.",
+    street: "12110 Sunset Hills Rd",
+    city: "Reston",
+    state: "VA",
+    zip: "20190",
+    phone: "",
+    website: "openroaddistillingco.com",
+    region: "Northern Virginia",
+    categories: ["distillery"],
+    lat: 38.953835951966944,
+    lng: -77.3637860393388
+  },
+  {
+    id: "361",
+    name: "Sleepy Fox Distillery of Glasgow",
+    street: "4975 Goose Creek Rd",
+    city: "Glasgow",
+    state: "VA",
+    zip: "24555",
+    phone: "",
+    website: "sleepyfoxdistillery.com",
+    region: "Shenandoah Valley",
+    categories: ["distillery"],
+    lat: 37.6340238,
+    lng: -79.4503138
+  },
+  {
+    id: "362",
+    name: "WhiskeyWright Fine Handcrafted Spirit Co.",
+    street: "1012 W Broad St",
+    city: "Waynesboro",
+    state: "VA",
+    zip: "22980",
+    phone: "",
+    website: "whiskeywright.com",
+    region: "Shenandoah Valley",
+    categories: ["distillery"],
+    lat: 38.0707736,
+    lng: -78.8939837
+  },
+  {
+    id: "363",
+    name: "Creek Bottom Brewing Co.",
+    street: "101 N Main St",
+    city: "Galax",
+    state: "VA",
+    zip: "24333",
+    phone: "",
+    website: "cbbrews.com/lil-bottom",
+    region: "Heart of Appalachia",
+    categories: ["distillery"],
+    lat: 36.6621095,
+    lng: -80.9246614
+  },
+  {
+    id: "364",
+    name: "River City Distillery",
+    street: "1115 Norwood St",
+    city: "Radford",
+    state: "VA",
+    zip: "24141",
+    phone: "",
+    website: "river-city-distillery.com",
+    region: "Heart of Appalachia",
+    categories: ["distillery"],
+    lat: 37.1343148,
+    lng: -80.5749169
+  },
+  {
+    id: "365",
+    name: "Law Shine Distillery",
+    street: "35 Tanyard School Rd",
+    city: "Rocky Mount",
+    state: "VA",
+    zip: "24151",
+    phone: "",
+    website: "lawschoice.com",
+    region: "Virginia Mountains",
+    categories: ["distillery"],
+    lat: 36.9962007,
+    lng: -79.8909474
   }  
 ];
 
