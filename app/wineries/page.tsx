@@ -133,10 +133,10 @@ function WineriesPageContent() {
           <div>
             <p className="text-gray-600 mb-4">Found {wineries.length} winery(ies)</p>
             {wineries.length === 0 ? (
-              <p className="text-gray-500">No  found. Try a different search.</p>
+              <p className="text-gray-500">No venues found. Try a different search.</p>
             ) : (
               <div className="grid gap-4">
-                {.map((w) => (
+                {wineries.map((w) => (
                   <div key={w.id} className="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition">
                     <div className="flex justify-between items-start mb-2">
                       <h2 className="text-xl font-bold text-purple-900">{w.name}</h2>
