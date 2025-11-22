@@ -25,7 +25,10 @@
       "Bash(cmd.exe /c \"del \\\\?\\C:\\Users\\dpidd\\OneDrive\\awsdev\\wine\\nul\")",
       "Bash(cmd.exe /c \"erase .\\nul\")",
       "Bash(npm run build:*)",
-      "Bash(powershell -Command:*)"
+      "Bash(powershell -Command:*)",
+      "Bash(aws cognito-idp describe-user-pool-client:*)",
+      "Bash(aws cognito-idp describe-user-pool:*)",
+      "Bash(aws cognito-idp update-user-pool-client:*)"
     ],
     "deny": [],
     "ask": []

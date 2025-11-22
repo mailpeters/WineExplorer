@@ -20,7 +20,7 @@ export default function AuthButton() {
           <div className="font-semibold">{session.user.name || session.user.email}</div>
         </div>
         <button
-          onClick={() => signOut()}
+          onClick={() => signOut({ redirect: true })}
           className="px-6 py-2 bg-white/20 hover:bg-white/30 text-white rounded-lg transition border border-white/40"
         >
          Logout
