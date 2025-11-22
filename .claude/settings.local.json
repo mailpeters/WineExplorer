@@ -23,7 +23,9 @@
       "Bash(powershell -Command \"Remove-Item -LiteralPath ''\\\\?\\C:\\Users\\dpidd\\OneDrive\\awsdev\\wine\\nul'' -Force\")",
       "Bash(cmd /c 'del \"\"\\\\?\\C:\\Users\\dpidd\\OneDrive\\awsdev\\wine\\nul\"\"')",
       "Bash(cmd.exe /c \"del \\\\?\\C:\\Users\\dpidd\\OneDrive\\awsdev\\wine\\nul\")",
-      "Bash(cmd.exe /c \"erase .\\nul\")"
+      "Bash(cmd.exe /c \"erase .\\nul\")",
+      "Bash(npm run build:*)",
+      "Bash(powershell -Command:*)"
     ],
     "deny": [],
     "ask": []

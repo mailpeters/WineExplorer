@@ -17,8 +17,7 @@ export default function AuthButton() {
     return (
       <div className="flex items-center gap-4">
         <div className="text-white">
-          {/* <div className="font-semibold">{session.user.name || session.user.email}</div> */}
-          <div className="font-semibold"> </div>
+          <div className="font-semibold">{session.user.name || session.user.email}</div>
         </div>
         <button
           onClick={() => signOut()}
