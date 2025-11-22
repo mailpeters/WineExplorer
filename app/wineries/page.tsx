@@ -28,9 +28,11 @@ function WineriesPageContent() {
       const res = await fetch(`/api/wineries/search?q=${encodeURIComponent(q)}`);
       const data = await res.json();
 
-      // Filter by selected categories
+      // Filter by selected categories AND region (if specified)
       const filtered = (data.wineries || []).filter((w: Winery) => {
-        return w.categories.some(cat => selectedCategories[cat]);
+        const matchesCategory = w.categories.some(cat => selectedCategories[cat]);
+        const matchesRegion = region ? w.region === region : true;
+        return matchesCategory && matchesRegion;
       });
 
       setWineries(filtered);
