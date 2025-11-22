@@ -10,7 +10,7 @@ import { Winery } from '@/types/winery';
 import AuthButton from '@/components/auth-button';
 import CategoryBadges from '@/components/category-badges';
 import WineryCard from '@/components/winery-card';
-import { loadSettings, saveSettings } from '@/lib/user-settings';
+import { DataService } from '@/lib/dataService';
 import SettingsModal from '@/components/settings-modal';
 
 const NearbyMap = dynamic(() => import('@/components/nearby-map'), { ssr: false });
@@ -20,6 +20,12 @@ const videos = [
   '/videos/pour.mp4',
   '/videos/barrels.mp4',
   '/videos/rows.mp4',
+  '/videos/bar.mp4',
+  '/videos/table.mp4',
+  '/videos/canning.mp4',
+  '/videos/suit.mp4',
+  '/videos/taps.mp4',
+  '/videos/toast.mp4'
 ];
 
 interface Coordinates {
@@ -62,14 +68,40 @@ export default function Home() {
   });
 
   useEffect(() => {
-    // Select a random video on component mount
     const randomIndex = Math.floor(Math.random() * videos.length);
     setRandomVideo(videos[randomIndex]);
 
-    // Load user settings
-    const settings = loadSettings(userId);
-    setSelectedCategories(settings.defaultCategories);
+    const loadInitialSettings = async () => {
+      if (userId) {
+        const settings = await DataService.getUserSettings(userId);
+        setSelectedCategories(settings.defaultCategories || {
+          winery: true,
+          cidery: false,
+          brewery: false,
+          distillery: false
+        });
+      }
+    };
+    loadInitialSettings();
   }, [userId]);
+
+  const toggleCategory = (category: keyof typeof selectedCategories) => {
+    setSelectedCategories(prev => {
+      const newCategories = {
+        ...prev,
+        [category]: !prev[category]
+      };
+
+      // Save to settings
+      if (userId) {
+        DataService.saveUserSettings(userId, {
+          defaultCategories: newCategories
+        });
+      }
+
+      return newCategories;
+    });
+  };
 
   async function handleSearch(e: React.FormEvent) {
     e.preventDefault();
@@ -94,22 +126,6 @@ export default function Home() {
       setLoading(false);
     }
   }
-
-  const toggleCategory = (category: keyof typeof selectedCategories) => {
-    setSelectedCategories(prev => {
-      const newCategories = {
-        ...prev,
-        [category]: !prev[category]
-      };
-
-      // Save to settings
-      const settings = loadSettings(userId);
-      settings.defaultCategories = newCategories;
-      saveSettings(settings, userId);
-
-      return newCategories;
-    });
-  };
 
   const requestLocation = () => {
     if (!navigator.geolocation) {
@@ -322,7 +338,7 @@ export default function Home() {
 
       {/* Features Section */}
       <div className="max-w-7xl mx-auto px-8 py-16">
-        <h2 className="text-4xl font-bold text-white text-center mb-12">Explore Virginia Wine Regions</h2>
+        <h2 className="text-4xl font-bold text-white text-center mb-12">Explore Virginia's Regions</h2>
 
         {/* Virginia Map Layout - 3 Rows */}
         <div className="space-y-6 max-w-6xl mx-auto">
@@ -569,7 +585,7 @@ export default function Home() {
       {/* Footer */}
       <footer className="bg-black/30 border-t border-white/10 py-8 mt-16">
         <div className="max-w-6xl mx-auto px-8 text-center text-purple-200">
-          <p>🍷 Virginia Wine Explorer • Discover, Explore, Enjoy</p>
+          <p>🍷 Dave's Craft Beverage Explorer • Discover, Explore, Enjoy</p>
         </div>
       </footer>
 
@@ -578,4 +594,3 @@ export default function Home() {
     </main>
   );
 }
-

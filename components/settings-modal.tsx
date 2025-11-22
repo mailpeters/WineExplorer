@@ -1,8 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { useSession } from "next-auth/react";
-import { loadSettings, saveSettings, UserSettings, US_STATES } from "@/lib/user-settings";
+import { useState, useEffect } from 'react';
+import { useSession } from 'next-auth/react';
+import { UserSettings, DEFAULT_SETTINGS } from '@/lib/user-settings';
+import { DataService } from '@/lib/dataService';
 
 // Helper function to format phone number
 const formatPhoneNumber = (value: string): string => {
@@ -22,19 +23,25 @@ const formatZipCode = (value: string): string => {
 export default function SettingsModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
   const { data: session } = useSession();
   const userId = session?.user?.email || undefined;
-  const [settings, setSettings] = useState<UserSettings>(loadSettings(userId));
+  const [settings, setSettings] = useState<UserSettings>(DEFAULT_SETTINGS);
 
   useEffect(() => {
-    if (isOpen) {
-      setSettings(loadSettings(userId));
-    }
+    const loadSettings = async () => {
+      if (isOpen && userId) {
+        const loadedSettings = await DataService.getUserSettings(userId);
+        setSettings(loadedSettings);
+      }
+    };
+    loadSettings();
   }, [isOpen, userId]);
 
-  const handleSave = () => {
-    saveSettings(settings, userId);
-    onClose();
-    // Reload the page to apply settings
-    window.location.reload();
+  const handleSave = async () => {
+    if (userId) {
+      await DataService.saveUserSettings(userId, settings);
+      onClose();
+      // Reload the page to apply settings
+      window.location.reload();
+    }
   };
 
   if (!isOpen) return null;

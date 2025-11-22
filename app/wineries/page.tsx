@@ -7,7 +7,7 @@ import { Winery } from "@/types/winery";
 import SearchBar from "@/components/SearchBar";
 import CategoryBadges from "@/components/category-badges";
 import WineryCard from "@/components/winery-card";
-import { loadSettings, saveSettings } from "@/lib/user-settings";
+import { DataService } from "@/lib/dataService";
 
 function WineriesPageContent() {
   const { data: session } = useSession();
@@ -18,34 +18,28 @@ function WineriesPageContent() {
   const [wineries, setWineries] = useState<Winery[]>([]);
   const [loading, setLoading] = useState(false);
   const [searched, setSearched] = useState(false);
-  const [selectedCategories, setSelectedCategories] = useState(() => {
-    // Load settings on initialization
-    const settings = loadSettings(userId);
-    return settings.defaultCategories;
+  const [selectedCategories, setSelectedCategories] = useState({
+    winery: true,
+    cidery: false,
+    brewery: false,
+    distillery: false
   });
 
-  async function handleSearch(q: string) {
-    setLoading(true);
-    setSearched(true);
-    try {
-      const res = await fetch(`/api/wineries/search?q=${encodeURIComponent(q)}`);
-      const data = await res.json();
-
-      // Filter by selected categories AND region (if specified)
-      const filtered = (data.wineries || []).filter((w: Winery) => {
-        const matchesCategory = w.categories.some(cat => selectedCategories[cat]);
-        const matchesRegion = region ? w.region === region : true;
-        return matchesCategory && matchesRegion;
-      });
-
-      setWineries(filtered);
-    } catch (error) {
-      console.error("Search error:", error);
-      setWineries([]);
-    } finally {
-      setLoading(false);
-    }
-  }
+  // Load initial settings
+  useEffect(() => {
+    const loadInitialSettings = async () => {
+      if (userId) {
+        const settings = await DataService.getUserSettings(userId);
+        setSelectedCategories(settings.defaultCategories || {
+          winery: true,
+          cidery: false,
+          brewery: false,
+          distillery: false
+        });
+      }
+    };
+    loadInitialSettings();
+  }, [userId]);
 
   const toggleCategory = (category: keyof typeof selectedCategories) => {
     setSelectedCategories(prev => {
@@ -55,13 +49,36 @@ function WineriesPageContent() {
       };
 
       // Save to settings
-      const settings = loadSettings(userId);
-      settings.defaultCategories = newCategories;
-      saveSettings(settings, userId);
+      if (userId) {
+        DataService.saveUserSettings(userId, {
+          defaultCategories: newCategories
+        });
+      }
 
       return newCategories;
     });
   };
+
+  async function handleSearch(q: string) {
+    setLoading(true);
+    setSearched(true);
+    try {
+      const res = await fetch(`/api/wineries/search?q=${encodeURIComponent(q)}`);
+      const data = await res.json();
+      
+      // Filter by selected categories
+      const filtered = (data.wineries || []).filter((w: Winery) => {
+        return w.categories.some(cat => selectedCategories[cat]);
+      });
+      
+      setWineries(filtered);
+    } catch (error) {
+      console.error('Search error:', error);
+      setWineries([]);
+    } finally {
+      setLoading(false);
+    }
+  }
 
   // Auto-search when region parameter is present or categories change
   useEffect(() => {

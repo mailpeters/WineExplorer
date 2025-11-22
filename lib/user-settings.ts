@@ -38,7 +38,7 @@ export interface UserSettings {
   alertRadius?: number; // in miles
 }
 
-const DEFAULT_SETTINGS: UserSettings = {
+export const DEFAULT_SETTINGS: UserSettings = {
   name: '',
   address: '',
   city: '',
