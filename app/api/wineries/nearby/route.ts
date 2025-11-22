@@ -14,6 +14,13 @@ export async function GET(req: Request) {
   const radiusMiles = toNumber(searchParams.get('radius')) ?? undefined;
   const limit = toNumber(searchParams.get('limit')) ?? undefined;
 
+  console.log('API received params:', {
+    lat,
+    lng,
+    radiusMiles,
+    rawRadius: searchParams.get('radius')
+  });
+
   if (lat === null || lng === null) {
     return NextResponse.json(
       { error: 'lat and lng query parameters are required numbers' },
@@ -22,6 +29,8 @@ export async function GET(req: Request) {
   }
 
   const nearby = getNearbyWineries({ lat, lng, radiusMiles, limit });
+
+  console.log('Results count:', nearby.length, 'for radius:', radiusMiles ?? 25);
 
   return NextResponse.json({
     origin: { lat, lng },

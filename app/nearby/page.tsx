@@ -65,7 +65,7 @@ export default function NearbyPage() {
         });
 
         if (!res.ok) {
-          throw new Error("Unable to fetch nearby wineries");
+          throw new Error("Unable to fetch nearby venues");
         }
 
         const data = await res.json();
@@ -92,9 +92,9 @@ export default function NearbyPage() {
       <div className="max-w-4xl mx-auto">
         <header className="mb-10 text-center">
           <p className="text-5xl mb-4">📍</p>
-          <h1 className="text-4xl font-bold text-purple-900 mb-4">Find Wineries Near You</h1>
+          <h1 className="text-4xl font-bold text-purple-900 mb-4">Find venues Near You</h1>
           <p className="text-purple-700">
-            Grant location access to discover Virginia wineries within your preferred radius.
+            Grant location access to discover Virginia craft beverage venues within your preferred radius.
           </p>
         </header>
 
@@ -155,7 +155,7 @@ export default function NearbyPage() {
             <div>
               <div className="flex items-center justify-between mb-6">
                 <div>
-                  <h2 className="text-2xl font-bold text-purple-900">Nearby Wineries</h2>
+                  <h2 className="text-2xl font-bold text-purple-900">Nearby venues</h2>
                   <p className="text-purple-600 text-sm">
                     {coords
                       ? loading
@@ -167,12 +167,12 @@ export default function NearbyPage() {
               </div>
 
               {loading && (
-                <p className="text-purple-600">Loading nearby wineries...</p>
+                <p className="text-purple-600">Loading nearby venues...</p>
               )}
 
               {!loading && coords && results.length === 0 && (
                 <p className="text-gray-500">
-                  No wineries found within {radius} miles. Try expanding the radius.
+                  No venues found within {radius} miles. Try expanding the radius.
                 </p>
               )}
 
@@ -226,7 +226,7 @@ export default function NearbyPage() {
                 <div>
                   <h2 className="text-2xl font-bold text-purple-900">Map View</h2>
                   <p className="text-purple-600 text-sm">
-                    {coords ? `Viewing wineries within ${radius} miles` : "Share your location to center the map"}
+                    {coords ? `Viewing venues within ${radius} miles` : "Share your location to center the map"}
                   </p>
                 </div>
                 {coords && (

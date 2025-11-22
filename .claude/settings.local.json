@@ -13,7 +13,8 @@
       "Bash(node -e:*)",
       "Bash(npx kill-port:*)",
       "Bash(node fix-categories.js:*)",
-      "Bash(node update-cideries.js:*)"
+      "Bash(node update-cideries.js:*)",
+      "Bash(nul)"
     ],
     "deny": [],
     "ask": []

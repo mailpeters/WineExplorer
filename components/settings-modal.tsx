@@ -166,7 +166,7 @@ export default function SettingsModal({ isOpen, onClose }: { isOpen: boolean; on
                   })}
                   className="w-5 h-5 rounded accent-blue-500"
                 />
-                <span className="font-semibold">🥃 Distilleries</span>
+                <span className="font-semibold">🍸 Distilleries</span>
               </label>
             </div>
           </div>

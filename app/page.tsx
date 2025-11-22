@@ -2,12 +2,15 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { wineries, getRegions } from '@/lib/wineries-data';
+import dynamic from 'next/dynamic';
+import { wineries, getRegions, NearbyWinery } from '@/lib/wineries-data';
 import { Winery } from '@/types/winery';
 import AuthButton from '@/components/auth-button';
 import CategoryBadges from '@/components/category-badges';
 import { loadSettings, saveSettings } from '@/lib/user-settings';
 import SettingsModal from '@/components/settings-modal';
+
+const NearbyMap = dynamic(() => import('@/components/nearby-map'), { ssr: false });
 
 const videos = [
   '/videos/landscape.mp4',
@@ -15,6 +18,13 @@ const videos = [
   '/videos/barrels.mp4',
   '/videos/rows.mp4',
 ];
+
+interface Coordinates {
+  lat: number;
+  lng: number;
+}
+
+const DEFAULT_RADIUS = 25;
 
 export default function Home() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -30,6 +40,20 @@ export default function Home() {
     distillery: false,
   });
   const regions = getRegions();
+
+  // Nearby wineries state
+  const [coords, setCoords] = useState<Coordinates | null>(null);
+  const [radius, setRadius] = useState(DEFAULT_RADIUS);
+  const [nearbyResults, setNearbyResults] = useState<NearbyWinery[]>([]);
+  const [nearbyLoading, setNearbyLoading] = useState(false);
+  const [locating, setLocating] = useState(false);
+  const [nearbyError, setNearbyError] = useState<string | null>(null);
+  const [nearbyCategories, setNearbyCategories] = useState({
+    winery: true,
+    cidery: true,
+    brewery: true,
+    distillery: true,
+  });
 
   useEffect(() => {
     // Select a random video on component mount
@@ -81,6 +105,78 @@ export default function Home() {
     });
   };
 
+  const requestLocation = () => {
+    if (!navigator.geolocation) {
+      setNearbyError("Geolocation isn't supported in this browser.");
+      return;
+    }
+
+    setNearbyError(null);
+    setLocating(true);
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        setCoords({ lat: pos.coords.latitude, lng: pos.coords.longitude });
+        setLocating(false);
+      },
+      (err) => {
+        setNearbyError(err.message || "Unable to access your location.");
+        setLocating(false);
+      },
+      { enableHighAccuracy: true, timeout: 15000 }
+    );
+  };
+
+  const toggleNearbyCategory = (category: keyof typeof nearbyCategories) => {
+    setNearbyCategories(prev => ({
+      ...prev,
+      [category]: !prev[category]
+    }));
+  };
+
+  // Filter nearby results by selected categories
+  const filteredNearbyResults = nearbyResults.filter(({ winery }) =>
+    winery.categories.some(cat => nearbyCategories[cat])
+  );
+
+  useEffect(() => {
+    if (!coords) return;
+
+    const currentCoords = coords;
+    const controller = new AbortController();
+
+    async function fetchNearby() {
+      setNearbyLoading(true);
+      setNearbyError(null);
+      try {
+        const params = new URLSearchParams({
+          lat: currentCoords.lat.toString(),
+          lng: currentCoords.lng.toString(),
+          radius: radius.toString(),
+        });
+
+        const res = await fetch(`/api/wineries/nearby?${params}`, {
+          signal: controller.signal,
+        });
+
+        if (!res.ok) {
+          throw new Error("Unable to fetch nearby venues");
+        }
+
+        const data = await res.json();
+        setNearbyResults(data.results ?? []);
+      } catch (err) {
+        if ((err as Error).name === "AbortError") return;
+        setNearbyError(err instanceof Error ? err.message : "Unknown error");
+        setNearbyResults([]);
+      } finally {
+        setNearbyLoading(false);
+      }
+    }
+
+    fetchNearby();
+    return () => controller.abort();
+  }, [coords, radius]);
+
   return (
     <main className="min-h-screen bg-gradient-to-br from-purple-900 via-purple-800 to-pink-900">
       {/* Hero Section */}
@@ -108,13 +204,6 @@ export default function Home() {
             </h2>
             <div className="flex flex-col gap-2 items-end">
               <AuthButton />
-              <Link
-                href="/nearby"
-                className="px-4 py-2 bg-pink-500 hover:bg-pink-600 text-white font-semibold rounded-lg transition border border-white/30 backdrop-blur-sm shadow-md"
-                title="Find wineries near you"
-              >
-                Near Me
-              </Link>
               <button
                 onClick={() => setIsSettingsOpen(true)}
                 className="px-4 py-2 bg-white/20 hover:bg-white/30 text-white font-semibold rounded-lg transition border border-white/30 backdrop-blur-sm"
@@ -164,7 +253,7 @@ export default function Home() {
                   onChange={() => toggleCategory('distillery')}
                   className="w-5 h-5 rounded accent-blue-500"
                 />
-                <span className="font-semibold">🥃 Distilleries</span>
+                <span className="font-semibold">🍸 Distilleries</span>
               </label>
               <label className="flex items-center gap-2 cursor-pointer text-white">
                 <input
@@ -206,7 +295,7 @@ export default function Home() {
             </div>
 
             {searchResults.length === 0 ? (
-              <p className="text-gray-600 text-lg">No wineries found. Try a different search term.</p>
+              <p className="text-gray-600 text-lg">No venues found. Try a different search term.</p>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {searchResults.map((w) => (
@@ -249,8 +338,8 @@ export default function Home() {
         {/* Virginia Map Layout - 3 Rows */}
         <div className="space-y-6 max-w-6xl mx-auto">
           {/* Row 1 - Northern */}
-          <div className="grid grid-cols-2 gap-4">
-            <Link href="/wineries?region=Shenandoah Valley">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <Link href="/wineries?region=Shenandoah Valley" className="md:col-start-2">
               <img
                 src="/regions/valley.png"
                 alt="Shenandoah Valley"
@@ -346,26 +435,174 @@ export default function Home() {
 
       {/* Near Me Feature */}
       <section className="max-w-6xl mx-auto px-8 py-16">
-        <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-8 md:p-12 flex flex-col gap-6 md:flex-row md:items-center">
-          <div className="text-6xl md:text-7xl">📍</div>
-          <div className="flex-1">
-            <h2 className="text-4xl font-bold text-white mb-4 flex items-center gap-3">
-              Find Wineries Near You
-              <span className="text-xs bg-emerald-500/80 text-white px-3 py-1 rounded-full">New</span>
-            </h2>
-            <p className="text-purple-100 text-lg mb-4">
-              Tap into GPS-powered discovery to locate the closest wineries, cideries, and breweries within a custom radius—perfect for weekend getaways or impromptu tastings.
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <Link
-                href="/nearby"
-                className="inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-pink-500 to-rose-500 text-white font-semibold rounded-xl shadow-lg hover:from-pink-600 hover:to-rose-600 transition"
-              >
-                Open Near Me Tool →
-              </Link>
-              <p className="text-sm text-purple-200">
-                Works great on mobile—allow location access when prompted for the best results.
-              </p>
+        <div className="text-center mb-10"> <h2 className="text-4xl font-bold text-white mb-4">📍Find Venues Near You</h2>
+        </div>
+        <div className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl border border-purple-100 p-6 mb-6">
+          <div className="flex flex-wrap items-center gap-4">
+            <button
+              onClick={requestLocation}
+              className="px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-500 text-white rounded-xl font-semibold shadow-lg hover:from-purple-700 hover:to-pink-600 transition disabled:opacity-50"
+              disabled={locating}
+            >
+              {locating ? 'Locating...' : 'Use My Location'}
+            </button>
+
+            <div className="flex items-center gap-2">
+              <label className="text-sm text-purple-600 font-semibold whitespace-nowrap">
+                Max Distance:
+              </label>
+              <input
+                type="number"
+                min={1}
+                max={1000}
+                value={radius}
+                onChange={(e) => {
+                  const value = Number(e.target.value);
+                  if (value >= 1 && value <= 1000) {
+                    setRadius(value);
+                  }
+                }}
+                className="w-24 px-3 py-2 border border-purple-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                placeholder="miles"
+              />
+              <span className="text-sm text-purple-600">mi</span>
+            </div>
+
+            <div className="flex flex-wrap items-center gap-3 ml-8">
+              <label className="flex items-center gap-2 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={nearbyCategories.winery}
+                  onChange={() => toggleNearbyCategory('winery')}
+                  className="w-4 h-4 rounded accent-purple-500"
+                />
+                <span className="text-purple-900 font-medium text-sm">🍷 Wineries</span>
+              </label>
+              <label className="flex items-center gap-2 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={nearbyCategories.distillery}
+                  onChange={() => toggleNearbyCategory('distillery')}
+                  className="w-4 h-4 rounded accent-blue-500"
+                />
+                <span className="text-purple-900 font-medium text-sm">🍸 Distilleries</span>
+              </label>
+              <label className="flex items-center gap-2 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={nearbyCategories.brewery}
+                  onChange={() => toggleNearbyCategory('brewery')}
+                  className="w-4 h-4 rounded accent-yellow-500"
+                />
+                <span className="text-purple-900 font-medium text-sm">🍺 Breweries</span>
+              </label>
+              <label className="flex items-center gap-2 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={nearbyCategories.cidery}
+                  onChange={() => toggleNearbyCategory('cidery')}
+                  className="w-4 h-4 rounded accent-amber-500"
+                />
+                <span className="text-purple-900 font-medium text-sm">🍎 Cideries</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        {nearbyError && (
+          <div className="mb-6 p-4 border border-red-200 bg-red-50 text-red-700 rounded-lg">
+            {nearbyError}
+          </div>
+        )}
+
+        <div className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl border border-purple-100 p-6">
+          <div className="grid gap-8 md:grid-cols-2">
+            <div>
+              <div className="flex items-center justify-between mb-6">
+                <div>
+                  <h3 className="text-2xl font-bold text-purple-900">Nearby Venus</h3>
+                  <p className="text-purple-600 text-sm">
+                    {coords
+                      ? nearbyLoading
+                        ? "Searching for locations..."
+                        : `${filteredNearbyResults.length} place${filteredNearbyResults.length === 1 ? "" : "s"} within ${radius} miles`
+                      : "Share your location to see nearby results."}
+                  </p>
+                </div>
+              </div>
+
+              {nearbyLoading && (
+                <p className="text-purple-600">Loading nearby venues...</p>
+              )}
+
+              {!nearbyLoading && coords && filteredNearbyResults.length === 0 && (
+                <p className="text-gray-500">
+                  No venues found within {radius} miles. Try expanding the radius or changing the category filters.
+                </p>
+              )}
+
+              {!nearbyLoading && filteredNearbyResults.length > 0 && (
+                <div className="space-y-2 max-h-[500px] overflow-y-auto">
+                  {filteredNearbyResults.map(({ winery, distanceMiles }) => (
+                    <div
+                      key={winery.id}
+                      className="p-2 border border-purple-100 rounded-lg hover:border-purple-300 transition shadow-sm bg-white"
+                    >
+                      <div className="flex flex-wrap justify-between gap-2 text-sm">
+                        <div>
+                          <h4 className="text-base font-semibold text-purple-900">{winery.name}</h4>
+                          <p className="text-xs text-purple-600">{winery.city}, {winery.state}</p>
+                          <p className="text-xs text-gray-500">{winery.region}</p>
+                        </div>
+                        <div className="text-right">
+                          <p className="text-xs uppercase text-purple-500 font-semibold">Distance</p>
+                          <p className="text-xl font-bold text-purple-900">{distanceMiles} mi</p>
+                        </div>
+                      </div>
+                      <div className="mt-1 flex items-center justify-between flex-wrap gap-2 text-[11px]">
+                        <CategoryBadges categories={winery.categories} />
+                        <div className="flex items-center gap-2">
+                          <button
+                            onClick={() => navigator.clipboard.writeText(`${winery.street}, ${winery.city}, ${winery.state} ${winery.zip}`)}
+                            className="px-2 py-1 bg-purple-100 text-purple-700 rounded border border-purple-200 hover:bg-purple-200"
+                          >
+                            Copy Address
+                          </button>
+                          {winery.website && (
+                            <a
+                              href={`https://${winery.website}`}
+                              target="_blank"
+                              rel="noreferrer"
+                              className="text-purple-600 hover:text-purple-800 font-semibold"
+                            >
+                              Visit ↗
+                            </a>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            <div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
+                <div>
+                  <h3 className="text-2xl font-bold text-purple-900">Map View</h3>
+                  <p className="text-purple-600 text-sm">
+                    {coords ? `Viewing venues within ${radius} miles` : "Share your location to center the map"}
+                  </p>
+                </div>
+                {coords && (
+                  <div className="text-sm text-purple-500 font-semibold">
+                    {coords.lat.toFixed(3)}, {coords.lng.toFixed(3)}
+                  </div>
+                )}
+              </div>
+              <div className="flex-1 min-h-[300px] md:min-h-[500px]">
+                <NearbyMap origin={coords} results={filteredNearbyResults} radiusMiles={radius} />
+              </div>
             </div>
           </div>
         </div>

@@ -3875,6 +3875,12 @@ export function getNearbyWineries({
   const sanitizedRadius = Math.min(Math.max(radiusMiles, 1), 250);
   const sanitizedLimit = Math.min(Math.max(Math.floor(limit), 1), 100);
 
+  console.log('getNearbyWineries called with:', {
+    radiusMiles,
+    sanitizedRadius,
+    sanitizedLimit
+  });
+
   const matches = wineries
     .filter(w => typeof w.lat === 'number' && typeof w.lng === 'number')
     .map(w => ({
@@ -3886,5 +3892,9 @@ export function getNearbyWineries({
     .filter(entry => entry.distanceMiles <= sanitizedRadius)
     .sort((a, b) => a.distanceMiles - b.distanceMiles);
 
-  return matches.slice(0, sanitizedLimit);
+  console.log('Before limit - matches:', matches.length);
+  const result = matches.slice(0, sanitizedLimit);
+  console.log('After limit - result:', result.length);
+
+  return result;
 }

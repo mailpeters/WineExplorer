@@ -68,7 +68,7 @@ function WineriesPageContent() {
     <main className="min-h-screen bg-gradient-to-br from-purple-50 to-pink-50 p-8">
       <div className="max-w-4xl mx-auto">
         <h1 className="text-4xl font-bold text-purple-900 mb-8">
-          🍷 {region ? `${region} Wineries` : 'Search Wineries'}
+          🍷 {region ? `${region} venues` : 'Search venues'}
         </h1>
         <SearchBar onSearch={handleSearch} />
 
@@ -104,7 +104,7 @@ function WineriesPageContent() {
                 onChange={() => toggleCategory('distillery')}
                 className="w-5 h-5 rounded accent-blue-500"
               />
-              <span className="font-semibold text-blue-800">🥃 Distilleries</span>
+              <span className="font-semibold text-blue-800">🍸 Distilleries</span>
             </label>
             <label className="flex items-center gap-2 cursor-pointer">
               <input
@@ -133,10 +133,10 @@ function WineriesPageContent() {
           <div>
             <p className="text-gray-600 mb-4">Found {wineries.length} winery(ies)</p>
             {wineries.length === 0 ? (
-              <p className="text-gray-500">No wineries found. Try a different search.</p>
+              <p className="text-gray-500">No  found. Try a different search.</p>
             ) : (
               <div className="grid gap-4">
-                {wineries.map((w) => (
+                {.map((w) => (
                   <div key={w.id} className="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition">
                     <div className="flex justify-between items-start mb-2">
                       <h2 className="text-xl font-bold text-purple-900">{w.name}</h2>
