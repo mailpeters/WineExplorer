@@ -60,7 +60,11 @@ export default function WineryCard({ winery, showDistance, distanceMiles }: Wine
         </div>
 
         <p className="text-gray-700 mb-1">
-          <span className="font-semibold">📍</span> {winery.city}, {winery.state}
+          <span className="font-semibold">📍</span> {winery.street}
+        </p>
+
+        <p className="text-gray-700 mb-1">
+          {winery.city}, {winery.state} {winery.zip}
         </p>
 
         <p className="text-gray-600 mb-2">
@@ -98,7 +102,7 @@ export default function WineryCard({ winery, showDistance, distanceMiles }: Wine
             className="px-4 py-2 bg-purple-100 text-purple-700 rounded-lg border border-purple-200 hover:bg-purple-200 font-semibold text-sm"
             title="Copy address to clipboard"
           >
-            📋 Address
+            📋 Copy
           </button>
         </div>
       </div>
