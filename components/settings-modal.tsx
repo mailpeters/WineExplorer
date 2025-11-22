@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useSession } from 'next-auth/react';
 import { UserSettings, DEFAULT_SETTINGS } from '@/lib/user-settings';
 import { DataService } from '@/lib/dataService';
+import { US_STATES } from '@/lib/constants';
 
 // Helper function to format phone number
 const formatPhoneNumber = (value: string): string => {
