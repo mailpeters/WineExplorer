@@ -230,7 +230,7 @@ export default function Home() {
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search by winery name, city, or region..."
+                placeholder="Search by name, city, region, or type (e.g., 'distillery', '*' for all)..."
                 className="flex-1 px-6 py-4 bg-white text-gray-900 rounded-lg text-lg focus:outline-none focus:ring-4 focus:ring-pink-400 shadow-lg placeholder:text-gray-400"
               />
               <button

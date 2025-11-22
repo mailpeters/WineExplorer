@@ -4839,10 +4839,17 @@ export function getWineriesByRegion(region: string): Winery[] {
 // Helper function to search wineries
 export function searchWineries(query: string): Winery[] {
   const lowerQuery = query.toLowerCase();
-  return wineries.filter(w => 
+
+  // If searching for "*", return all wineries
+  if (lowerQuery === '*') {
+    return wineries;
+  }
+
+  return wineries.filter(w =>
     w.name.toLowerCase().includes(lowerQuery) ||
     w.city.toLowerCase().includes(lowerQuery) ||
-    w.region.toLowerCase().includes(lowerQuery)
+    w.region.toLowerCase().includes(lowerQuery) ||
+    w.categories.some(cat => cat.toLowerCase().includes(lowerQuery))
   );
 }
 
