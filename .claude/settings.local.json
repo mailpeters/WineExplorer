@@ -14,7 +14,16 @@
       "Bash(npx kill-port:*)",
       "Bash(node fix-categories.js:*)",
       "Bash(node update-cideries.js:*)",
-      "Bash(nul)"
+      "Bash(nul)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nUpdate branding from wineries to venues and integrate nearby feature into homepage\n\n- Rebrand app as \"Craft Beverage Explorer\" with updated metadata\n- Change terminology from \"wineries\" to \"venues\" throughout the UI\n- Integrate nearby venues feature directly into home page with split-screen map view\n- Add debug logging to track nearby search radius and results\n- Update distillery emoji from 🥃 to 🍸 across all components\n- Remove old favicon and replace with new icon.png\n- Clean up unused scripts and move to original data folder\n- Simplify auth button display\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
+      "Bash(git push)",
+      "Bash(git commit:*)",
+      "Bash(del \"\\?\\C:\\Users\\dpidd\\OneDrive\\awsdev\\wine\\nul\")",
+      "Bash(powershell -Command \"Remove-Item ''\\?\\C:\\Users\\dpidd\\OneDrive\\awsdev\\wine\\nul''\")",
+      "Bash(powershell -Command \"Remove-Item -LiteralPath ''\\\\?\\C:\\Users\\dpidd\\OneDrive\\awsdev\\wine\\nul'' -Force\")",
+      "Bash(cmd /c 'del \"\"\\\\?\\C:\\Users\\dpidd\\OneDrive\\awsdev\\wine\\nul\"\"')",
+      "Bash(cmd.exe /c \"del \\\\?\\C:\\Users\\dpidd\\OneDrive\\awsdev\\wine\\nul\")",
+      "Bash(cmd.exe /c \"erase .\\nul\")"
     ],
     "deny": [],
     "ask": []
