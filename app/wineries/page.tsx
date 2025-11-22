@@ -5,6 +5,7 @@ import { useSearchParams } from "next/navigation";
 import { Winery } from "@/types/winery";
 import SearchBar from "@/components/SearchBar";
 import CategoryBadges from "@/components/category-badges";
+import WineryCard from "@/components/winery-card";
 import { loadSettings, saveSettings } from "@/lib/user-settings";
 
 function WineriesPageContent() {
@@ -137,31 +138,7 @@ function WineriesPageContent() {
             ) : (
               <div className="grid gap-4">
                 {wineries.map((w) => (
-                  <div key={w.id} className="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition">
-                    <div className="flex justify-between items-start mb-2">
-                      <h2 className="text-xl font-bold text-purple-900">{w.name}</h2>
-                      <CategoryBadges categories={w.categories} />
-                    </div>
-                    <p className="text-gray-700 mb-1">
-                      <span className="font-semibold">📍</span> {w.city}, {w.state}
-                    </p>
-                    <p className="text-gray-600 mb-2">
-                      <span className="font-semibold">🗺️</span> {w.region}
-                    </p>
-                    {w.phone && (
-                      <p className="text-gray-600 mb-2">
-                        <span className="font-semibold">📞</span> {w.phone}
-                      </p>
-                    )}
-                    {w.website && (
-                      <p className="text-purple-600 hover:text-purple-800">
-                        <span className="font-semibold">🌐</span>{' '}
-                        <a href={`https://${w.website}`} target="_blank" rel="noopener noreferrer" className="underline">
-                          {w.website}
-                        </a>
-                      </p>
-                    )}
-                  </div>
+                  <WineryCard key={w.id} winery={w} />
                 ))}
               </div>
             )}

@@ -8,6 +8,7 @@ import { wineries, getRegions, NearbyWinery } from '@/lib/wineries-data';
 import { Winery } from '@/types/winery';
 import AuthButton from '@/components/auth-button';
 import CategoryBadges from '@/components/category-badges';
+import WineryCard from '@/components/winery-card';
 import { loadSettings, saveSettings } from '@/lib/user-settings';
 import SettingsModal from '@/components/settings-modal';
 
@@ -205,6 +206,13 @@ export default function Home() {
             </h2>
             <div className="flex flex-col gap-2 items-end">
               <AuthButton />
+              <Link
+                href="/visits"
+                className="px-4 py-2 bg-pink-500 hover:bg-pink-600 text-white font-semibold rounded-lg transition border border-white/30 backdrop-blur-sm shadow-md"
+                title="View your visit history"
+              >
+                📚 My Visits
+              </Link>
               <button
                 onClick={() => setIsSettingsOpen(true)}
                 className="px-4 py-2 bg-white/20 hover:bg-white/30 text-white font-semibold rounded-lg transition border border-white/30 backdrop-blur-sm"
@@ -300,31 +308,7 @@ export default function Home() {
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {searchResults.map((w) => (
-                  <div key={w.id} className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-lg p-6 border border-purple-200 hover:shadow-lg transition">
-                    <div className="flex justify-between items-start mb-2">
-                      <h3 className="text-xl font-bold text-purple-900">{w.name}</h3>
-                      <CategoryBadges categories={w.categories} />
-                    </div>
-                    <p className="text-gray-700 mb-1">
-                      <span className="font-semibold">📍</span> {w.city}, {w.state}
-                    </p>
-                    <p className="text-gray-600 mb-3">
-                      <span className="font-semibold">🗺️</span> {w.region}
-                    </p>
-                    {w.phone && (
-                      <p className="text-gray-600 mb-2">
-                        <span className="font-semibold">📞</span> {w.phone}
-                      </p>
-                    )}
-                    {w.website && (
-                      <p className="text-purple-600 hover:text-purple-800">
-                        <span className="font-semibold">🌐</span>{' '}
-                        <a href={`https://${w.website}`} target="_blank" rel="noopener noreferrer" className="underline">
-                          {w.website}
-                        </a>
-                      </p>
-                    )}
-                  </div>
+                  <WineryCard key={w.id} winery={w} />
                 ))}
               </div>
             )}
@@ -543,45 +527,14 @@ export default function Home() {
               )}
 
               {!nearbyLoading && filteredNearbyResults.length > 0 && (
-                <div className="space-y-2 max-h-[500px] overflow-y-auto">
+                <div className="space-y-4 max-h-[500px] overflow-y-auto">
                   {filteredNearbyResults.map(({ winery, distanceMiles }) => (
-                    <div
+                    <WineryCard
                       key={winery.id}
-                      className="p-2 border border-purple-100 rounded-lg hover:border-purple-300 transition shadow-sm bg-white"
-                    >
-                      <div className="flex flex-wrap justify-between gap-2 text-sm">
-                        <div>
-                          <h4 className="text-base font-semibold text-purple-900">{winery.name}</h4>
-                          <p className="text-xs text-purple-600">{winery.city}, {winery.state}</p>
-                          <p className="text-xs text-gray-500">{winery.region}</p>
-                        </div>
-                        <div className="text-right">
-                          <p className="text-xs uppercase text-purple-500 font-semibold">Distance</p>
-                          <p className="text-xl font-bold text-purple-900">{distanceMiles} mi</p>
-                        </div>
-                      </div>
-                      <div className="mt-1 flex items-center justify-between flex-wrap gap-2 text-[11px]">
-                        <CategoryBadges categories={winery.categories} />
-                        <div className="flex items-center gap-2">
-                          <button
-                            onClick={() => navigator.clipboard.writeText(`${winery.street}, ${winery.city}, ${winery.state} ${winery.zip}`)}
-                            className="px-2 py-1 bg-purple-100 text-purple-700 rounded border border-purple-200 hover:bg-purple-200"
-                          >
-                            Copy Address
-                          </button>
-                          {winery.website && (
-                            <a
-                              href={`https://${winery.website}`}
-                              target="_blank"
-                              rel="noreferrer"
-                              className="text-purple-600 hover:text-purple-800 font-semibold"
-                            >
-                              Visit ↗
-                            </a>
-                          )}
-                        </div>
-                      </div>
-                    </div>
+                      winery={winery}
+                      showDistance={true}
+                      distanceMiles={distanceMiles}
+                    />
                   ))}
                 </div>
               )}
@@ -608,28 +561,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* Coming Soon Features */}
-      <div className="max-w-6xl mx-auto px-8 py-16">
-        <h2 className="text-4xl font-bold text-white text-center mb-12">Coming Soon</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-8 hover:bg-white/15 transition">
-            <div className="text-5xl mb-4">⭐</div>
-            <h3 className="text-2xl font-bold text-white mb-2">Rate & Review</h3>
-            <p className="text-purple-100">Share your experiences and see what other visitors loved</p>
-          </div>
-          <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-8 hover:bg-white/15 transition">
-            <div className="text-5xl mb-4">📸</div>
-            <h3 className="text-2xl font-bold text-white mb-2">Upload Photos</h3>
-            <p className="text-purple-100">Capture and share your favorite moments from your visits</p>
-          </div>
-          <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-8 hover:bg-white/15 transition">
-            <div className="text-5xl mb-4">🗺️</div>
-            <h3 className="text-2xl font-bold text-white mb-2">Wine Trail Routes</h3>
-            <p className="text-purple-100">Plan the perfect wine tour with suggested routes and itineraries</p>
-          </div>
-        </div>
-      </div>
 
       {/* Footer */}
       <footer className="bg-black/30 border-t border-white/10 py-8 mt-16">
